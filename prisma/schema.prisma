@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Stores the paying sponsors from the website
+model Sponsor {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  stripeCustomerId String   @unique
+  subscriptionTier String   // e.g., "Friend", "Family"
+  createdAt       DateTime  @default(now())
+  accessCodes     AccessCode[]
+}
+
+// The unique codes that sponsors give to users
+model AccessCode {
+  id        String    @id @default(cuid())
+  code      String    @unique // The actual code, e.g., ET-XXXX-XXXX
+  status    String    @default("NEW") // "NEW", "USED"
+  sponsorId String
+  sponsor   Sponsor   @relation(fields: [sponsorId], references: [id])
+  usedBy    User?
+  createdAt DateTime  @default(now())
+}
+
+// The end-users on Telegram
+model User {
+  id          String      @id @default(cuid())
+  telegramId  BigInt      @unique // Telegram IDs can be very large
+  quotaGpt    Int         @default(0)
+  quotaFetch  Int         @default(0)
+  accessCodeId String?    @unique
+  accessCode  AccessCode? @relation(fields: [accessCodeId], references: [id])
+  createdAt   DateTime    @default(now())
+}
