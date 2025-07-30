@@ -10,18 +10,18 @@ COPY package*.json ./
 # Install all dependencies (including dev dependencies for Prisma)
 RUN npm ci && npm cache clean --force
 
-# Generate Prisma client
-RUN npx prisma generate
-
-# Remove dev dependencies to keep image small
-RUN npm prune --production
-
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S afelu -u 1001
 
-# Copy application code
+# Copy application code (needed for Prisma schema)
 COPY --chown=afelu:nodejs . .
+
+# Generate Prisma client (now that schema is available)
+RUN npx prisma generate
+
+# Remove dev dependencies to keep image small
+RUN npm prune --production
 
 # Create logs directory
 RUN mkdir -p logs && chown afelu:nodejs logs
