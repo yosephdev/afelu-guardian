@@ -68,49 +68,7 @@ function rateLimitMiddleware(req, res, next) {
 // Apply rate limiting to API routes
 app.use('/api/', rateLimitMiddleware);
 
-// Body parsing middleware (placed before routes, Stripe webhook has its own raw parser)
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-// Contact routes (replaces the old contact handler)
-// Contact routes
-app.use('/api/contact', contactRoutes);
-
-// Admin routes
-// app.use('/admin', adminRoutes);
-
-// A simple API endpoint for health checks
-app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: 'ok', 
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime()
-    });
-});
-
-// API endpoint to get system status (protected)
-app.get('/api/status', async (req, res) => {
-    try {
-        const stats = await prisma.$queryRaw`
-            SELECT 
-                (SELECT COUNT(*) FROM "Sponsor") as sponsors,
-                (SELECT COUNT(*) FROM "AccessCode" WHERE status = 'NEW') as available_codes,
-                (SELECT COUNT(*) FROM "AccessCode" WHERE status = 'USED') as used_codes,
-                (SELECT COUNT(*) FROM "User") as users
-        `;
-        
-        res.json({
-            status: 'operational',
-            stats: stats[0],
-            timestamp: new Date().toISOString()
-        });
-    } catch (error) {
-        console.error('Status check failed:', error);
-        res.status(500).json({ status: 'error', message: 'Database connection failed' });
-    }
-});
-
-// Stripe webhook handler
+// Stripe webhook handler (must be before JSON parsing middleware)
 app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (request, response) => {
     const sig = request.headers['stripe-signature'];
     let event;
@@ -171,6 +129,47 @@ app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (
     } catch (error) {
         console.error('❌ Error processing webhook:', error);
         response.status(500).json({received: true, processed: false, error: 'Internal server error'});
+    }
+});
+
+// Body parsing middleware (after Stripe webhook to avoid conflicts)
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Contact routes
+app.use('/api/contact', contactRoutes);
+
+// Admin routes
+// app.use('/admin', adminRoutes);
+
+// A simple API endpoint for health checks
+app.get('/api/health', (req, res) => {
+    res.json({ 
+        status: 'ok', 
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime()
+    });
+});
+
+// API endpoint to get system status (protected)
+app.get('/api/status', async (req, res) => {
+    try {
+        const stats = await prisma.$queryRaw`
+            SELECT 
+                (SELECT COUNT(*) FROM "Sponsor") as sponsors,
+                (SELECT COUNT(*) FROM "AccessCode" WHERE status = 'NEW') as available_codes,
+                (SELECT COUNT(*) FROM "AccessCode" WHERE status = 'USED') as used_codes,
+                (SELECT COUNT(*) FROM "User") as users
+        `;
+        
+        res.json({
+            status: 'operational',
+            stats: stats[0],
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('Status check failed:', error);
+        res.status(500).json({ status: 'error', message: 'Database connection failed' });
     }
 });
 
