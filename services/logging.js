@@ -90,6 +90,35 @@ class LoggingService {
             return [];
         }
     }
+
+    /**
+     * Log general activity (for contact forms, system events, etc.)
+     * @param {string} category - Category of the activity
+     * @param {string} action - Action performed
+     * @param {string} actor - Who performed the action
+     * @param {object} details - Additional details
+     */
+    async logActivity(category, action, actor = 'system', details = {}) {
+        try {
+            // For now, we'll log this as a general action
+            // You can extend this to create a separate activity table if needed
+            console.log(`📝 Activity logged: ${category}.${action} by ${actor}`, details);
+            
+            // Optional: Store in a simple log format
+            // This is a placeholder - you might want to create a separate table
+            return {
+                success: true,
+                category,
+                action,
+                actor,
+                details,
+                timestamp: new Date().toISOString()
+            };
+        } catch (error) {
+            console.error('Failed to log activity:', error);
+            return { success: false, error: error.message };
+        }
+    }
 }
 
 module.exports = new LoggingService();
