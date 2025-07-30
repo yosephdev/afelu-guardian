@@ -28,6 +28,7 @@ model AccessCode {
   sponsorId String
   sponsor   Sponsor   @relation(fields: [sponsorId], references: [id])
   usedBy    User?
+  usedAt    DateTime? // When the code was redeemed
   createdAt DateTime  @default(now())
 }
 
@@ -40,4 +41,19 @@ model User {
   accessCodeId String?    @unique
   accessCode  AccessCode? @relation(fields: [accessCodeId], references: [id])
   createdAt   DateTime    @default(now())
+  lastActive  DateTime    @default(now())
+  usageLogs   UsageLog[]
+}
+
+// Track usage for analytics and monitoring
+model UsageLog {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  action     String   // "gpt_request", "fetch_request", "redeem_code"
+  details    Json?    // Additional data like prompt length, URL, etc.
+  createdAt  DateTime @default(now())
+  
+  @@index([userId, createdAt])
+  @@index([action, createdAt])
 }

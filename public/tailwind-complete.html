@@ -1,299 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afelu Guardian - Bridge the Digital Divide</title>
-    <meta name="description" content="Empowering Ethiopians with secure access to AI and uncensored information through sponsored access codes.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a'
-                        },
-                        ethiopia: {
-                            green: '#009639',
-                            yellow: '#FFCD00',
-                            red: '#DA020E'
-                        }
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom Styles -->
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .glass-effect {
-            backdrop-filter: blur(16px) saturate(180%);
-            background-color: rgba(255, 255, 255, 0.75);
-            border: 1px solid rgba(209, 213, 219, 0.3);
-        }
-        
-        .ethiopia-gradient {
-            background: linear-gradient(135deg, #009639 0%, #FFCD00 50%, #DA020E 100%);
-        }
-        
-        .pulse-slow {
-            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-    </style>
-</head>
-
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-white text-sm"></i>
-                    </div>
-                    <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#mission" class="text-gray-600 hover:text-primary-600 transition-colors">Mission</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-primary-600 transition-colors">How It Works</a>
-                    <a href="#features" class="text-gray-600 hover:text-primary-600 transition-colors">Features</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors">Pricing</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary-600 transition-colors">Contact</a>
-                    <a href="#pricing" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
-                        Get Started
-                    </a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden text-gray-600">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden pb-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="#mission" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Mission</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-primary-600 transition-colors py-2">How It Works</a>
-                    <a href="#features" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Features</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Pricing</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Contact</a>
-                    <a href="#pricing" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors inline-block text-center mt-2">
-                        Get Started
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="pt-24 pb-12 gradient-bg">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center text-white">
-                <div class="mb-6">
-                    <div class="inline-flex items-center bg-white/20 rounded-full px-4 py-2 mb-6">
-                        <div class="w-2 h-2 bg-ethiopia-green rounded-full mr-2 pulse-slow"></div>
-                        <span class="text-sm font-medium">Breaking Digital Barriers Since 2024</span>
-                    </div>
-                </div>
-                
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    Bridge the 
-                    <span class="bg-gradient-to-r from-ethiopia-yellow to-ethiopia-red bg-clip-text text-transparent">
-                        Digital Divide
-                    </span>
-                </h1>
-                
-                <p class="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
-                    Empowering Ethiopians with secure access to AI tools and uncensored information. 
-                    <strong>Because everyone deserves digital freedom.</strong>
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                    <a href="#pricing" class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center">
-                        <i class="fas fa-rocket mr-2"></i>
-                        Get Started Today
-                    </a>
-                    <a href="#how-it-works" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors inline-flex items-center justify-center">
-                        <i class="fas fa-play mr-2"></i>
-                        See How It Works
-                    </a>
-                </div>
-                
-                <!-- Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div class="text-3xl font-bold mb-2">1000+</div>
-                        <div class="text-white/80">Access Codes Distributed</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-bold mb-2">24/7</div>
-                        <div class="text-white/80">Service Availability</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-bold mb-2">100%</div>
-                        <div class="text-white/80">Anonymous Usage</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-bold mb-2">15+</div>
-                        <div class="text-white/80">Countries Supported</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mission Section -->
-    <section id="mission" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Our Mission
-                    </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Breaking digital barriers and democratizing access to information and AI tools across Ethiopia and beyond.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="bg-gradient-to-r from-red-50 to-yellow-50 p-8 rounded-2xl mb-8">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                                <i class="fas fa-globe-africa text-ethiopia-red mr-3"></i>
-                                Breaking Digital Barriers
-                            </h3>
-                            <p class="text-gray-700 mb-4">
-                                In Ethiopia and across the developing world, internet censorship and limited access to AI tools create information deserts. 
-                                Millions are cut off from the transformative power of modern technology simply because of where they live.
-                            </p>
-                        </div>
-
-                        <div class="space-y-6">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-ban text-primary-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 mb-2">Internet Censorship</h4>
-                                    <p class="text-gray-600">Limited access to global information and educational resources.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-robot text-primary-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 mb-2">AI Tool Restrictions</h4>
-                                    <p class="text-gray-600">No access to ChatGPT, AI assistance, or modern productivity tools.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-dollar-sign text-primary-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 mb-2">Economic Barriers</h4>
-                                    <p class="text-gray-600">Unable to afford premium services and international subscriptions.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="bg-gradient-to-br from-primary-50 to-blue-50 p-8 rounded-2xl">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Solution</h3>
-                            
-                            <div class="space-y-4">
-                                <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <h4 class="font-semibold text-gray-900 mb-2">🔐 Secure Access Codes</h4>
-                                    <p class="text-gray-600">Anonymous, untraceable codes that unlock AI and web access.</p>
-                                </div>
-                                
-                                <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <h4 class="font-semibold text-gray-900 mb-2">👥 Sponsored Model</h4>
-                                    <p class="text-gray-600">Diaspora sponsors purchase codes for family and friends back home.</p>
-                                </div>
-                                
-                                <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <h4 class="font-semibold text-gray-900 mb-2">🛡️ Complete Privacy</h4>
-                                    <p class="text-gray-600">No connection between payment and usage - ensuring user safety.</p>
-                                </div>
-                                
-                                <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <h4 class="font-semibold text-gray-900 mb-2">📱 Easy Access</h4>
-                                    <p class="text-gray-600">Simple Telegram bot interface - works on any phone or computer.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('bg-white');
-                nav.classList.remove('bg-white/90');
-            } else {
-                nav.classList.add('bg-white/90');
-                nav.classList.remove('bg-white');
-            }
-        });
-    </script>
-
     <!-- How It Works Section -->
     <section id="how-it-works" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
@@ -439,215 +143,8 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Platform Capabilities
-                    </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Advanced AI tools and web access that adapt to your needs, designed for reliability in challenging network conditions.
-                    </p>
-                </div>
-
-                <!-- Main Features Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <!-- AI Assistant -->
-                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border border-blue-100">
-                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fas fa-brain text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">🧠 Advanced AI Assistant</h3>
-                        <p class="text-gray-600 mb-4">
-                            Access ChatGPT-level AI for homework help, research, coding, writing, and problem-solving.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Multilingual support (Amharic, English, etc.)</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Homework & study assistance</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Professional writing help</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Web Access -->
-                    <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl border border-green-100">
-                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fas fa-globe text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">🌐 Secure Web Access</h3>
-                        <p class="text-gray-600 mb-4">
-                            Fetch content from any website safely and anonymously, bypassing restrictions.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Access blocked news sites</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Research paper downloads</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Social media content access</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Translation -->
-                    <div class="bg-gradient-to-br from-yellow-50 to-red-50 p-8 rounded-2xl border border-yellow-100">
-                        <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-red-500 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fas fa-language text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">🈂️ Smart Translation</h3>
-                        <p class="text-gray-600 mb-4">
-                            Translate between Amharic, English, and 100+ languages with context awareness.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Amharic ↔ English specialization</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Document translation</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Cultural context preservation</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News -->
-                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100">
-                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fas fa-newspaper text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">📰 Global News Access</h3>
-                        <p class="text-gray-600 mb-4">
-                            Stay informed with uncensored news from global sources and independent journalism.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>International news sources</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Real-time updates</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Bias-free reporting</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Image Generation -->
-                    <div class="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100">
-                        <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fas fa-image text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">🎨 AI Image Creation</h3>
-                        <p class="text-gray-600 mb-4">
-                            Generate custom images, artwork, and visual content using advanced AI models.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Custom artwork generation</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Educational illustrations</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Business graphics</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Summarization -->
-                    <div class="bg-gradient-to-br from-teal-50 to-cyan-50 p-8 rounded-2xl border border-teal-100">
-                        <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fas fa-compress text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">📄 Smart Summarization</h3>
-                        <p class="text-gray-600 mb-4">
-                            Condense long articles, papers, and documents into key insights and actionable summaries.
-                        </p>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Academic paper summaries</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>News article digests</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span>Key takeaway extraction</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technical Features -->
-                <div class="bg-gray-50 p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">🔧 Technical Excellence</h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="text-center">
-                            <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-bolt text-white"></i>
-                            </div>
-                            <h4 class="font-semibold text-gray-900 mb-2">Low Bandwidth Optimized</h4>
-                            <p class="text-gray-600 text-sm">Works efficiently even on slow connections</p>
-                        </div>
-                        
-                        <div class="text-center">
-                            <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-shield-alt text-white"></i>
-                            </div>
-                            <h4 class="font-semibold text-gray-900 mb-2">Military-Grade Security</h4>
-                            <p class="text-gray-600 text-sm">End-to-end encryption for all communications</p>
-                        </div>
-                        
-                        <div class="text-center">
-                            <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-clock text-white"></i>
-                            </div>
-                            <h4 class="font-semibold text-gray-900 mb-2">24/7 Availability</h4>
-                            <p class="text-gray-600 text-sm">Always online, regardless of local restrictions</p>
-                        </div>
-                        
-                        <div class="text-center">
-                            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-mobile-alt text-white"></i>
-                            </div>
-                            <h4 class="font-semibold text-gray-900 mb-2">Mobile-First Design</h4>
-                            <p class="text-gray-600 text-sm">Optimized for smartphones and basic devices</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gray-50">
+    <section id="pricing" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
@@ -695,7 +192,7 @@
                             </div>
                         </div>
                         
-                        <a href="https://buy.stripe.com/dRmbJ01w3dYX71scmp3Ru05" 
+                        <a href="https://buy.stripe.com/cNi8wOgqX1cbetU4TX3Ru04" 
                            class="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors block text-center">
                             Buy Friend Plan
                         </a>
@@ -814,7 +311,7 @@
                 </div>
 
                 <!-- Payment Info -->
-                <div class="bg-white p-8 rounded-2xl text-center">
+                <div class="bg-gray-50 p-8 rounded-2xl text-center">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">💳 Payment & Delivery</h3>
                     <div class="grid md:grid-cols-4 gap-6">
                         <div>
@@ -844,7 +341,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
@@ -858,7 +355,7 @@
 
                 <div class="grid md:grid-cols-2 gap-12">
                     <!-- Contact Form -->
-                    <div class="bg-gray-50 p-8 rounded-2xl">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
                         <h3 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
                         
                         <form id="contact-form" class="space-y-6">
@@ -910,7 +407,7 @@
                     <!-- Contact Info -->
                     <div class="space-y-8">
                         <!-- Quick Actions -->
-                        <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
                             <h3 class="text-2xl font-bold text-gray-900 mb-6">🚀 Quick Start Options</h3>
                             <div class="space-y-4">
                                 <a href="#pricing" class="flex items-center justify-between p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors">
@@ -933,7 +430,7 @@
                         </div>
 
                         <!-- Contact Details -->
-                        <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
                             <h3 class="text-2xl font-bold text-gray-900 mb-6">📞 Other Ways to Reach Us</h3>
                             <div class="space-y-4">
                                 <div class="flex items-center space-x-3">
@@ -963,7 +460,7 @@
                         </div>
 
                         <!-- Support Info -->
-                        <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
                             <h3 class="text-2xl font-bold text-gray-900 mb-6">🆘 Need Help?</h3>
                             <div class="space-y-3">
                                 <div class="flex items-start space-x-3">

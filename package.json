@@ -4,20 +4,42 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "concurrently \"node index.js\" \"npx prisma studio\""
+    "dev": "concurrently \"node index.js\" \"npx prisma studio\"",
+    "db:generate": "npx prisma generate",
+    "db:push": "npx prisma db push",
+    "db:migrate": "npx prisma migrate dev",
+    "db:seed": "node scripts/seed.js",
+    "bot:register": "node scripts/register-commands.js",
+    "bot:reset": "pkill -f 'node.*index.js' || true",
+    "setup": "npm run db:generate && npm run bot:register"
   },
-  "keywords": [],
+  "keywords": [
+    "telegram",
+    "bot",
+    "ai",
+    "stripe",
+    "ethiopia"
+  ],
   "author": "Yoseph Berhane Gebremedhin",
   "license": "ISC",
-  "description": "",
+  "description": "Afelu Guardian - Bridge the digital divide by providing secure access to AI tools and information",
   "dependencies": {
     "@prisma/client": "^6.13.0",
     "concurrently": "^9.2.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "express-validator": "^7.2.1",
+    "jsdom": "^25.0.1",
     "nanoid": "^5.1.5",
     "node-telegram-bot-api": "^0.66.0",
     "pg": "^8.16.3",
     "stripe": "^18.3.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.13.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
