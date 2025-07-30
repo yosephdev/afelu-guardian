@@ -1,7 +1,107 @@
-node_modules
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
+# Environment Variables & Secrets
 .env
-.env.example
-/generated/prisma
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-debug.htmlDockerfile.backup
+# Database & Generated Files
+/generated/prisma
+prisma/migrations/*.sql
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output
+
+# Temporary folders
+tmp/
+temp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Backup files
+*.backup
+*.bak
+debug.html
+Dockerfile.backup
+
+# Documentation and setup files (sensitive)
+GMAIL_FORWARDING_SETUP.md
+AI_PROVIDERS_COMPARISON.md
+RAILWAY_DEPLOYMENT_FIX.md
+ZOHO_DOMAIN_SETUP.md
+ZOHO_TROUBLESHOOTING.md
+*-setup.sh
+*-diagnosis.sh
+*-tracker.sh
+test-email-integration.sh
+
+# API Keys and Config (additional security)
+config/local.json
+config/production.json
+config/development.json
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Railway specific
+.railway/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Cache
+.cache/
+.parcel-cache/
