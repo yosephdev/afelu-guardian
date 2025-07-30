@@ -11,6 +11,9 @@ const loggingService = require('./services/logging');
 const app = express();
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
+// Trust proxy for Railway deployment
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use((req, res, next) => {
     // Security headers
