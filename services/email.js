@@ -21,6 +21,15 @@ class ZohoEmailService {
      */
     initializeTransporter() {
         try {
+            // Debug environment variables
+            console.log('🔍 Email config check:', {
+                SMTP_HOST: process.env.SMTP_HOST ? '✅ Set' : '❌ Missing',
+                SMTP_PORT: process.env.SMTP_PORT ? '✅ Set' : '❌ Missing',
+                SMTP_USER: process.env.SMTP_USER ? '✅ Set' : '❌ Missing',
+                SMTP_PASS: process.env.SMTP_PASS ? '✅ Set' : '❌ Missing',
+                FROM_EMAIL: process.env.FROM_EMAIL ? '✅ Set' : '❌ Missing'
+            });
+
             // Zoho Mail SMTP configuration
             this.transporter = nodemailer.createTransporter({
                 host: process.env.SMTP_HOST || 'smtp.zoho.com',
@@ -38,9 +47,10 @@ class ZohoEmailService {
             this.isConfigured = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
             
             if (this.isConfigured) {
-                console.log('✅ Zoho email service initialized');
+                console.log('✅ Zoho email service initialized successfully');
             } else {
                 console.log('⚠️  Email service not configured - missing SMTP credentials');
+                console.log('Required: SMTP_USER and SMTP_PASS environment variables');
             }
         } catch (error) {
             console.error('❌ Failed to initialize email service:', error.message);
