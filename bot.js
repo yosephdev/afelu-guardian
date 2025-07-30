@@ -2,6 +2,7 @@ require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 const prisma = require('./prisma');
 const openaiService = require('./services/openai');
+const enhancedAI = require('./services/enhanced-ai-service');
 const webfetchService = require('./services/webfetch');
 const loggingService = require('./services/logging');
 const { 

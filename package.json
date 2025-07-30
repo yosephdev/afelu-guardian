@@ -24,6 +24,7 @@
   "license": "ISC",
   "description": "Afelu Guardian - Bridge the digital divide by providing secure access to AI tools and information",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.57.0",
     "@prisma/client": "^6.13.0",
     "concurrently": "^9.2.0",
     "dotenv": "^17.2.1",

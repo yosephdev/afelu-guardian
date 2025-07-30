@@ -14,11 +14,11 @@ class OpenAIService {
     /**
      * Send a chat completion request to OpenAI with language detection and support
      * @param {string} prompt - User's prompt
-     * @param {string} model - OpenAI model to use (default: gpt-3.5-turbo)
+     * @param {string} model - OpenAI model to use (default: gpt-4o-mini)
      * @param {string} preferredLanguage - User's preferred language
      * @returns {Promise<string>} - AI response
      */
-    async getChatCompletion(prompt, model = 'gpt-3.5-turbo', preferredLanguage = 'auto') {
+    async getChatCompletion(prompt, model = 'gpt-4o-mini', preferredLanguage = 'auto') {
         if (!this.apiKey) {
             return this.getPlaceholderResponse(prompt);
         }
@@ -145,7 +145,7 @@ class OpenAIService {
      */
     async summarizeText(text, language = 'english') {
         const prompt = `Please summarize the following text in ${language}. Keep it concise but capture the main points:\n\n${text.substring(0, 3000)}`;
-        return await this.getChatCompletion(prompt, 'gpt-3.5-turbo', language);
+        return await this.getChatCompletion(prompt, 'gpt-4o-mini', language);
     }
 
     /**
