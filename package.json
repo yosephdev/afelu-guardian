@@ -37,11 +37,10 @@
     "jsdom": "^25.0.1",
     "nanoid": "^5.1.5",
     "node-telegram-bot-api": "^0.66.0",
+    "nodemailer": "^7.0.5",
     "pg": "^8.16.3",
     "prisma": "^6.13.0",
     "stripe": "^18.3.0"
-  },
-  "devDependencies": {
   },
   "engines": {
     "node": ">=18.0.0"

@@ -1,5 +1,6 @@
 const prisma = require('./prisma');
 const { generateSecureRandomString } = require('./utils/validation');
+const emailService = require('./services/email');
 
 // Function to generate a unique, formatted access code using crypto-secure randomness
 function generateAccessCode() {
@@ -111,6 +112,37 @@ async function provisionAccessCodes(session) {
 
         console.log(`✅ Provisioned ${planDetails.codesToGenerate} codes for sponsor ${sponsorEmail}`);
         console.log(`📋 Generated codes: ${generatedCodes.join(', ')}`);
+
+        // Send payment confirmation email to customer
+        const customerName = session.customer_details?.name || sponsorEmail.split('@')[0];
+        const amount = (session.amount_total / 100).toFixed(2); // Convert from cents
+
+        try {
+            // Send confirmation email to customer
+            const customerEmailResult = await emailService.sendPaymentConfirmationEmail({
+                customerEmail: sponsorEmail,
+                customerName,
+                plan: planDetails.tier,
+                amount,
+                accessCodes: generatedCodes
+            });
+
+            // Send notification email to admin
+            const adminEmailResult = await emailService.sendAdminPaymentNotification({
+                customerEmail: sponsorEmail,
+                customerName,
+                plan: planDetails.tier,
+                amount,
+                accessCodes: generatedCodes
+            });
+
+            console.log(`📧 Customer email sent: ${customerEmailResult.success ? '✅' : '❌'}`);
+            console.log(`📧 Admin notification sent: ${adminEmailResult.success ? '✅' : '❌'}`);
+
+        } catch (emailError) {
+            console.error('❌ Error sending payment confirmation emails:', emailError.message);
+            // Don't fail the entire provisioning process for email errors
+        }
 
         return {
             success: true,

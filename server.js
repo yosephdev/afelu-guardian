@@ -5,7 +5,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const prisma = require('./prisma');
 const { provisionAccessCodes } = require('./provisioning');
 // const adminRoutes = require('./routes/admin');
-// const contactRoutes = require('./routes/contact');
+const contactRoutes = require('./routes/contact');
 const loggingService = require('./services/logging');
 
 const app = express();
@@ -66,7 +66,8 @@ function rateLimitMiddleware(req, res, next) {
 app.use('/api/', rateLimitMiddleware);
 
 // Contact routes (replaces the old contact handler)
-// app.use('/api/contact', contactRoutes);
+// Contact routes
+app.use('/api/contact', contactRoutes);
 
 // Admin routes
 // app.use('/admin', adminRoutes);

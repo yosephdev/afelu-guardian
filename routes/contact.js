@@ -3,48 +3,60 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const loggingService = require('../services/logging');
+const emailService = require('../services/email'); // Use our new Zoho email service
 const rateLimit = require('express-rate-limit');
 
 // Rate limiting for contact form
 const contactLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 3, // limit each IP to 3 requests per windowMs
+    windowMs: 60 * 60 * 1000, // 1 hour (increased from 15 minutes)
+    max: 5, // limit each IP to 5 requests per hour
     message: {
         error: 'Too many contact requests from this IP, please try again later.',
-        retry_after: 15 * 60
+        retry_after: 60 * 60
     },
     standardHeaders: true,
     legacyHeaders: false,
 });
 
-// Email service placeholder (can be replaced with actual email service)
-const emailService = {
-    async sendContactNotification(contactData) {
-        // TODO: Implement actual email service (NodeMailer, SendGrid, etc.)
-        console.log('Contact form submission:', contactData);
-        
-        // Log to our logging service
-        await loggingService.logActivity(
-            'contact_form', 
-            'form_submission', 
-            'system',
-            {
-                name: contactData.name,
-                email: contactData.email,
-                subject: contactData.subject,
-                timestamp: new Date().toISOString()
-            }
-        );
-        
-        return { success: true, message: 'Contact notification sent' };
-    },
+// Test endpoint for email service (admin only)
+router.get('/test', async (req, res) => {
+    try {
+        // Simple admin check
+        const adminPassword = req.headers.authorization?.replace('Bearer ', '');
+        if (adminPassword !== process.env.ADMIN_PASSWORD) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
 
-    async sendAutoReply(email, name) {
-        // TODO: Implement auto-reply email
-        console.log(`Auto-reply sent to ${email} for ${name}`);
-        return { success: true };
+        // Test email sending
+        const testResult = await emailService.sendContactFormEmail({
+            name: 'Test User',
+            email: 'test@example.com',
+            subject: 'Email Service Test',
+            message: 'This is a test email to verify the Zoho integration is working correctly.'
+        });
+
+        if (testResult.success) {
+            res.json({ 
+                success: true, 
+                message: 'Test email sent successfully!',
+                details: testResult
+            });
+        } else {
+            res.status(500).json({ 
+                success: false, 
+                message: 'Test email failed to send',
+                error: testResult.error
+            });
+        }
+    } catch (error) {
+        console.error('Email test error:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Email test failed',
+            error: error.message
+        });
     }
-};
+});
 
 // Validation rules
 const contactValidation = [
@@ -97,25 +109,42 @@ router.post('/submit', contactLimiter, contactValidation, async (req, res) => {
             timestamp: new Date().toISOString()
         };
 
-        // Send notification email
-        await emailService.sendContactNotification(contactData);
-        
-        // Send auto-reply to user
-        await emailService.sendAutoReply(contactData.email, contactData.name);
+        // Send contact form email to admin using our Zoho email service
+        const emailResult = await emailService.sendContactFormEmail({
+            name: contactData.name,
+            email: contactData.email,
+            subject: contactData.subject,
+            message: contactData.message
+        });
 
-        // Log successful submission
+        // Log the submission
         await loggingService.logActivity(
             'contact_form',
-            'submission_success',
+            'form_submission',
             'system',
-            { email: contactData.email, subject: contactData.subject }
+            {
+                name: contactData.name,
+                email: contactData.email,
+                subject: contactData.subject,
+                timestamp: new Date().toISOString(),
+                emailSent: emailResult.success
+            }
         );
 
-        res.json({
-            success: true,
-            message: 'Thank you for your message! We will get back to you soon.',
-            redirect: '/thank-you.html'
-        });
+        if (emailResult.success) {
+            res.json({
+                success: true,
+                message: 'Thank you for your message! We will get back to you soon.',
+                redirect: '/thank-you.html'
+            });
+        } else {
+            // Email failed but don't expose details to user
+            console.error('Contact form email failed:', emailResult.error);
+            res.status(500).json({
+                success: false,
+                message: 'We\'re experiencing technical difficulties. Please try again later or email us directly at support@afelu.com'
+            });
+        }
 
     } catch (error) {
         console.error('Contact form error:', error);
