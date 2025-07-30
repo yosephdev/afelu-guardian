@@ -1050,6 +1050,8 @@
                             <a href="https://t.me/AfeluBot" class="block text-gray-400 hover:text-white transition-colors">Try Bot</a>
                             <a href="/documentation.html" class="block text-gray-400 hover:text-white transition-colors">Documentation</a>
                             <a href="/faq.html" class="block text-gray-400 hover:text-white transition-colors">FAQ</a>
+                            <a href="/terms.html" class="block text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                            <a href="/cookies.html" class="block text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
                         </div>
                     </div>
                 </div>
@@ -1058,8 +1060,11 @@
                     <p class="text-gray-400">
                         © 2025 Afelu Guardian. Bridging the digital divide, one code at a time.
                     </p>
-                    <div class="mt-2">
+                    <div class="mt-2 space-x-4">
                         <a href="/privacy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+                        <a href="/terms.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+                        <a href="/cookies.html" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie Policy</a>
+                        <a href="#" onclick="showCookieSettings()" class="text-gray-400 hover:text-white transition-colors text-sm cursor-pointer">Cookie Settings</a>
                     </div>
                 </div>
             </div>
@@ -1135,6 +1140,64 @@
                 submitBtn.disabled = false;
             }
         });
+    </script>
+
+    <!-- GDPR Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 transform translate-y-full transition-transform duration-300">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex-1">
+                <p class="text-sm">
+                    🍪 We use essential cookies to ensure our website works properly and optional cookies to improve your experience. 
+                    <a href="/cookies.html" class="text-blue-400 underline">Learn more</a>
+                </p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="acceptEssentialCookies()" class="bg-gray-600 text-white px-4 py-2 rounded text-sm hover:bg-gray-700 transition-colors">
+                    Essential Only
+                </button>
+                <button onclick="acceptAllCookies()" class="bg-primary-600 text-white px-4 py-2 rounded text-sm hover:bg-primary-700 transition-colors">
+                    Accept All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cookie Consent Management
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            const consent = localStorage.getItem('cookie-consent');
+            
+            if (!consent) {
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+        }
+
+        function acceptEssentialCookies() {
+            localStorage.setItem('cookie-consent', 'essential');
+            hideCookieBanner();
+        }
+
+        function acceptAllCookies() {
+            localStorage.setItem('cookie-consent', 'all');
+            hideCookieBanner();
+            // Enable analytics or other optional cookies here
+        }
+
+        function hideCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+        }
+
+        function showCookieSettings() {
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.remove('translate-y-full');
+        }
+
+        // Show banner on page load
+        document.addEventListener('DOMContentLoaded', showCookieBanner);
     </script>
 </body>
 </html>

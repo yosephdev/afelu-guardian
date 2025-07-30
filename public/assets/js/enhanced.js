@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const href = this.getAttribute('href');
             if (href && href.startsWith('#') && href.length > 1) {
                 // Let the main.js handle the navigation
-                console.log('Navigating to:', href);
                 // Force hash change if it's the same as current
                 if (window.location.hash === href) {
                     window.dispatchEvent(new HashChangeEvent('hashchange'));
@@ -128,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         this.textContent.includes('Family') ? 'family' : 'community';
             
             // Track button clicks (analytics)
-            console.log('Pricing button clicked:', plan);
+            // Handle pricing plan selection
             
             // Add visual feedback
             this.style.transform = 'scale(0.95)';

@@ -19,6 +19,18 @@ app.use((req, res, next) => {
     res.setHeader('X-XSS-Protection', '1; mode=block');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
     
+    // Content Security Policy
+    const csp = [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://js.stripe.com",
+        "style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://cdnjs.cloudflare.com",
+        "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",
+        "img-src 'self' data: https:",
+        "connect-src 'self' https://api.stripe.com",
+        "frame-src https://js.stripe.com"
+    ].join('; ');
+    res.setHeader('Content-Security-Policy', csp);
+    
     if (process.env.NODE_ENV === 'production') {
         res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
     }
@@ -101,7 +113,10 @@ app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (
         }
         
         event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-        console.log(`📧 Received webhook: ${event.type}`);
+        // Log webhook events only in development
+        if (process.env.NODE_ENV !== 'production') {
+            console.log(`📧 Received webhook: ${event.type}`);
+        }
         
     } catch (err) {
         console.log(`❌ Webhook signature verification failed:`, err.message);
@@ -113,7 +128,10 @@ app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (
         switch (event.type) {
             case 'checkout.session.completed':
                 const session = event.data.object;
-                console.log('💳 Payment successful for session:', session.id);
+                // Log payment success only in development
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log('💳 Payment successful for session:', session.id);
+                }
 
                 // Fulfill the purchase by provisioning access codes
                 const result = await provisionAccessCodes(session);
@@ -149,6 +167,11 @@ app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (
 });
 
 // Serve static files from the 'public' directory AFTER the webhook handler
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files with caching headers
+app.use(express.static(path.join(__dirname, 'public'), {
+    maxAge: process.env.NODE_ENV === 'production' ? '1d' : 0,
+    etag: true,
+    lastModified: true
+}));
 
 module.exports = app;
