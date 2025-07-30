@@ -42,9 +42,9 @@ else
     echo "✅ Changes committed successfully!"
 fi
 
-# Push to main branch
-echo "🚀 Pushing to Railway (main branch)..."
-if git push origin main; then
+# Push to master branch
+echo "🚀 Pushing to Railway (master branch)..."
+if git push origin master; then
     echo "✅ Successfully pushed to Railway!"
     echo ""
     echo "🎉 Deployment initiated! Check your Railway dashboard for progress."
