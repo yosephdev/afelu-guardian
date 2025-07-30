@@ -9,12 +9,14 @@ Your platform now has **full email integration** with beautiful Ethiopian-themed
 ## **Step 1: Set Up Zoho Mail Account**
 
 ### **Create Zoho Account:**
+
 1. Go to [Zoho Mail](https://mail.zoho.com)
 2. Sign up for a business account
 3. Add your domain: `afelu.com`
 4. Verify domain ownership via DNS
 
 ### **Create Email Accounts:**
+
 - `support@afelu.com` (primary support email)
 - `admin@afelu.com` (admin notifications)
 - `noreply@afelu.com` (automated emails)
@@ -24,6 +26,7 @@ Your platform now has **full email integration** with beautiful Ethiopian-themed
 ## **Step 2: Generate App Password**
 
 ### **In Zoho Mail:**
+
 1. Go to **Settings** → **Security**
 2. Enable **Two-Factor Authentication** (required)
 3. Go to **App Passwords**
@@ -47,12 +50,14 @@ railway variables --set "SMTP_PASS=your_zoho_app_password_here"
 ## **Step 4: Test Email Integration**
 
 ### **Test the email service:**
+
 ```bash
 curl -X GET "https://afelu.up.railway.app/api/contact/test" \
      -H "Authorization: Bearer YOUR_ADMIN_PASSWORD"
 ```
 
 ### **Test contact form:**
+
 ```bash
 curl -X POST "https://afelu.up.railway.app/api/contact/submit" \
      -H "Content-Type: application/json" \
@@ -69,12 +74,14 @@ curl -X POST "https://afelu.up.railway.app/api/contact/submit" \
 ## **✨ Email Features Now Available:**
 
 ### **🔄 Automatic Emails:**
+
 - ✅ **Payment Confirmations** with access codes
 - ✅ **Admin Notifications** for new payments  
 - ✅ **Contact Form Submissions** to support team
 - ✅ **Beautiful Ethiopian-themed templates**
 
 ### **📧 Email Templates Include:**
+
 - 🇪🇹 **Ethiopian flag gradient** styling
 - 💎 **Professional branding** with Afelu Guardian logo
 - 📱 **Mobile-responsive** design
@@ -82,6 +89,7 @@ curl -X POST "https://afelu.up.railway.app/api/contact/submit" \
 - 🎨 **Beautiful formatting** with code highlighting
 
 ### **🛡️ Security Features:**
+
 - ✅ **Rate limiting** (5 emails per hour per IP)
 - ✅ **Input validation** and sanitization
 - ✅ **CSRF protection**
@@ -106,10 +114,12 @@ ADMIN_EMAIL=admin@afelu.com
 ## **🔧 API Endpoints Available:**
 
 ### **Contact Form:**
+
 - `POST /api/contact/submit` - Submit contact form
 - `GET /api/contact/test` - Test email service (admin only)
 
 ### **Email Templates:**
+
 - Payment confirmation emails (automatic)
 - Admin payment notifications (automatic)
 - Contact form submissions (automatic)
@@ -119,6 +129,7 @@ ADMIN_EMAIL=admin@afelu.com
 ## **🎉 What Happens Now:**
 
 ### **When Someone Buys Access Codes:**
+
 1. 💳 **Payment processed** via Stripe
 2. 🔑 **Access codes generated** automatically
 3. 📧 **Beautiful confirmation email** sent to customer with:
@@ -129,6 +140,7 @@ ADMIN_EMAIL=admin@afelu.com
 4. 📩 **Admin notification** sent to you with order details
 
 ### **When Someone Contacts You:**
+
 1. 📝 **Contact form submitted** on website
 2. 📧 **Email sent to admin** with Ethiopian flag styling
 3. 🔄 **Automatic logging** for tracking
