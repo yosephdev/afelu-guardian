@@ -31,7 +31,7 @@ class ZohoEmailService {
             });
 
             // Zoho Mail SMTP configuration
-            this.transporter = nodemailer.createTransporter({
+            this.transporter = nodemailer.createTransport({
                 host: process.env.SMTP_HOST || 'smtp.zoho.com',
                 port: parseInt(process.env.SMTP_PORT) || 587,
                 secure: false, // Use TLS
