@@ -1,165 +1,193 @@
-<!DOCTYPE HTML>
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Thank You - Afelu Guardian</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Afelu Guardian</title>
+    <meta name="description" content="Thank you for contacting Afelu Guardian. We'll be in touch soon!">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Ethiopia Gradient Styles -->
+    <style>
+        .ethiopia-gradient {
+            background: linear-gradient(135deg, #ff0000 0%, #ffff00 50%, #00ff00 100%);
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
+                    <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
+                </a>
+                <a href="/" class="text-primary-600 hover:text-primary-700 transition-colors">
+                    <i class="fas fa-home mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center py-12">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
+                <!-- Success Icon -->
+                <div class="w-20 h-20 mx-auto mb-8 ethiopia-gradient rounded-full flex items-center justify-center">
+                    <i class="fas fa-check text-white text-3xl"></i>
+                </div>
+                
+                <!-- Main Message -->
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Thank You! 🇪🇹
+                </h1>
+                
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Your message has been received successfully. Our team will review your inquiry and get back to you within <strong>24 hours</strong>.
+                </p>
+                
+                <!-- What Happens Next -->
+                <div class="bg-gray-50 rounded-xl p-6 mb-8 text-left">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-clock text-primary-600 mr-2"></i>
+                        What happens next?
+                    </h2>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Your message is being processed by our support team</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-blue-500 mt-1 mr-3"></i>
+                            <span>You'll receive a confirmation email at the address you provided</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-purple-500 mt-1 mr-3"></i>
+                            <span>Our team will contact you with more information or answers</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Emergency Contact -->
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-blue-900 mb-2">
+                        <i class="fas fa-bolt text-blue-600 mr-2"></i>
+                        Need immediate assistance?
+                    </h3>
+                    <p class="text-blue-700 mb-4">
+                        For urgent matters, you can reach us directly:
+                    </p>
+                    <a href="mailto:support@afelu.com" 
+                       class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-envelope mr-2"></i>
+                        support@afelu.com
+                    </a>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/" 
+                       class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors">
+                        <i class="fas fa-home mr-2"></i>
+                        Return to Homepage
+                    </a>
+                    <a href="/faq.html" 
+                       class="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-primary-600 hover:text-primary-600 transition-colors">
+                        <i class="fas fa-question-circle mr-2"></i>
+                        View FAQ
+                    </a>
+                </div>
+                
+                <!-- Follow Us -->
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <p class="text-gray-600 mb-4">Stay connected with Afelu Guardian:</p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://www.linkedin.com/company/afelu-guardian" target="_blank" rel="noopener noreferrer" 
+                           class="text-gray-400 hover:text-blue-600 transition-colors" 
+                           title="Follow us on LinkedIn">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="https://x.com/afeluguardian" target="_blank" rel="noopener noreferrer" 
+                           class="text-gray-400 hover:text-blue-400 transition-colors" 
+                           title="Follow us on X (Twitter)">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="https://t.me/afeluguardian" target="_blank" rel="noopener noreferrer" 
+                           class="text-gray-400 hover:text-blue-500 transition-colors" 
+                           title="Join our Telegram community">
+                            <i class="fab fa-telegram text-2xl"></i>
+                        </a>
+                        <a href="https://youtube.com/@afeluguardian" target="_blank" rel="noopener noreferrer" 
+                           class="text-gray-400 hover:text-red-500 transition-colors" 
+                           title="Subscribe to our YouTube channel">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<span class="icon fa-gem"></span>
-						</div>
-						<div class="content">
-							<div class="inner">
-								<h1>Thank You!</h1>
-								<p>Your purchase was successful. You're now helping bridge the digital divide.</p>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="#next-steps">Next Steps</a></li>
-								<li><a href="#support">Support</a></li>
-								<li><a href="#contact">Contact</a></li>
-							</ul>
-						</nav>
-					</header>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">
+                © 2025 Afelu Guardian. Bridging the digital divide, one code at a time.
+            </p>
+        </div>
+    </footer>
 
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Next Steps -->
-							<article id="next-steps">
-								<h2 class="major">What's Next?</h2>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-								<h3>Your codes are on the way!</h3>
-								<p>Thank you for your purchase! You've just taken a meaningful step toward bridging the digital divide. Here's what happens next:</p>
-								
-								<div class="table-wrapper">
-									<table>
-										<tbody>
-											<tr>
-												<td><strong>1. Check Your Email</strong></td>
-												<td>Your secure access codes will be delivered to your email address within 5-10 minutes.</td>
-											</tr>
-											<tr>
-												<td><strong>2. Download Instructions</strong></td>
-												<td>Along with your codes, you'll receive detailed instructions on how to use and share them.</td>
-											</tr>
-											<tr>
-												<td><strong>3. Start Sharing</strong></td>
-												<td>Distribute your codes to those who need them most. Each code provides offline access to AI tools and digital resources.</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								
-								<p><strong>Important:</strong> If you don't receive your email within 15 minutes, please check your spam folder or contact our support team.</p>
-							</article>
-
-						<!-- Support -->
-							<article id="support">
-								<h2 class="major">Need Help?</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								
-								<h3>Frequently Asked Questions</h3>
-								
-								<h4>How do the codes work?</h4>
-								<p>Each code provides offline access to AI tools and digital resources. No internet connection is required once activated. Simply share the codes with individuals who need access to digital tools.</p>
-								
-								<h4>How long are the codes valid?</h4>
-								<p>Your codes do not expire. Once activated, they provide permanent access to the included AI tools and resources.</p>
-								
-								<h4>Can I get more codes later?</h4>
-								<p>Absolutely! You can purchase additional codes at any time by returning to our <a href="index.html#pricing">pricing page</a>.</p>
-								
-								<h4>What if someone loses their code?</h4>
-								<p>Contact our support team with your order details, and we can help you recover or replace lost codes.</p>
-								
-								<ul class="actions">
-									<li><a href="#contact" class="button primary">Contact Support</a></li>
-									<li><a href="index.html" class="button">Return Home</a></li>
-								</ul>
-							</article>
-
-						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contact Support</h2>
-								<p>Have questions about your purchase or need help with your codes? We're here to help!</p>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="order">Order Number (if available)</label>
-											<input type="text" name="order" id="order" placeholder="e.g., AFG-12345-67890" />
-										</div>
-										<div class="field">
-											<label for="issue">How can we help?</label>
-											<select name="issue" id="issue">
-												<option value="">Select an issue</option>
-												<option value="codes-not-received">Haven't received my codes</option>
-												<option value="code-not-working">Code not working</option>
-												<option value="lost-code">Lost my code</option>
-												<option value="technical-support">Technical support</option>
-												<option value="other">Other</option>
-											</select>
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4" placeholder="Please describe your issue or question..."></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-								</form>
-								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</article>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Afelu Guardian. Bridging the digital divide, one code at a time. | <a href="index.html">Return Home</a></p>
-					</footer>
-
-			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+    <!-- Auto-redirect script (optional) -->
+    <script>
+        // Automatically redirect to homepage after 30 seconds (optional)
+        // setTimeout(() => {
+        //     window.location.href = '/';
+        // }, 30000);
+        
+        // Add subtle animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = document.querySelector('.bg-white.rounded-2xl');
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                content.style.transition = 'all 0.6s ease-out';
+                content.style.opacity = '1';
+                content.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
 </html>

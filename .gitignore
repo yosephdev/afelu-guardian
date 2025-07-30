@@ -74,6 +74,11 @@ out/
 debug.html
 Dockerfile.backup
 
+# Archived assets and old files
+public/archived-assets/
+*-old.html
+*-backup.html
+
 # Documentation and setup files (sensitive)
 GMAIL_FORWARDING_SETUP.md
 AI_PROVIDERS_COMPARISON.md
