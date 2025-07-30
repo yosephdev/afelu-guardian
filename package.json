@@ -17,15 +17,15 @@
     "railway:build": "npm run db:generate && npm run db:push"
   },
   "keywords": [
-    "telegram",
-    "bot",
-    "ai",
-    "stripe",
-    "ethiopia"
+    "ai-education",
+    "digital-literacy", 
+    "ethiopia",
+    "chatgpt-training",
+    "ai-skills"
   ],
   "author": "Yoseph Berhane Gebremedhin",
   "license": "ISC",
-  "description": "Afelu Guardian - Bridge the digital divide by providing secure access to AI tools and information",
+  "description": "Afelu Guardian - AI Education & Digital Literacy Platform for Ethiopians supporting Digital Ethiopia 2025",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.57.0",
     "@prisma/client": "^6.13.0",

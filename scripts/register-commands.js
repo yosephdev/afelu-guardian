@@ -11,18 +11,18 @@ if (!token) {
 
 const bot = new TelegramBot(token);
 
-// Updated command list matching bot.js
+// Updated command list for AI Education Platform
 const commands = [
-    { command: 'start', description: '🛡️ Welcome message and getting started guide' },
+    { command: 'start', description: '🛡️ Welcome to AI education platform' },
     { command: 'help', description: '❓ Complete list of available commands' },
-    { command: 'redeem', description: '🎟️ Redeem an access code (format: /redeem ET-XXXX-XXXX)' },
-    { command: 'gpt', description: '🤖 Ask AI anything (1 credit)' },
-    { command: 'image', description: '🎨 Generate AI images (3 credits)' },
-    { command: 'fetch', description: '🌐 Access websites and get content (1 fetch credit)' },
-    { command: 'translate', description: '🌍 Translate text to multiple languages (1 credit)' },
-    { command: 'news', description: '📰 Get news summaries on any topic (1 credit)' },
-    { command: 'summarize', description: '📋 Fetch and summarize web content (1 fetch + 1 GPT)' },
-    { command: 'myquota', description: '📊 Check your remaining credits' }
+    { command: 'courses', description: '📚 Browse available AI courses' },
+    { command: 'enroll', description: '✏️ Enroll in a course' },
+    { command: 'progress', description: '📊 Check your learning progress' },
+    { command: 'continue', description: '▶️ Continue current course' },
+    { command: 'certificate', description: '� View earned certificates' },
+    { command: 'chatgpt', description: '🤖 Practice with ChatGPT' },
+    { command: 'claude', description: '🧠 Practice with Claude AI' },
+    { command: 'resources', description: '� Additional learning resources' }
 ];
 
 async function registerCommands() {

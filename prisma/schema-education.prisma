@@ -1,0 +1,179 @@
+// Updated Prisma schema for AI Education Platform
+// This is your Prisma schema file for the education model
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Students/Learners using the platform
+model Student {
+  id              String    @id @default(cuid())
+  email           String?   @unique // Optional for registration
+  telegramId      BigInt?   @unique // For Telegram bot integration
+  name            String?
+  phoneNumber     String?
+  region          String?   // Ethiopian region
+  preferredLanguage String @default("en") // "en", "am", etc.
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // Relationships
+  enrollments     Enrollment[]
+  certificates    Certificate[]
+  progress        CourseProgress[]
+  interactions    LearningInteraction[]
+}
+
+// AI and Digital Literacy Courses
+model Course {
+  id              String    @id @default(cuid())
+  title           String
+  description     String
+  level           String    // "BEGINNER", "INTERMEDIATE", "ADVANCED"
+  category        String    // "AI_BASICS", "CHATGPT", "CLAUDE", "BUSINESS_AI", etc.
+  duration        Int       // Duration in hours
+  modules         Int       // Number of modules
+  language        String    @default("en")
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // Relationships
+  enrollments     Enrollment[]
+  certificates    Certificate[]
+  progress        CourseProgress[]
+  lessons         Lesson[]
+}
+
+// Individual lessons within courses
+model Lesson {
+  id              String    @id @default(cuid())
+  courseId        String
+  title           String
+  content         String    // Lesson content/description
+  videoUrl        String?   // Optional video link
+  order           Int       // Lesson order within course
+  duration        Int?      // Duration in minutes
+  isActive        Boolean   @default(true)
+  
+  course          Course    @relation(fields: [courseId], references: [id])
+  completions     LessonCompletion[]
+  
+  @@unique([courseId, order])
+}
+
+// Student course enrollments
+model Enrollment {
+  id              String    @id @default(cuid())
+  studentId       String
+  courseId        String
+  enrolledAt      DateTime  @default(now())
+  completedAt     DateTime?
+  status          String    @default("ACTIVE") // "ACTIVE", "COMPLETED", "DROPPED"
+  
+  student         Student   @relation(fields: [studentId], references: [id])
+  course          Course    @relation(fields: [courseId], references: [id])
+  
+  @@unique([studentId, courseId])
+}
+
+// Student progress tracking
+model CourseProgress {
+  id              String    @id @default(cuid())
+  studentId       String
+  courseId        String
+  lessonsCompleted Int      @default(0)
+  totalLessons    Int
+  progressPercent Int       @default(0)
+  lastAccessed    DateTime  @default(now())
+  
+  student         Student   @relation(fields: [studentId], references: [id])
+  course          Course    @relation(fields: [courseId], references: [id])
+  
+  @@unique([studentId, courseId])
+}
+
+// Individual lesson completions
+model LessonCompletion {
+  id              String    @id @default(cuid())
+  studentId       String
+  lessonId        String
+  completedAt     DateTime  @default(now())
+  timeSpent       Int?      // Time spent in minutes
+  
+  lesson          Lesson    @relation(fields: [lessonId], references: [id])
+  
+  @@unique([studentId, lessonId])
+}
+
+// Course completion certificates
+model Certificate {
+  id              String    @id @default(cuid())
+  studentId       String
+  courseId        String
+  certificateUrl  String?   // Link to generated certificate
+  issuedAt        DateTime  @default(now())
+  verificationId  String    @unique // For certificate verification
+  
+  student         Student   @relation(fields: [studentId], references: [id])
+  course          Course    @relation(fields: [courseId], references: [id])
+  
+  @@unique([studentId, courseId])
+}
+
+// AI tool usage and learning interactions
+model LearningInteraction {
+  id              String    @id @default(cuid())
+  studentId       String
+  interactionType String    // "CHATGPT_QUERY", "CLAUDE_QUERY", "EXERCISE_COMPLETION", etc.
+  content         String?   // The query or interaction content
+  response        String?   // AI response or exercise result
+  metadata        Json?     // Additional data (course context, etc.)
+  createdAt       DateTime  @default(now())
+  
+  student         Student   @relation(fields: [studentId], references: [id])
+}
+
+// Community groups and study circles
+model CommunityGroup {
+  id              String    @id @default(cuid())
+  name            String
+  description     String?
+  region          String?   // Ethiopian region
+  language        String    @default("en")
+  memberCount     Int       @default(0)
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  
+  memberships     GroupMembership[]
+}
+
+// Group membership tracking
+model GroupMembership {
+  id              String    @id @default(cuid())
+  studentId       String
+  groupId         String
+  role            String    @default("MEMBER") // "MEMBER", "LEADER", "FACILITATOR"
+  joinedAt        DateTime  @default(now())
+  
+  group           CommunityGroup @relation(fields: [groupId], references: [id])
+  
+  @@unique([studentId, groupId])
+}
+
+// Feedback and reviews
+model Feedback {
+  id              String    @id @default(cuid())
+  studentId       String
+  courseId        String?
+  rating          Int?      // 1-5 stars
+  comment         String?
+  category        String    // "COURSE_FEEDBACK", "PLATFORM_FEEDBACK", "SUGGESTION"
+  isPublic        Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+}
