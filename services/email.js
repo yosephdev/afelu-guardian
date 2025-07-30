@@ -34,14 +34,20 @@ class ZohoEmailService {
             this.transporter = nodemailer.createTransport({
                 host: process.env.SMTP_HOST || 'smtp.zoho.com',
                 port: parseInt(process.env.SMTP_PORT) || 587,
-                secure: false, // Use TLS
+                secure: false, // Use STARTTLS
                 auth: {
                     user: process.env.SMTP_USER, // support@afelu.com
                     pass: process.env.SMTP_PASS  // Your Zoho app password
                 },
                 tls: {
-                    rejectUnauthorized: false
-                }
+                    rejectUnauthorized: false,
+                    ciphers: 'SSLv3'
+                },
+                // Additional Zoho-specific options
+                requireTLS: true,
+                connectionTimeout: 60000,
+                greetingTimeout: 30000,
+                socketTimeout: 60000
             });
 
             this.isConfigured = !!(process.env.SMTP_USER && process.env.SMTP_PASS);

@@ -27,6 +27,24 @@ router.get('/test', async (req, res) => {
             return res.status(401).json({ error: 'Unauthorized' });
         }
 
+        // First test the connection
+        console.log('🔍 Testing email connection...');
+        const connectionTest = await emailService.testConnection();
+        
+        if (!connectionTest.success) {
+            return res.status(500).json({ 
+                success: false, 
+                message: 'Email connection test failed',
+                error: connectionTest.error,
+                debug: {
+                    smtp_host: process.env.SMTP_HOST,
+                    smtp_port: process.env.SMTP_PORT,
+                    smtp_user: process.env.SMTP_USER ? 'Set' : 'Missing',
+                    smtp_pass: process.env.SMTP_PASS ? 'Set' : 'Missing'
+                }
+            });
+        }
+
         // Test email sending
         const testResult = await emailService.sendContactFormEmail({
             name: 'Test User',
@@ -53,6 +71,41 @@ router.get('/test', async (req, res) => {
         res.status(500).json({ 
             success: false, 
             message: 'Email test failed',
+            error: error.message
+        });
+    }
+});
+
+// Simple connection test endpoint
+router.get('/test-connection', async (req, res) => {
+    try {
+        // Simple admin check
+        const adminPassword = req.headers.authorization?.replace('Bearer ', '');
+        if (adminPassword !== process.env.ADMIN_PASSWORD) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+
+        // Test just the connection without sending email
+        const connectionTest = await emailService.testConnection();
+        
+        res.json({
+            success: connectionTest.success,
+            message: connectionTest.success ? 'SMTP connection successful' : 'SMTP connection failed',
+            error: connectionTest.error || null,
+            debug: {
+                smtp_host: process.env.SMTP_HOST || 'Not set',
+                smtp_port: process.env.SMTP_PORT || 'Not set',
+                smtp_user: process.env.SMTP_USER ? 'Set' : 'Not set',
+                smtp_pass: process.env.SMTP_PASS ? 'Set' : 'Not set',
+                from_email: process.env.FROM_EMAIL || 'Not set'
+            }
+        });
+
+    } catch (error) {
+        console.error('Connection test error:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Connection test failed',
             error: error.message
         });
     }
