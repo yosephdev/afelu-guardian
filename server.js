@@ -25,7 +25,7 @@ app.use((req, res, next) => {
     // Content Security Policy
     const csp = [
         "default-src 'self'",
-        "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://js.stripe.com",
+        "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://js.stripe.com https://cdnjs.cloudflare.com",
         "style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://cdnjs.cloudflare.com",
         "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",
         "img-src 'self' data: https:",

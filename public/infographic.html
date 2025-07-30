@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The AI Revolution in Ethiopia (2025)</title>
+    <meta name="description" content="An infographic detailing Ethiopia's AI landscape, including market share, national strategy, talent development, and sector-specific transformations in 2025.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .ethiopia-gradient {
+            background: linear-gradient(135deg, #009639 0%, #FFCD00 50%, #DA020E 100%);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '▼';
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #F5B700;
+            margin: 0.5rem 0;
+        }
+        .pyramid-level {
+            clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+        }
+        .pyramid-base {
+             clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
+                    <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <a href="/ai-revolution-ethiopia-2025.html" class="text-green-600 hover:text-green-700 transition-colors">
+                        <i class="fas fa-file-alt mr-2"></i>Full Report
+                    </a>
+                    <a href="/faq.html" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        FAQ
+                    </a>
+                    <a href="/" class="text-blue-600 hover:text-blue-700 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#8E2D8C] mb-4">The AI Revolution in Ethiopia</h1>
+            <p class="text-xl md:text-2xl text-gray-600">A 2025 snapshot of open access, national strategy, and homegrown innovation.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center gap-6 border-l-8 border-[#00A6ED]">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-[#00A6ED] mb-2">The Great Unlocking of 2024</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        In a pivotal shift, OpenAI officially added Ethiopia to its list of supported countries in late 2023, ending the era of restricted access. This move dismantled technical barriers, granting millions of Ethiopians direct access to world-class AI and catalyzing a nationwide wave of adoption and innovation. The narrative has shifted from *how to access* AI to *how to harness it*.
+                    </p>
+                </div>
+                <div class="flex-shrink-0 text-8xl">
+                    🔓
+                </div>
+            </section>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold text-center mb-4">AI Chatbot Market Share (June 2025)</h3>
+                <p class="text-center text-gray-600 mb-4">ChatGPT holds a commanding lead, but a competitive landscape is emerging with specialized platforms carving out significant niches in enterprise and research.</p>
+                <div class="chart-container">
+                    <canvas id="marketShareChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold text-center mb-4">Architecting a Sovereign AI Future</h3>
+                <p class="text-center text-gray-600 mb-6">Ethiopia's "Guided Innovation" model is a state-driven strategy to direct AI development towards national priorities through a robust policy and institutional framework.</p>
+                <div class="space-y-4">
+                    <div class="text-center bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-lg text-[#8E2D8C]">Digital Ethiopia 2025/2030</h4>
+                        <p class="text-sm">Built foundational infrastructure: liberalized telecom, expanded connectivity, and established digital payment rails like Telebirr and M-Pesa.</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="text-center bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-lg text-[#8E2D8C]">National AI Policy & EAII</h4>
+                        <p class="text-sm">The Ethiopian AI Institute (EAII) implements policy, certifies imported AI, and steers research towards key sectors like agriculture and healthcare.</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="text-center bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-lg text-[#8E2D8C]">Data Sovereignty Law</h4>
+                        <p class="text-sm">Mandates local data storage, attracting infrastructure investment and giving a competitive advantage to compliant local startups.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold text-center mb-4">Cultivating Local Talent</h3>
+                <p class="text-center text-gray-600 mb-4">A two-tiered strategy is building a national talent pipeline, creating both a broad base of digital literacy and an elite cadre of world-class innovators.</p>
+                <div class="w-full max-w-xs mx-auto flex flex-col items-center">
+                    <div class="w-2/4 h-16 bg-[#FF5400] flex items-center justify-center text-white font-bold text-center p-2 pyramid-level">Elite Programs<br>(AddisCoder, EAII Camp)</div>
+                    <div class="w-full h-20 bg-[#00A98F] flex items-center justify-center text-white font-bold text-center p-2 pyramid-base">"5 Million Coders" Program<br>(Mass Digital Literacy)</div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center items-center text-center">
+                <h3 class="text-2xl font-bold mb-2">Local Innovators on the Rise</h3>
+                <p class="text-gray-600 mb-4">A new wave of startups is creating sophisticated B2B and developer tools, indicating a mature early-adopter market.</p>
+                <div class="bg-yellow-100 border-l-4 border-yellow-400 p-4 rounded-md">
+                    <p class="text-lg font-semibold text-yellow-800">Better Auth, a developer tool, raised <span class="font-bold text-2xl">$5 Million</span> in seed funding from top VCs like Y Combinator.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center items-center text-center">
+                <h3 class="text-2xl font-bold mb-2">Speaking the Language of the People</h3>
+                <p class="text-gray-600">To ensure digital inclusion, the EAII has developed "Mela," an AI system similar to ChatGPT, specifically designed to work with Ethiopia's 80+ local languages.</p>
+                <div class="text-6xl mt-4">🗣️</div>
+                <p class="font-bold mt-2 text-[#8E2D8C]">Amharic, Oromo, Tigrinya & more</p>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6 border-l-8 border-[#00A98F]">
+                <h2 class="text-3xl font-bold text-[#00A98F] text-center mb-6">AI in Action: Sector-Specific Transformation</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Revolutionizing Agriculture</h3>
+                        <p class="text-center text-gray-600 mb-4">AI is solving the "last mile" problem by drastically cutting the cost of delivering vital advisory services to millions of smallholder farmers.</p>
+                        <div class="chart-container">
+                            <canvas id="agriCostChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Enhancing Healthcare</h3>
+                        <p class="text-center text-gray-600 mb-4">AI augments the existing network of Health Extension Workers (HEWs), acting as a "force multiplier" to improve rural care. Grand Challenges Ethiopia is fueling this with grants up to $100,000 for local projects.</p>
+                        <div class="space-y-3 mt-6">
+                            <div class="bg-blue-50 p-3 rounded-lg flex items-center"><span class="text-2xl mr-3">🩺</span> Clinical Decision Support Tools</div>
+                            <div class="bg-blue-50 p-3 rounded-lg flex items-center"><span class="text-2xl mr-3">📈</span> Population Health & Forecasting</div>
+                            <div class="bg-blue-50 p-3 rounded-lg flex items-center"><span class="text-2xl mr-3">🤖</span> Personalized Coaching for HEWs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="md:col-span-2 lg:col-span-3 bg-gradient-to-r from-[#00A6ED] to-[#8E2D8C] rounded-lg shadow-lg p-8 text-white text-center">
+                <h2 class="text-4xl font-bold mb-4">Outlook: An Emerging African AI Hub</h2>
+                <p class="text-lg max-w-3xl mx-auto">
+                    By balancing open access with sovereign control, Ethiopia is forging a unique path. Its hybrid model of market dynamism and state guidance could become a blueprint for developing nations aiming to harness AI on their own terms, positioning the country as a future leader on the continent.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <!-- Brand -->
+                    <div class="md:col-span-2">
+                        <a href="/" class="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer">
+                            <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-xl">Afelu Guardian</span>
+                        </a>
+                        <p class="text-gray-400 mb-4 max-w-md">
+                            Leading Ethiopia's AI education revolution. Empowering citizens with digital literacy and AI skills for the future economy.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/company/afelu-guardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-600 transition-colors" 
+                               title="Follow us on LinkedIn">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="https://x.com/afeluguardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-400 transition-colors" 
+                               title="Follow us on X (Twitter)">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="https://t.me/afeluguardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-500 transition-colors" 
+                               title="Join our Telegram community">
+                                <i class="fab fa-telegram text-xl"></i>
+                            </a>
+                            <a href="https://youtube.com/@afeluguardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-red-500 transition-colors" 
+                               title="Subscribe to our YouTube channel">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                            <a href="mailto:support@afelu.com" class="text-gray-400 hover:text-green-500 transition-colors" 
+                               title="Email us">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                        <div class="space-y-2">
+                            <a href="#mission" class="block text-gray-400 hover:text-white transition-colors">Mission</a>
+                            <a href="#how-it-works" class="block text-gray-400 hover:text-white transition-colors">How It Works</a>
+                            <a href="#features" class="block text-gray-400 hover:text-white transition-colors">Features</a>
+                            <a href="/infographic.html" class="block text-gray-400 hover:text-white transition-colors">AI in Ethiopia</a>
+                            <a href="/ai-revolution-ethiopia-2025.html" class="block text-gray-400 hover:text-white transition-colors">2025 Report</a>
+                            <a href="#pricing" class="block text-gray-400 hover:text-white transition-colors">Pricing</a>
+                            <a href="/privacy.html" class="block text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Support -->
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Support</h4>
+                        <div class="space-y-2">
+                            <a href="#contact" class="block text-gray-400 hover:text-white transition-colors">Contact Us</a>
+                            <a href="https://t.me/AfeluBot" class="block text-gray-400 hover:text-white transition-colors">Try Bot</a>
+                            <a href="/documentation.html" class="block text-gray-400 hover:text-white transition-colors">Documentation</a>
+                            <a href="/faq.html" class="block text-gray-400 hover:text-white transition-colors">FAQ</a>
+                            <a href="/terms.html" class="block text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                            <a href="/cookies.html" class="block text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                    <p class="text-gray-400">
+                        © 2025 Afelu Guardian. Bridging the digital divide, one code at a time.
+                    </p>
+                    <div class="mt-2 space-x-4">
+                        <a href="/privacy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+                        <a href="/terms.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+                        <a href="/cookies.html" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie Policy</a>
+                        <a href="#" onclick="showCookieSettings()" class="text-gray-400 hover:text-white transition-colors text-sm cursor-pointer">Cookie Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+function wrapLabel(str, maxWidth) {
+    if (str.length <= maxWidth) {
+        return str;
+    }
+    const words = str.split(' ');
+    const lines = [];
+    let currentLine = '';
+    for (const word of words) {
+        if ((currentLine + word).length > maxWidth) {
+            lines.push(currentLine.trim());
+            currentLine = '';
+        }
+        currentLine += word + ' ';
+    }
+    lines.push(currentLine.trim());
+    return lines.filter(line => line.length > 0);
+}
+
+const tooltipTitleCallback = (tooltipItems) => {
+    const item = tooltipItems[0];
+    let label = item.chart.data.labels[item.dataIndex];
+    if (Array.isArray(label)) {
+        return label.join(' ');
+    }
+    return label;
+};
+
+const energeticPlayfulPalette = {
+    blue: '#00A6ED',
+    yellow: '#F5B700',
+    orange: '#FF5400',
+    purple: '#8E2D8C',
+    teal: '#00A98F'
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, Chart available:', typeof Chart);
+    
+    // Check if Chart.js is loaded
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js is not loaded!');
+        return;
+    }
+    
+    const marketShareCtx = document.getElementById('marketShareChart');
+    console.log('Market share canvas element:', marketShareCtx);
+    
+    if (!marketShareCtx) {
+        console.error('marketShareChart canvas not found!');
+        return;
+    }
+    
+    try {
+        new Chart(marketShareCtx.getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            labels: ['ChatGPT', 'Microsoft Copilot', 'Perplexity AI', 'Google Gemini', 'Other'],
+            datasets: [{
+                label: 'Market Share %',
+                data: [66.74, 16.04, 9.07, 7.19, 0.96],
+                backgroundColor: [
+                    energeticPlayfulPalette.blue,
+                    energeticPlayfulPalette.teal,
+                    energeticPlayfulPalette.yellow,
+                    energeticPlayfulPalette.orange,
+                    energeticPlayfulPalette.purple
+                ],
+                borderColor: '#fff',
+                borderWidth: 4,
+                hoverOffset: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            cutout: '60%'
+        }
+    });
+    } catch (error) {
+        console.error('Error creating market share chart:', error);
+    }
+
+    const agriCostCtx = document.getElementById('agriCostChart');
+    console.log('Agriculture cost canvas element:', agriCostCtx);
+    
+    if (!agriCostCtx) {
+        console.error('agriCostChart canvas not found!');
+        return;
+    }
+    
+    try {
+        const agriLabels = [
+            'Traditional Extension Services',
+            'Previous Digital Tools',
+            'AI-Powered Advisory'
+        ].map(label => wrapLabel(label, 16));
+
+        new Chart(agriCostCtx.getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: agriLabels,
+            datasets: [{
+                label: 'Cost per Farmer ($)',
+                data: [30, 3, 0.30],
+                backgroundColor: [
+                    energeticPlayfulPalette.orange,
+                    energeticPlayfulPalette.yellow,
+                    energeticPlayfulPalette.teal
+                ],
+                borderRadius: 4,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Cost in USD'
+                    }
+                },
+                x: {
+                   ticks: {
+                       font: {
+                           size: 10
+                       }
+                   }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        }
+    });
+    } catch (error) {
+        console.error('Error creating agriculture cost chart:', error);
+    }
+});
+</script>
+
+</body>
+</html>
