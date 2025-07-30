@@ -4,4 +4,4 @@ node_modules
 .env.example
 /generated/prisma
 
-debug.html
+debug.htmlDockerfile.backup

@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Afelu Guardian - Debug Test</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px;
+            background: #333;
+            margin-bottom: 20px;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .nav a {
+            padding: 10px 20px;
+            background: #555;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .nav a:hover {
+            background: #777;
+        }
+        
+        .content {
+            display: none;
+            background: #2a2a2a;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        .content h2 {
+            color: #4fc3f7;
+            border-bottom: 2px solid #4fc3f7;
+            padding-bottom: 10px;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #4fc3f7;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+        }
+        
+        .button:hover {
+            background: #29b6f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛡️ Afelu Guardian</h1>
+        <p>Empowering Ethiopians with secure access to AI and uncensored information</p>
+        
+        <div class="nav">
+            <a href="#" onclick="showSection('mission')">Mission</a>
+            <a href="#" onclick="showSection('how-it-works')">How It Works</a>
+            <a href="#" onclick="showSection('features')">Features</a>
+            <a href="#" onclick="showSection('pricing')">Pricing</a>
+            <a href="#" onclick="showSection('contact')">Contact</a>
+        </div>
+    </div>
+
+    <div id="mission" class="content">
+        <h2>Our Mission</h2>
+        <p>🌍 <strong>Breaking Digital Barriers</strong></p>
+        <p>In Ethiopia and across the developing world, internet censorship and limited access to AI tools create information deserts. Millions are cut off from the transformative power of modern technology simply because of where they live.</p>
+        
+        <p><strong>Afelu Guardian bridges this gap.</strong> We provide secure, anonymous access codes that unlock AI tools and uncensored information for those who need it most. Our sponsor-based model protects user identity while ensuring sustainable access to digital freedom.</p>
+    </div>
+
+    <div id="how-it-works" class="content">
+        <h2>How It Works</h2>
+        <p>🔒 <strong>Simple. Secure. Anonymous.</strong></p>
+        
+        <h3>👥 For Sponsors (Diaspora)</h3>
+        <ol>
+            <li><strong>Purchase a Plan</strong> - Choose Friend, Family, or Community tier</li>
+            <li><strong>Receive Access Codes</strong> - Get unique, secure codes instantly</li>
+            <li><strong>Share Privately</strong> - Send codes to beneficiaries via any secure channel</li>
+            <li><strong>Make Impact</strong> - Enable digital freedom for those who need it most</li>
+        </ol>
+        
+        <h3>📱 For Users (Ethiopia)</h3>
+        <ol>
+            <li><strong>Get a Code</strong> - Receive from your sponsor privately</li>
+            <li><strong>Join Telegram Bot</strong> - Find @AfeluBot (completely anonymous)</li>
+            <li><strong>Redeem Code</strong> - Use /redeem ET-XXXX-XXXX command</li>
+            <li><strong>Access AI & Web</strong> - Use /gpt and /fetch commands freely</li>
+        </ol>
+    </div>
+
+    <div id="features" class="content">
+        <h2>Platform Features</h2>
+        <p>🚀 <strong>Powerful AI & Web Access Tools</strong></p>
+        
+        <h3>🤖 AI Assistant (GPT)</h3>
+        <ul>
+            <li><strong>ChatGPT Integration</strong> - Full access to OpenAI's latest models</li>
+            <li><strong>Multi-language Support</strong> - Works in Amharic, English, and more</li>
+            <li><strong>Educational Content</strong> - Homework help, explanations, tutorials</li>
+            <li><strong>Creative Writing</strong> - Stories, poems, essays, and content</li>
+            <li><strong>Professional Help</strong> - Business advice, coding, research</li>
+        </ul>
+        
+        <h3>🌐 Web Content Access</h3>
+        <ul>
+            <li><strong>Article Fetching</strong> - Access blocked news and websites</li>
+            <li><strong>Clean Content</strong> - Ad-free, readable text extraction</li>
+            <li><strong>PDF Processing</strong> - Extract text from documents</li>
+            <li><strong>Research Papers</strong> - Academic content access</li>
+            <li><strong>News Aggregation</strong> - Multiple source compilation</li>
+        </ul>
+    </div>
+
+    <div id="pricing" class="content">
+        <h2>Pricing Plans</h2>
+        <p>💝 <strong>Transform Lives with Digital Access</strong></p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div style="background: #333; padding: 20px; border-radius: 8px;">
+                <h3>🤝 Friend Plan</h3>
+                <p><strong>$9.99</strong> - 2 access codes</p>
+                <p>Perfect for helping close friends</p>
+                <a href="https://buy.stripe.com/cNi8wOgqX1cbetU4TX3Ru04" class="button">Buy Friend Plan</a>
+            </div>
+            
+            <div style="background: #2e7d32; padding: 20px; border-radius: 8px;">
+                <h3>👨‍👩‍👧‍👦 Family Plan</h3>
+                <p><strong>$24.99</strong> - 7 access codes</p>
+                <p>Extended family networks - <strong>BEST VALUE!</strong></p>
+                <a href="https://buy.stripe.com/00w4gy3Eb1cb0D4aeh3Ru03" class="button">Buy Family Plan</a>
+            </div>
+            
+            <div style="background: #333; padding: 20px; border-radius: 8px;">
+                <h3>🏘️ Community Plan</h3>
+                <p><strong>$49.99</strong> - 20 access codes</p>
+                <p>Entire communities & organizations</p>
+                <a href="https://buy.stripe.com/bJebJ0caH8ED71s0DH3Ru02" class="button">Buy Community Plan</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="content">
+        <h2>Get Started</h2>
+        <p>Ready to bridge the digital divide? Get in touch to purchase codes, ask questions, or learn more about how Afelu Guardian can help your community access AI and uncensored information.</p>
+        
+        <form method="post" action="/api/contact/submit" style="background: #333; padding: 20px; border-radius: 8px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <label for="name">Name *</label>
+                    <input type="text" name="name" id="name" required style="width: 100%; padding: 10px; background: #1e1e1e; color: white; border: 1px solid #555; border-radius: 4px;">
+                </div>
+                <div>
+                    <label for="email">Email *</label>
+                    <input type="email" name="email" id="email" required style="width: 100%; padding: 10px; background: #1e1e1e; color: white; border: 1px solid #555; border-radius: 4px;">
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject" value="Interest in Afelu Guardian" style="width: 100%; padding: 10px; background: #1e1e1e; color: white; border: 1px solid #555; border-radius: 4px;">
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" rows="4" placeholder="Tell us about your community, specific needs, or any questions you have..." style="width: 100%; padding: 10px; background: #1e1e1e; color: white; border: 1px solid #555; border-radius: 4px;"></textarea>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <input type="submit" value="Send Message" class="button" style="border: none; cursor: pointer;">
+            </div>
+        </form>
+        
+        <div style="margin-top: 30px;">
+            <h4>📞 Other Ways to Reach Us</h4>
+            <ul>
+                <li><strong>Email:</strong> support@afelu.com</li>
+                <li><strong>Telegram:</strong> @AfeluSupport</li>
+                <li><strong>Response Time:</strong> Usually within 24 hours</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            console.log('Showing section:', sectionId);
+            
+            // Hide all sections
+            const sections = document.querySelectorAll('.content');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                console.log('✅ Section shown:', sectionId);
+            } else {
+                console.error('❌ Section not found:', sectionId);
+            }
+        }
+        
+        // Show mission by default
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Page loaded, showing mission section');
+            showSection('mission');
+        });
+        
+        console.log('🎯 Debug page ready!');
+    </script>
+</body>
+</html>
