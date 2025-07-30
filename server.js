@@ -4,8 +4,8 @@ const path = require('path');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const prisma = require('./prisma');
 const { provisionAccessCodes } = require('./provisioning');
-const adminRoutes = require('./routes/admin');
-const contactRoutes = require('./routes/contact');
+// const adminRoutes = require('./routes/admin');
+// const contactRoutes = require('./routes/contact');
 const loggingService = require('./services/logging');
 
 const app = express();
@@ -66,10 +66,10 @@ function rateLimitMiddleware(req, res, next) {
 app.use('/api/', rateLimitMiddleware);
 
 // Contact routes (replaces the old contact handler)
-app.use('/api/contact', contactRoutes);
+// app.use('/api/contact', contactRoutes);
 
 // Admin routes
-app.use('/admin', adminRoutes);
+// app.use('/admin', adminRoutes);
 
 // A simple API endpoint for health checks
 app.get('/api/health', (req, res) => {
@@ -166,12 +166,16 @@ app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (
     }
 });
 
-// Serve static files from the 'public' directory AFTER the webhook handler
 // Serve static files with caching headers
 app.use(express.static(path.join(__dirname, 'public'), {
     maxAge: process.env.NODE_ENV === 'production' ? '1d' : 0,
     etag: true,
     lastModified: true
 }));
+
+// Root route handler
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 module.exports = app;
