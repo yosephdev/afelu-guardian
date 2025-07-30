@@ -44,7 +44,7 @@ class ZohoEmailService {
                     rejectUnauthorized: false
                 },
                 // Zoho-specific authentication options
-                authMethod: 'PLAIN',
+                authMethod: 'LOGIN',
                 connectionTimeout: 60000,
                 greetingTimeout: 30000,
                 socketTimeout: 60000
