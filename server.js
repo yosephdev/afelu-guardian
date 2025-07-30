@@ -68,6 +68,10 @@ function rateLimitMiddleware(req, res, next) {
 // Apply rate limiting to API routes
 app.use('/api/', rateLimitMiddleware);
 
+// Body parsing middleware (placed before routes, Stripe webhook has its own raw parser)
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
 // Contact routes (replaces the old contact handler)
 // Contact routes
 app.use('/api/contact', contactRoutes);
