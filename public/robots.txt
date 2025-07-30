@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.afelu.com/sitemap.xml
+
+# Block archive folder
+Disallow: /archived-assets/
+
+# Allow important pages
+Allow: /index.html
+Allow: /faq.html
+Allow: /documentation.html
+Allow: /terms.html
+Allow: /thank-you.html
+
+# Allow assets
+Allow: /favicon.ico
+Allow: /favicon.svg
+Allow: /apple-touch-icon.png
+Allow: /site.webmanifest
+
+# Crawl delay for politeness
+Crawl-delay: 1
+
+# Block specific bots if needed (currently allowing all)
+# User-agent: BadBot
+# Disallow: /
