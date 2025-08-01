@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const loggingService = require('../services/logging');
-const emailService = require('../services/email'); // Use our new Zoho email service
+const emailService = require('../services/email'); // Use Gmail email service
 const rateLimit = require('express-rate-limit');
 
 // Rate limiting for contact form
@@ -27,30 +27,13 @@ router.get('/test', async (req, res) => {
             return res.status(401).json({ error: 'Unauthorized' });
         }
 
-        // First test the connection
-        console.log('🔍 Testing email connection...');
-        const connectionTest = await emailService.testConnection();
-        
-        if (!connectionTest.success) {
-            return res.status(500).json({ 
-                success: false, 
-                message: 'Email connection test failed',
-                error: connectionTest.error,
-                debug: {
-                    smtp_host: process.env.SMTP_HOST,
-                    smtp_port: process.env.SMTP_PORT,
-                    smtp_user: process.env.SMTP_USER ? 'Set' : 'Missing',
-                    smtp_pass: process.env.SMTP_PASS ? 'Set' : 'Missing'
-                }
-            });
-        }
-
         // Test email sending
+        console.log('🔍 Testing email service...');
         const testResult = await emailService.sendContactFormEmail({
             name: 'Test User',
             email: 'test@example.com',
             subject: 'Email Service Test',
-            message: 'This is a test email to verify the Zoho integration is working correctly.'
+            message: 'This is a test email to verify the Gmail integration is working correctly.'
         });
 
         if (testResult.success) {
@@ -85,12 +68,12 @@ router.get('/test-connection', async (req, res) => {
             return res.status(401).json({ error: 'Unauthorized' });
         }
 
-        // Test just the connection without sending email
+        // Test the Zoho SMTP connection
         const connectionTest = await emailService.testConnection();
         
         res.json({
             success: connectionTest.success,
-            message: connectionTest.success ? 'SMTP connection successful' : 'SMTP connection failed',
+            message: connectionTest.success ? 'Gmail SMTP connection successful' : 'Gmail SMTP connection failed',
             error: connectionTest.error || null,
             debug: {
                 smtp_host: process.env.SMTP_HOST || 'Not set',

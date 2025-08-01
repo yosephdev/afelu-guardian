@@ -23,34 +23,23 @@ class ZohoEmailService {
         try {
             // Debug environment variables
             console.log('🔍 Email config check:', {
-                SMTP_HOST: process.env.SMTP_HOST ? '✅ Set' : '❌ Missing',
-                SMTP_PORT: process.env.SMTP_PORT ? '✅ Set' : '❌ Missing',
-                SMTP_USER: process.env.SMTP_USER ? '✅ Set' : '❌ Missing',
-                SMTP_PASS: process.env.SMTP_PASS ? '✅ Set' : '❌ Missing',
-                FROM_EMAIL: process.env.FROM_EMAIL ? '✅ Set' : '❌ Missing'
+                ZOHO_EMAIL: process.env.ZOHO_EMAIL ? '✅ Set' : '❌ Missing',
+                ZOHO_APP_PASSWORD: process.env.ZOHO_APP_PASSWORD ? '✅ Set' : '❌ Missing',
+                ADMIN_EMAIL: process.env.ADMIN_EMAIL ? '✅ Set' : '❌ Missing'
             });
 
-            // Zoho Mail SMTP configuration
-            const port = parseInt(process.env.SMTP_PORT) || 587;
+            // Create transporter with Zoho Mail configuration
             this.transporter = nodemailer.createTransport({
-                host: process.env.SMTP_HOST || 'smtp.zoho.com',
-                port: port,
-                secure: port === 465, // Use SSL for port 465, STARTTLS for 587
+                host: 'smtp.zoho.com',
+                port: 587,
+                secure: false, // true for 465, false for other ports
                 auth: {
-                    user: process.env.SMTP_USER, // support@afelu.com
-                    pass: process.env.SMTP_PASS  // Your Zoho app password
-                },
-                tls: {
-                    rejectUnauthorized: false
-                },
-                // Zoho-specific authentication options
-                authMethod: 'LOGIN',
-                connectionTimeout: 60000,
-                greetingTimeout: 30000,
-                socketTimeout: 60000
+                    user: process.env.ZOHO_EMAIL,
+                    pass: process.env.ZOHO_APP_PASSWORD
+                }
             });
 
-            this.isConfigured = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
+            this.isConfigured = !!(process.env.ZOHO_EMAIL && process.env.ZOHO_APP_PASSWORD);
             
             if (this.isConfigured) {
                 console.log('✅ Zoho email service initialized successfully');
@@ -76,7 +65,7 @@ class ZohoEmailService {
             const mailOptions = {
                 from: {
                     name: 'Afelu Guardian',
-                    address: process.env.FROM_EMAIL || 'support@afelu.com'
+                    address: process.env.ZOHO_EMAIL || 'support@afelu.com'
                 },
                 to,
                 subject,

@@ -177,11 +177,21 @@ async function setupBotCommands() {
 // Function to start bot polling
 function startBot() {
     try {
-        bot.startPolling({ restart: true });
-        console.log("✅ Bot polling started");
+        // Check if we're in production environment
+        if (process.env.NODE_ENV === 'production' && process.env.WEBHOOK_URL) {
+            // Use webhook mode in production
+            console.log("🔗 Setting up webhook for production...");
+            const webhookUrl = `${process.env.WEBHOOK_URL}/bot${token}`;
+            bot.setWebHook(webhookUrl);
+            console.log(`✅ Bot webhook set to: ${webhookUrl}`);
+        } else {
+            // Use polling for development
+            bot.startPolling({ restart: true });
+            console.log("✅ Bot polling started");
+        }
         setupBotCommands(); // Register commands after starting
     } catch (error) {
-        console.error("❌ Failed to start bot polling:", error.message);
+        console.error("❌ Failed to start bot:", error.message);
     }
 }
 

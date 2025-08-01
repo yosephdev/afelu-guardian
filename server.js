@@ -7,6 +7,7 @@ const { provisionAccessCodes } = require('./provisioning');
 // const adminRoutes = require('./routes/admin');
 const contactRoutes = require('./routes/contact');
 const loggingService = require('./services/logging');
+const { createBootcampCheckoutSession, handleBootcampPaymentSuccess } = require('./payment-service');
 
 const app = express();
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -99,13 +100,23 @@ app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (
                     console.log('💳 Payment successful for session:', session.id);
                 }
 
-                // Fulfill the purchase by provisioning access codes
-                const result = await provisionAccessCodes(session);
-                
-                if (result?.success) {
-                    console.log(`✅ Successfully provisioned ${result.codes.length} codes for ${result.tier} plan`);
+                // Check if this is a bootcamp payment
+                if (session.metadata?.course_type === 'premium_bootcamp') {
+                    const bootcampResult = await handleBootcampPaymentSuccess(session.id);
+                    if (bootcampResult?.success) {
+                        console.log(`✅ Successfully enrolled ${session.customer_details.email} in bootcamp`);
+                    } else {
+                        console.error('❌ Failed to process bootcamp enrollment:', bootcampResult?.error);
+                    }
                 } else {
-                    console.error('❌ Failed to provision codes');
+                    // Fulfill the regular purchase by provisioning access codes
+                    const result = await provisionAccessCodes(session);
+                    
+                    if (result?.success) {
+                        console.log(`✅ Successfully provisioned ${result.codes.length} codes for ${result.tier} plan`);
+                    } else {
+                        console.error('❌ Failed to provision codes');
+                    }
                 }
                 break;
                 
@@ -132,12 +143,73 @@ app.post('/api/stripe-webhook', express.raw({type: 'application/json'}), async (
     }
 });
 
-// Body parsing middleware (after Stripe webhook to avoid conflicts)
+// Telegram webhook handler
+app.post(`/bot${process.env.TELEGRAM_BOT_TOKEN}`, express.json(), (req, res) => {
+    try {
+        // Import bot instance and process the update
+        const { bot } = require('./bot');
+        bot.processUpdate(req.body);
+        res.sendStatus(200);
+    } catch (error) {
+        console.error('❌ Error processing Telegram webhook:', error);
+        res.sendStatus(500);
+    }
+});
+
+// Body parsing middleware (after webhooks to avoid conflicts)
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Contact routes
 app.use('/api/contact', contactRoutes);
+
+// Bootcamp payment endpoints
+app.post('/api/bootcamp/checkout', async (req, res) => {
+    try {
+        const { customerEmail, customerName } = req.body;
+        
+        if (!customerEmail || !customerName) {
+            return res.status(400).json({ 
+                error: 'Missing required fields: customerEmail and customerName' 
+            });
+        }
+
+        const result = await createBootcampCheckoutSession(customerEmail, customerName);
+        
+        if (result.success) {
+            res.json({ checkoutUrl: result.url });
+        } else {
+            res.status(500).json({ error: result.error });
+        }
+    } catch (error) {
+        console.error('Error creating bootcamp checkout:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/bootcamp/success', async (req, res) => {
+    try {
+        const { session_id } = req.query;
+        
+        if (!session_id) {
+            return res.status(400).json({ error: 'Missing session_id parameter' });
+        }
+
+        const result = await handleBootcampPaymentSuccess(session_id);
+        
+        if (result.success) {
+            res.json({ 
+                message: 'Bootcamp enrollment successful!',
+                enrollment: result.enrollment 
+            });
+        } else {
+            res.status(500).json({ error: result.error });
+        }
+    } catch (error) {
+        console.error('Error handling bootcamp payment success:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 // Admin routes
 // app.use('/admin', adminRoutes);

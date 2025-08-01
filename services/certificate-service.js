@@ -1,4 +1,6 @@
 const prisma = require('../prisma');
+const { PrismaClient } = require('@prisma/client');
+const emailService = require('./email');
 
 class CertificateService {
     constructor() {
@@ -232,6 +234,24 @@ class CertificateService {
                 },
                 data: { completedAt: new Date() }
             });
+
+            // Send certificate email
+            try {
+                const user = await prisma.user.findUnique({ where: { id: userId } });
+                if (user && user.email) {
+                    const certificateData = {
+                        certificateId: certificate.certificateId,
+                        type: certificate.certificateId.startsWith('AFCP') ? 'AFCP (Premium)' : 'AFC (Free)',
+                        courseName: this.courseDetails[courseId]?.title || courseId,
+                        issueDate: certificate.issuedAt
+                    };
+                    
+                    await emailService.sendCertificateEmail(user.email, certificateData);
+                }
+            } catch (emailError) {
+                console.error('Error sending certificate email:', emailError);
+                // Don't fail the certificate issuance if email fails
+            }
 
             return {
                 success: true,
