@@ -5,6 +5,7 @@ const openaiService = require('./services/openai');
 const enhancedAI = require('./services/enhanced-ai-service');
 const webfetchService = require('./services/webfetch');
 const loggingService = require('./services/logging');
+const certificateService = require('./services/certificate-service');
 const { 
     validateAccessCodeFormat, 
     sanitizeInput, 
@@ -25,6 +26,113 @@ const bot = new TelegramBot(token, { polling: false }); // Disable polling initi
 const rateLimitMap = new Map();
 const redeemRateLimitMap = new Map();
 
+// Course data structure
+const courses = {
+    fundamentals: {
+        title: "AI Fundamentals: Your Guide to the Future",
+        subtitle: "Perfect for beginners - learn what AI is and how it can help you in daily life",
+        duration: "2 Weeks",
+        description: "Welcome to the world of Artificial Intelligence! This course is designed for absolute beginners with no prior technical knowledge.",
+        modules: {
+            "1.1": { title: "A Simple Introduction", content: "Defining AI in plain language. The difference between science fiction and reality." },
+            "1.2": { title: "A Brief History of AI", content: "Key milestones that led us to today's technology." },
+            "1.3": { title: "Types of AI", content: "Understanding Narrow AI, General AI (AGI), and Superintelligence (ASI)." },
+            "1.4": { title: "AI in Your Daily Life", content: "Discovering AI in social media, navigation, streaming, and spam filters." },
+            "2.1": { title: "Meet Large Language Models", content: "What is an LLM? How does it learn from internet text?" },
+            "2.2": { title: "How ChatGPT Works", content: "Understanding how ChatGPT predicts the next word to form sentences." },
+            "2.3": { title: "Beyond Text Capabilities", content: "Writing emails, summarizing, brainstorming, translating, and coding." },
+            "2.4": { title: "Other AI Tools", content: "AI image generators and other helpful AI assistants." },
+            "3.1": { title: "The Power of Good Prompts", content: "Quality output depends on quality input (your instructions)." },
+            "3.2": { title: "The CORE Framework", content: "Context, Objective, Role, Example - framework for better prompts." },
+            "3.3": { title: "Practical Prompting", content: "Writing prompts for emails, grocery lists, and trip planning." },
+            "4.1": { title: "The Black Box Problem", content: "Why we don't always know how AI reaches conclusions." },
+            "4.2": { title: "Bias in AI", content: "How AI can learn and repeat human biases from training data." },
+            "4.3": { title: "Privacy and Data Security", content: "What information is safe to share with AI systems." },
+            "4.4": { title: "Future of Work and Society", content: "How AI might change jobs and importance of responsible development." }
+        }
+    },
+    mastery: {
+        title: "ChatGPT Mastery: From Conversation to Creation",
+        subtitle: "Advanced techniques for getting the best results from AI conversations",
+        duration: "3 Weeks",
+        description: "Go beyond basic questions and answers. Learn advanced prompting strategies, creative partnerships, and business automation.",
+        modules: {
+            "1.1": { title: "Chain-of-Thought Technique", content: "Making AI think step-by-step for complex tasks." },
+            "1.2": { title: "Zero-Shot to Few-Shot Prompting", content: "Using examples to guide AI outputs precisely." },
+            "1.3": { title: "The Power of Personas", content: "Creating detailed AI personas for specialized tasks." },
+            "1.4": { title: "Iterative Prompting", content: "Building upon previous prompts for complex goals." },
+            "2.1": { title: "Demanding Formats", content: "Getting outputs in tables, JSON, Markdown, or HTML." },
+            "2.2": { title: "Controlling Tone and Style", content: "Prompting for specific writing styles and maintaining consistency." },
+            "3.1": { title: "AI as Co-writer", content: "Brainstorming plots, developing characters, overcoming writer's block." },
+            "3.2": { title: "Poetry and Songwriting", content: "Generating creative text, rhymes, and lyrical ideas." },
+            "3.3": { title: "Script and Dialogue Writing", content: "Drafting scenes and natural-sounding dialogue." },
+            "4.1": { title: "Nuanced Translation", content: "Capturing cultural context, idioms, and formality." },
+            "4.2": { title: "Language Learning Partner", content: "Practice conversations, grammar explanations, vocabulary." },
+            "4.3": { title: "Cross-Cultural Business Communication", content: "Culturally appropriate emails and presentations." },
+            "5.1": { title: "AI-Powered Analysis", content: "Summarizing reports, analyzing data, identifying themes." },
+            "5.2": { title: "Content Marketing Engine", content: "Blog ideas, social media, video scripts, ad copy." },
+            "5.3": { title: "Automating Routine Tasks", content: "Customer inquiries, meeting summaries, project proposals." },
+            "6.1": { title: "Understanding APIs", content: "How developers connect ChatGPT to other applications." },
+            "6.2": { title: "Third-Party Tools", content: "Browser extensions and apps that use ChatGPT." }
+        }
+    },
+    business: {
+        title: "AI for Business: Growth and Innovation in Ethiopian Market",
+        subtitle: "Use AI to grow your business, improve productivity, and serve customers better",
+        duration: "4 Weeks",
+        description: "Practical guide for Ethiopian entrepreneurs using AI for competitive advantage in marketing, customer service, and data analysis.",
+        modules: {
+            "1.1": { title: "Why AI Now?", content: "Current AI opportunities in Ethiopian business ecosystem." },
+            "1.2": { title: "Identifying AI Opportunities", content: "Framework for analyzing business processes for AI implementation." },
+            "1.3": { title: "Low-Cost, High-Impact Tools", content: "Accessible AI tools for small and medium enterprises." },
+            "2.1": { title: "Ethiopian Tech Startup Case", content: "How local startups use AI for delivery, fintech, and optimization." },
+            "2.2": { title: "Problem & Solution Analysis", content: "AI solutions for route optimization, fraud detection, personalization." },
+            "2.3": { title: "Tools and Implementation", content: "Types of AI technology successfully implemented locally." },
+            "3.1": { title: "AI-Powered Market Research", content: "Analyzing competitors, trends, and customer sentiment." },
+            "3.2": { title: "SEO & Content Strategy", content: "Keywords for Ethiopian market and content generation." },
+            "3.3": { title: "Compelling Local Copy", content: "Ad copy and content that resonates with Ethiopian audiences." },
+            "4.1": { title: "Content Assembly Line", content: "Workflow for AI-drafted content with human editing." },
+            "4.2": { title: "Multilingual Content", content: "Creating materials in Amharic, Oromo, English efficiently." },
+            "4.3": { title: "Visual Content Ideas", content: "Text-to-image AI for marketing visuals and graphics." },
+            "5.1": { title: "AI Chatbots Introduction", content: "24/7 FAQ handling with automated chatbots." },
+            "5.2": { title: "Setting Up Simple Chatbots", content: "User-friendly platforms for website and social media." },
+            "5.3": { title: "Crafting Right Responses", content: "Training chatbots with business-specific information." },
+            "6.1": { title: "Service Industry Case Study", content: "Ethiopian hotels and restaurants using AI for efficiency." },
+            "6.2": { title: "Customer Service Innovation", content: "AI for booking management, personalized offers, feedback analysis." },
+            "7.1": { title: "AI for Dark Data", content: "Analyzing feedback emails, social comments, call transcripts." },
+            "7.2": { title: "Simple Predictive Analytics", content: "Forecasting sales trends based on historical data." },
+            "7.3": { title: "Data Analysis Tools", content: "User-friendly tools connecting to spreadsheets for insights." },
+            "8.1": { title: "Business Ethics", content: "Data privacy, transparency, avoiding bias in decisions." },
+            "8.2": { title: "Starting Small, Scaling Smart", content: "Piloting AI projects with minimal risk." },
+            "8.3": { title: "Future of Ethiopian AI Economy", content: "Upcoming trends and opportunities." }
+        }
+    },
+    digital: {
+        title: "Digital Literacy: Your Compass for Modern Ethiopian Economy",
+        subtitle: "Essential digital skills for navigating the modern Ethiopian economy",
+        duration: "2 Weeks", 
+        description: "Practical guide to confidently and safely navigate the digital landscape with security, communication, and financial skills.",
+        modules: {
+            "1.1": { title: "Creating Strong Passwords", content: "Password best practices and benefits of password managers." },
+            "1.2": { title: "Spotting Scams and Phishing", content: "Identifying fake emails, SMS, and suspicious social media offers." },
+            "1.3": { title: "Protecting Personal Information", content: "Safe information sharing and privacy settings management." },
+            "1.4": { title: "Secure Browsing", content: "HTTPS importance, secure Wi-Fi, and VPN basics." },
+            "2.1": { title: "Professional Email Etiquette", content: "Clear, professional emails: subject lines, greetings, body, sign-offs." },
+            "2.2": { title: "Messaging Apps Effectively", content: "Formal vs informal communication in professional contexts." },
+            "2.3": { title: "Video Conferencing Basics", content: "Zoom, Google Meet: muting, screen sharing, professional backgrounds." },
+            "2.4": { title: "Building Digital Footprint", content: "Understanding online posts' impact on professional reputation." },
+            "3.1": { title: "Google Smarter", content: "Search operators for finding information quickly." },
+            "3.2": { title: "Evaluating Information Sources", content: "Checking author, date, purpose; distinguishing news from opinion." },
+            "3.3": { title: "Understanding Misinformation", content: "Fake news problem and critical thinking skills." },
+            "3.4": { title: "Ethiopian Online Resources", content: "Trusted resources for news, government services, job searching." },
+            "4.1": { title: "Mobile Banking and Payments", content: "Basics of mobile money services like Telebirr." },
+            "4.2": { title: "Digital Transaction Safety", content: "Secure online payments and protecting financial information." },
+            "4.3": { title: "Online Shopping Safely", content: "Vetting sellers and understanding digital payment options." },
+            "4.4": { title: "Digital Invoicing", content: "Simple tools for freelancers to track income and expenses." }
+        }
+    }
+};
+
 // Bot command definitions for Telegram
 const commands = [
     { command: 'start', description: 'Welcome message and getting started guide' },
@@ -36,6 +144,16 @@ const commands = [
     { command: 'translate', description: 'Translate text to multiple languages (1 credit)' },
     { command: 'news', description: 'Get news summaries on any topic (1 credit)' },
     { command: 'summarize', description: 'Fetch and summarize web content (1 fetch + 1 GPT)' },
+    { command: 'courses', description: 'Browse available AI courses' },
+    { command: 'bootcamp', description: 'Learn about premium AI Training Bootcamp ($299)' },
+    { command: 'enroll', description: 'Enroll in a course (format: /enroll fundamentals)' },
+    { command: 'lesson', description: 'Get specific lesson content (format: /lesson 1.1)' },
+    { command: 'complete', description: 'Mark a lesson as completed (format: /complete 1.1 fundamentals)' },
+    { command: 'progress', description: 'Check your learning progress' },
+    { command: 'quiz', description: 'Take a practice quiz for current lesson' },
+    { command: 'score', description: 'Submit quiz score for certificate (format: /score 85 fundamentals)' },
+    { command: 'certificates', description: 'View your earned certificates' },
+    { command: 'verify', description: 'Verify a certificate (format: /verify AFC-2025-123456)' },
     { command: 'myquota', description: 'Check your remaining credits' }
 ];
 
@@ -85,6 +203,16 @@ Your gateway to uncensored AI and information access.
 • \`/translate <text>\` - Translate text
 • \`/myquota\` - Check your remaining usage
 • \`/help\` - Get detailed help
+
+**📚 NEW: AI Learning Courses!**
+• \`/courses\` - Browse 4 comprehensive AI courses
+• \`/enroll <course>\` - Start your AI education journey
+• \`/lesson <number>\` - Access interactive lessons
+
+**🎯 Recommended Learning Path:**
+1. Start with \`/courses\` to see what's available
+2. Begin with \`/enroll fundamentals\` 
+3. Practice with our AI tools as you learn!
 
 Start by redeeming your access code! 🎯`;
 
@@ -598,7 +726,14 @@ bot.onText(/\/help/, (msg) => {
 • \`/fetch <url>\` - Access websites (1 fetch credit)
 • \`/summarize <url>\` - Fetch & summarize (1 fetch + 1 GPT)
 
-**📊 Account Commands:**
+**� Learning Commands:**
+• \`/courses\` - Browse available AI courses
+• \`/enroll <course>\` - Enroll in a course
+• \`/lesson <number>\` - Get lesson content
+• \`/progress\` - Check learning progress
+• \`/quiz\` - Take practice quiz
+
+**�📊 Account Commands:**
 • \`/myquota\` - Check remaining credits
 • \`/help\` - Show this help message
 
@@ -613,6 +748,664 @@ Contact your sponsor or email: support@afelu.com
 **🔒 Privacy:** We don't store your conversations or personal data.`;
 
     bot.sendMessage(chatId, helpMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /courses
+bot.onText(/\/courses/, (msg) => {
+    const chatId = msg.chat.id;
+    const coursesMessage = `📚 **Available AI Courses**
+
+**� FREE COURSES (With Access Code):**
+
+�🎓 **1. AI Fundamentals** (\`fundamentals\`)
+${courses.fundamentals.subtitle}
+⏱️ Duration: ${courses.fundamentals.duration}
+
+🚀 **2. ChatGPT Mastery** (\`mastery\`)
+${courses.mastery.subtitle}
+⏱️ Duration: ${courses.mastery.duration}
+
+💼 **3. AI for Business** (\`business\`)
+${courses.business.subtitle}
+⏱️ Duration: ${courses.business.duration}
+
+💻 **4. Digital Literacy** (\`digital\`)
+${courses.digital.subtitle}
+⏱️ Duration: ${courses.digital.duration}
+
+**💎 PREMIUM PROFESSIONAL COURSE:**
+
+🏆 **AI Training Bootcamp** (\`bootcamp\`) - **$299**
+*The Ultimate 4-Week Intensive Program for Professionals and Innovators*
+⏱️ Duration: 4 Weeks Intensive
+🎯 Features: Advanced techniques, 1-on-1 mentoring, lifetime access, professional certification
+💼 Target: Working professionals seeking AI expertise
+
+**🚀 How to Start:**
+• **Free courses:** \`/enroll <course_name>\` (Example: \`/enroll fundamentals\`)
+• **Premium bootcamp:** Contact us for enrollment: support@afelu.com
+
+**💡 Recommended Learning Path:**
+1. **Start:** AI Fundamentals (free)
+2. **Advance:** ChatGPT Mastery (free)  
+3. **Apply:** AI for Business (free)
+4. **Professional:** AI Training Bootcamp (premium)
+5. **Support:** Digital Literacy skills (free)
+
+All free courses included with your access code! 🎁`;
+
+    bot.sendMessage(chatId, coursesMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /bootcamp
+bot.onText(/\/bootcamp/, (msg) => {
+    const chatId = msg.chat.id;
+    const bootcampMessage = `🏆 **AI Training Bootcamp - Premium Professional Course**
+
+**💎 THE ULTIMATE 4-WEEK INTENSIVE PROGRAM**
+*For Professionals and Innovators - $299*
+
+**📋 WHAT'S INCLUDED:**
+✅ 4-week intensive professional training program
+✅ Advanced ChatGPT and prompt engineering mastery
+✅ Business automation strategies and workflows
+✅ Industry-specific AI applications
+✅ **Two 1-on-1 mentoring sessions** with AI experts
+✅ Hands-on capstone project with ROI documentation
+✅ **Professional Certification of Completion**
+✅ **Lifetime access** to all materials and future updates
+
+**🎯 PROGRAM STRUCTURE:**
+
+**Week 1:** Mastering Advanced AI Interaction & Prompt Engineering
+• Chain-of-Thought, Tree of Thoughts, Self-Correction techniques
+• Structured output mastery (JSON, XML, Markdown)
+• Meta-prompting and prompt chaining for complex tasks
+• Ultra-detailed persona development and contextual priming
+
+**Week 2:** Business Automation Strategies  
+• Unstructured data analysis and sentiment analysis
+• End-to-end marketing campaign automation
+• Sales funnel automation and personalized follow-ups
+• HR process streamlining and documentation automation
+
+**Week 3:** Industry-Specific Applications
+• Tech & Software Development AI solutions
+• Marketing & Creative professional applications  
+• Business & Finance automation and analysis
+• Healthcare & Academia research and documentation
+
+**Week 4:** Integration, Final Project & Certification
+• API integration and no-code automation platforms
+• Capstone project implementation and ROI documentation
+• Ethical AI framework for professional environments
+• Professional certification upon successful completion
+
+**🎓 CERTIFICATION VALUE:**
+• Professional-level certificate (AFCP-2025-XXXXXX)
+• Validates 40+ hours of advanced training
+• Recognized credential for LinkedIn and resumes
+• Demonstrates leadership-ready AI expertise
+
+**👥 WHO THIS IS FOR:**
+• Working professionals seeking AI expertise
+• Entrepreneurs wanting to automate business processes
+• Managers leading digital transformation initiatives
+• Consultants adding AI services to their offerings
+
+**💰 INVESTMENT:** $299 (One-time payment)
+**🎁 VALUE:** $2000+ in training, mentorship, and lifetime access
+
+**📞 ENROLLMENT:**
+This premium course requires separate enrollment.
+Contact us: support@afelu.com or visit afelu.com/bootcamp
+
+**🆓 START FIRST:** Try our free courses to see if you're ready:
+\`/enroll fundamentals\` → \`/enroll mastery\` → \`/enroll business\`
+
+Ready to become an AI power user? 🚀`;
+
+    bot.sendMessage(chatId, bootcampMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /enroll <course>
+bot.onText(/\/enroll (.+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const telegramId = BigInt(msg.from.id);
+    const courseName = sanitizeInput(match[1]).toLowerCase();
+
+    if (!validateTelegramId(telegramId)) {
+        return bot.sendMessage(chatId, "❌ Invalid user session. Please restart the bot.");
+    }
+
+    try {
+        const user = await prisma.user.findUnique({ where: { telegramId } });
+        if (!user) {
+            return bot.sendMessage(chatId, "❌ You need to redeem an access code first. Use /redeem ET-XXXX-XXXX");
+        }
+
+        if (!courses[courseName]) {
+            return bot.sendMessage(chatId, `❌ Course not found. Available courses: fundamentals, mastery, business, digital\n\nUse /courses to see all available courses.`);
+        }
+
+        const course = courses[courseName];
+        const enrollMessage = `✅ **Enrolled in ${course.title}!**
+
+📖 **Course Overview:**
+${course.description}
+
+⏱️ **Duration:** ${course.duration}
+
+**🚀 How to Start Learning:**
+• Use \`/lesson 1.1\` to start with the first lesson
+• Use \`/progress\` to track your advancement
+• Use \`/quiz\` to test your knowledge
+
+**📋 Available Lessons:**
+${Object.keys(course.modules).slice(0, 4).map(key => `• Lesson ${key}: ${course.modules[key].title}`).join('\n')}
+• ... and ${Object.keys(course.modules).length - 4} more lessons
+
+**💡 Tip:** Take your time and practice with real examples using our AI tools!
+
+Ready to start? Type \`/lesson 1.1\` now! 🎯`;
+
+        bot.sendMessage(chatId, enrollMessage, { parse_mode: 'Markdown' });
+
+        // Log enrollment
+        await loggingService.logAction(user.id, 'course_enrollment', {
+            courseName: courseName,
+            courseTitle: course.title
+        });
+
+    } catch (error) {
+        console.error("❌ Enroll command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, something went wrong with enrollment. Please try again.");
+    }
+});
+
+// COMMAND: /lesson <number>
+bot.onText(/\/lesson (.+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const telegramId = BigInt(msg.from.id);
+    const lessonNumber = sanitizeInput(match[1]);
+
+    if (!validateTelegramId(telegramId)) {
+        return bot.sendMessage(chatId, "❌ Invalid user session. Please restart the bot.");
+    }
+
+    try {
+        const user = await prisma.user.findUnique({ where: { telegramId } });
+        if (!user) {
+            return bot.sendMessage(chatId, "❌ You need to redeem an access code first. Use /redeem ET-XXXX-XXXX");
+        }
+
+        // Find lesson across all courses
+        let foundLesson = null;
+        let foundCourse = null;
+        
+        for (const [courseKey, course] of Object.entries(courses)) {
+            if (course.modules[lessonNumber]) {
+                foundLesson = course.modules[lessonNumber];
+                foundCourse = course;
+                break;
+            }
+        }
+
+        if (!foundLesson) {
+            return bot.sendMessage(chatId, `❌ Lesson ${lessonNumber} not found. \n\nExample: /lesson 1.1 for the first lesson\n\nUse /courses to see available courses and enroll first.`);
+        }
+
+        const lessonMessage = `📖 **Lesson ${lessonNumber}: ${foundLesson.title}**
+
+📚 **Course:** ${foundCourse.title}
+
+**📝 Content:**
+${foundLesson.content}
+
+**🎯 Practice Suggestions:**
+• Try asking our AI: \`/gpt ${foundLesson.title} - can you give me an example?\`
+• Test your understanding: \`/quiz\`
+• Move to next lesson or explore related topics
+
+**💡 Pro Tip:** Apply this knowledge immediately! Use \`/gpt\`, \`/image\`, or \`/translate\` to practice what you just learned.
+
+**📈 Continue Learning:**
+• Use \`/progress\` to see your advancement
+• Use \`/courses\` to explore other courses`;
+
+        bot.sendMessage(chatId, lessonMessage, { parse_mode: 'Markdown' });
+
+        // Log lesson access
+        await loggingService.logAction(user.id, 'lesson_access', {
+            lessonNumber: lessonNumber,
+            lessonTitle: foundLesson.title
+        });
+
+    } catch (error) {
+        console.error("❌ Lesson command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, something went wrong accessing the lesson. Please try again.");
+    }
+});
+
+// COMMAND: /progress
+bot.onText(/\/progress/, async (msg) => {
+    const chatId = msg.chat.id;
+    const telegramId = BigInt(msg.from.id);
+
+    try {
+        const user = await prisma.user.findUnique({ where: { telegramId } });
+        if (!user) {
+            return bot.sendMessage(chatId, "❌ You need to redeem an access code first. Use /redeem ET-XXXX-XXXX");
+        }
+
+        const progressMessage = `📊 **Your Learning Progress**
+
+**🎓 AI Learning Journey:**
+• Course enrollments available via \`/enroll\`
+• Lessons accessed: Check with \`/lesson <number>\`
+• Practice exercises: Use our AI tools
+
+**📈 Usage Statistics:**
+• GPT Requests Used: Interactive learning and practice
+• Web Fetches Used: Research and real-world application
+• Current Balance: ${user.quotaGpt} GPT + ${user.quotaFetch} fetch credits
+
+**🚀 Recommended Next Steps:**
+1. **Start with basics:** \`/enroll fundamentals\` then \`/lesson 1.1\`
+2. **Practice immediately:** Use \`/gpt\` to ask follow-up questions
+3. **Apply knowledge:** Try \`/image\`, \`/translate\`, or \`/news\` commands
+4. **Track learning:** Return here to see your progress
+
+**💡 Study Tip:** The best way to learn AI is by using it! Each lesson should be followed by hands-on practice with our tools.
+
+Ready to continue? Use \`/courses\` to explore or \`/lesson <number>\` to study! 🎯`;
+
+        bot.sendMessage(chatId, progressMessage, { parse_mode: 'Markdown' });
+
+    } catch (error) {
+        console.error("❌ Progress command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, couldn't retrieve your progress. Please try again.");
+    }
+});
+
+// COMMAND: /complete <lesson> <course>
+bot.onText(/\/complete (.+) (.+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const telegramId = BigInt(msg.from.id);
+    const lessonNumber = sanitizeInput(match[1]);
+    const courseKey = sanitizeInput(match[2]);
+
+    try {
+        const user = await prisma.user.findUnique({ where: { telegramId } });
+        if (!user) {
+            return bot.sendMessage(chatId, "❌ You need to redeem an access code first. Use /redeem ET-XXXX-XXXX");
+        }
+
+        // Validate course and lesson exist
+        const course = courses[courseKey];
+        if (!course) {
+            return bot.sendMessage(chatId, `❌ Course "${courseKey}" not found.\n\n**Available courses:**\n• fundamentals\n• chatgpt_mastery\n• ai_business\n• digital_literacy\n\n**Usage:** \`/complete 1.1 fundamentals\``);
+        }
+
+        if (!course.modules[lessonNumber]) {
+            return bot.sendMessage(chatId, `❌ Lesson ${lessonNumber} not found in ${course.title}.\n\n**Example:** \`/complete 1.1 fundamentals\`\n\nUse \`/lesson ${lessonNumber}\` to check if the lesson exists.`);
+        }
+
+        // Mark module as complete
+        const result = await certificateService.markModuleComplete(user.id, courseKey, lessonNumber);
+        
+        if (!result.success) {
+            return bot.sendMessage(chatId, "❌ Sorry, couldn't mark lesson as complete. Please try again.");
+        }
+
+        const completion = result.completion;
+        const progressBar = "█".repeat(Math.floor(completion.completionPercentage / 10)) + 
+                           "░".repeat(10 - Math.floor(completion.completionPercentage / 10));
+
+        let message = `✅ **Lesson ${lessonNumber} Completed!**\n\n`;
+        message += `📚 **Course:** ${course.title}\n`;
+        message += `📖 **Lesson:** ${course.modules[lessonNumber].title}\n\n`;
+        message += `**📊 Progress:**\n`;
+        message += `${progressBar} ${completion.completionPercentage.toFixed(1)}%\n`;
+        message += `Completed: ${completion.completedModules}/${completion.totalModules} lessons\n\n`;
+
+        if (completion.completionPercentage >= 80) {
+            message += `🎉 **Congratulations!** You've completed 80% of the course!\n\n`;
+            message += `**📋 To earn your certificate:**\n`;
+            message += `1. Take the final quiz: \`/quiz\`\n`;
+            message += `2. Score 70% or higher\n`;
+            message += `3. Certificate will be automatically issued\n\n`;
+        } else {
+            const remaining = completion.totalModules - completion.completedModules;
+            message += `**🚀 Keep Going!**\n`;
+            message += `• ${remaining} lessons remaining\n`;
+            message += `• Need ${Math.max(0, Math.ceil(completion.totalModules * 0.8) - completion.completedModules)} more for certificate eligibility\n\n`;
+        }
+
+        message += `**📈 Next Steps:**\n`;
+        message += `• Continue: \`/lesson <next_number>\`\n`;
+        message += `• Practice: \`/gpt\`, \`/image\`, \`/translate\`\n`;
+        message += `• Track progress: \`/progress\``;
+
+        bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+
+        // Log completion
+        await loggingService.logAction(user.id, 'lesson_completed', {
+            lessonNumber,
+            courseKey,
+            completionPercentage: completion.completionPercentage
+        });
+
+    } catch (error) {
+        console.error("❌ Complete command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, couldn't mark lesson as complete. Please try again.");
+    }
+});
+
+// COMMAND: /quiz  
+bot.onText(/\/quiz (.+)?/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const telegramId = BigInt(msg.from.id);
+    const courseKey = match && match[1] ? sanitizeInput(match[1]) : null;
+
+    if (!validateTelegramId(telegramId)) {
+        return bot.sendMessage(chatId, "❌ Invalid user session. Please restart the bot.");
+    }
+
+    try {
+        const user = await prisma.user.findUnique({ where: { telegramId } });
+        if (!user || user.quotaGpt <= 0) {
+            return bot.sendMessage(chatId, "❌ You need GPT credits to take quizzes. Use /redeem to get more credits.");
+        }
+
+        let quizPrompt = `Create a comprehensive 5-question multiple choice quiz about AI fundamentals for beginners. Include:
+
+1. One question about what AI is and its basic definition
+2. One question about ChatGPT/Large Language Models and how they work
+3. One question about practical AI applications in daily life
+4. One question about AI ethics, safety, or responsible usage
+5. One question about prompting techniques or getting better AI results
+
+For each question:
+- Provide 4 options (A, B, C, D)
+- Make questions educational and relevant for Ethiopian learners
+- Include the correct answer at the end with brief explanations
+- Score as: Question 1: A, Question 2: C, etc.
+
+Make it challenging but fair for someone who completed the AI fundamentals course.`;
+
+        if (courseKey && courses[courseKey]) {
+            quizPrompt = `Create a final assessment quiz for the "${courses[courseKey].title}" course. This quiz should test comprehensive understanding of all key concepts covered in the course. Include 5 multiple choice questions that:
+
+1. Test understanding of core AI concepts from the course
+2. Evaluate practical application knowledge  
+3. Check ethical AI usage understanding
+4. Test hands-on skills learned
+5. Verify real-world application ability
+
+Provide A, B, C, D options for each question and include correct answers with explanations at the end. This is a final exam for certificate eligibility.`;
+        }
+
+        const processingMsg = await bot.sendMessage(chatId, "🧠 Generating your AI quiz...");
+        
+        const quiz = await openaiService.getChatCompletion(quizPrompt);
+        
+        let quizMessage = `🧠 **AI Knowledge Quiz**\n\n${quiz}\n\n**🎯 How to Take This Quiz:**\n• Think carefully about each question\n• Check your answers at the bottom\n• Count your correct answers\n• Use \`/gpt\` to ask about confusing concepts\n\n`;
+        
+        if (courseKey) {
+            quizMessage += `**🏆 Certificate Opportunity:**\nThis is a final quiz for ${courses[courseKey].title}. Score 70% or higher (4/5 correct) to earn your certificate!\n\n`;
+            quizMessage += `**📋 After taking the quiz:**\nReply with your score using: \`/score <your_score> ${courseKey}\`\nExample: \`/score 85 fundamentals\`\n\n`;
+        }
+        
+        quizMessage += `**💡 Next Steps:**\n• Review lessons: \`/lesson <number>\`\n• Practice more: \`/gpt\`, \`/translate\`, or \`/image\`\n• Continue learning: \`/courses\``;
+
+        await bot.editMessageText(quizMessage, {
+            chat_id: chatId,
+            message_id: processingMsg.message_id,
+            parse_mode: 'Markdown'
+        });
+
+        await prisma.user.update({
+            where: { telegramId },
+            data: { quotaGpt: { decrement: 1 } },
+        });
+
+        await loggingService.logAction(user.id, 'quiz_taken', {
+            success: true,
+            courseKey: courseKey || 'general'
+        });
+
+    } catch (error) {
+        console.error("❌ Quiz command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, couldn't generate quiz. Please try again.");
+    }
+});
+
+// COMMAND: /score <score> <course>
+bot.onText(/\/score (\d+) (.+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const telegramId = BigInt(msg.from.id);
+    const score = parseInt(match[1]);
+    const courseKey = sanitizeInput(match[2]);
+
+    try {
+        const user = await prisma.user.findUnique({ where: { telegramId } });
+        if (!user) {
+            return bot.sendMessage(chatId, "❌ You need to redeem an access code first. Use /redeem ET-XXXX-XXXX");
+        }
+
+        // Validate course exists
+        const course = courses[courseKey];
+        if (!course) {
+            return bot.sendMessage(chatId, `❌ Course "${courseKey}" not found.\n\n**Available courses:**\n• fundamentals\n• chatgpt_mastery\n• ai_business\n• digital_literacy`);
+        }
+
+        // Validate score range
+        if (score < 0 || score > 100) {
+            return bot.sendMessage(chatId, "❌ Score must be between 0 and 100.\n\n**Example:** `/score 85 fundamentals`");
+        }
+
+        // Record the quiz score
+        await certificateService.recordQuizScore(user.id, courseKey, score);
+
+        let message = `📊 **Quiz Score Recorded**\n\n`;
+        message += `🎯 **Score:** ${score}%\n`;
+        message += `📚 **Course:** ${course.title}\n\n`;
+
+        // Check if eligible for certificate
+        const completion = await certificateService.checkCourseCompletion(user.id, courseKey);
+        
+        if (score >= 70 && completion.completed) {
+            // Issue certificate automatically
+            const certResult = await certificateService.issueCertificate(user.id, courseKey, score);
+            
+            if (certResult.success) {
+                message += `🎉 **CONGRATULATIONS!**\n\n`;
+                message += `✅ You've earned your certificate!\n\n`;
+                message += `🏆 **Certificate Details:**\n`;
+                message += `• Course: ${certResult.courseInfo.title}\n`;
+                message += `• Score: ${score}%\n`;
+                message += `• Certificate ID: \`${certResult.certificate.certificateId}\`\n`;
+                message += `• Issued: ${new Date().toLocaleDateString()}\n\n`;
+                message += `**📋 Your Achievement:**\n`;
+                message += certificateService.generateCertificateText(
+                    certResult.certificate, 
+                    certResult.courseInfo
+                );
+                message += `\n\n**🔗 Share Your Success:**\n`;
+                message += `• View all certificates: \`/certificates\`\n`;
+                message += `• Verify this certificate: \`/verify ${certResult.certificate.certificateId}\`\n`;
+                message += `• Continue learning: \`/courses\``;
+            } else if (certResult.reason === 'already_issued') {
+                message += `ℹ️ **Certificate Already Issued**\n\n`;
+                message += `You already have a certificate for this course.\n`;
+                message += `View it with: \`/certificates\`\n\n`;
+                message += `**Continue Learning:**\n`;
+                message += `• Explore other courses: \`/courses\`\n`;
+                message += `• Take advanced courses to earn more certificates`;
+            } else {
+                message += `❌ **Certificate Issuance Failed**\n\n`;
+                message += `Your score qualifies you for a certificate, but there was an error issuing it. Please contact support.\n\n`;
+                message += `**Your Progress:**\n`;
+                message += `• Score: ${score}% ✅\n`;
+                message += `• Course completion: ${completion.completionPercentage.toFixed(1)}% ✅`;
+            }
+        } else if (score >= 70) {
+            message += `🎯 **Great Score!** You passed the quiz!\n\n`;
+            message += `**📋 Certificate Eligibility:**\n`;
+            message += `• Quiz score: ${score}% ✅ (70%+ required)\n`;
+            message += `• Course completion: ${completion.completionPercentage.toFixed(1)}%\n`;
+            message += `• Required: 80% course completion\n\n`;
+            message += `**🚀 To earn your certificate:**\n`;
+            message += `• Complete more lessons: \`/lesson <number>\`\n`;
+            message += `• Mark them as done: \`/complete <lesson> ${courseKey}\`\n`;
+            message += `• Track progress: \`/progress\`\n\n`;
+            message += `You need ${Math.ceil((80 - completion.completionPercentage) * completion.totalModules / 100)} more lessons!`;
+        } else {
+            message += `📚 **Keep Learning!**\n\n`;
+            message += `Your score: ${score}% (Need 70%+ for certificate)\n\n`;
+            message += `**📖 Suggested Next Steps:**\n`;
+            message += `• Review course material: \`/lesson <number>\`\n`;
+            message += `• Practice with AI tools: \`/gpt\`, \`/translate\`\n`;
+            message += `• Retake quiz when ready: \`/quiz ${courseKey}\`\n\n`;
+            message += `**💡 Study Tips:**\n`;
+            message += `• Focus on areas you found challenging\n`;
+            message += `• Use practical exercises to reinforce learning\n`;
+            message += `• Ask questions with \`/gpt\` about confusing topics`;
+        }
+
+        bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+
+        // Log score submission
+        await loggingService.logAction(user.id, 'quiz_score_submitted', {
+            score,
+            courseKey,
+            certificateEligible: score >= 70 && completion.completed
+        });
+
+    } catch (error) {
+        console.error("❌ Score command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, couldn't process your score. Please try again.");
+    }
+});
+
+// COMMAND: /certificates
+bot.onText(/\/certificates/, async (msg) => {
+    const chatId = msg.chat.id;
+    const telegramId = BigInt(msg.from.id);
+
+    try {
+        const user = await prisma.user.findUnique({ where: { telegramId } });
+        if (!user) {
+            return bot.sendMessage(chatId, "❌ You need to redeem an access code first. Use /redeem ET-XXXX-XXXX");
+        }
+
+        const certificates = await certificateService.getUserCertificates(user.id);
+
+        if (certificates.length === 0) {
+            return bot.sendMessage(chatId, `🎓 **Your Certificates**
+
+You haven't earned any certificates yet! 
+
+**How to Earn Certificates:**
+1. **Enroll in a course:** \`/enroll fundamentals\`
+2. **Complete at least 80% of lessons:** Use \`/lesson <number>\`
+3. **Take the final quiz:** Use \`/quiz\` after completing lessons
+4. **Pass with a good score:** 70% or higher typically required
+
+**Available Courses:**
+• AI Fundamentals (2 weeks)
+• ChatGPT Mastery (3 weeks) 
+• AI for Business (4 weeks)
+• Digital Literacy (2 weeks)
+
+Start your learning journey: \`/courses\` 🚀`, { parse_mode: 'Markdown' });
+        }
+
+        let message = `🎓 **Your Certificates**\n\n`;
+        
+        certificates.forEach((cert, index) => {
+            const date = cert.issuedAt.toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
+            
+            message += `**${index + 1}. ${cert.courseInfo.title}**\n`;
+            message += `📅 Issued: ${date}\n`;
+            message += `🏆 Score: ${cert.score}%\n`;
+            message += `🆔 ID: \`${cert.certificateId}\`\n`;
+            message += `✅ Verified: Yes\n\n`;
+        });
+
+        message += `**Certificate Verification:**\n`;
+        message += `• Share your certificate ID with employers\n`;
+        message += `• Anyone can verify at: afelu.com/verify/\n`;
+        message += `• Use \`/verify <ID>\` to check certificate details\n\n`;
+        message += `**Continue Learning:**\n`;
+        message += `• Browse courses: \`/courses\`\n`;
+        message += `• Check progress: \`/progress\``;
+
+        bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+
+    } catch (error) {
+        console.error("❌ Certificates command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, couldn't retrieve your certificates. Please try again.");
+    }
+});
+
+// COMMAND: /verify
+bot.onText(/\/verify (.+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const certificateId = match[1].trim().toUpperCase();
+
+    try {
+        const validation = await certificateService.validateCertificate(certificateId);
+        
+        if (!validation.valid) {
+            let message = `❌ **Certificate Verification Failed**\n\n`;
+            if (validation.reason === 'not_found') {
+                message += `Certificate ID \`${certificateId}\` was not found.\n\n`;
+                message += `**Possible reasons:**\n`;
+                message += `• The certificate ID was typed incorrectly\n`;
+                message += `• The certificate has not been issued yet\n`;
+                message += `• The certificate is from a different platform\n\n`;
+            } else {
+                message += `Unable to verify certificate at this time.\n\n`;
+            }
+            message += `**Format:** Certificate IDs look like \`AFC-2025-123456\`\n`;
+            message += `**Help:** Contact support if you believe this is an error.`;
+            
+            return bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+        }
+
+        const cert = validation.certificate;
+        const date = cert.issuedAt.toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        const message = `✅ **Certificate Verified**\n\n` +
+            `🎓 **Course:** ${cert.courseInfo.title}\n` +
+            `📅 **Issued:** ${date}\n` +
+            `🏆 **Score:** ${cert.score}%\n` +
+            `🆔 **Certificate ID:** \`${cert.certificateId}\`\n` +
+            `⏱️ **Duration:** ${cert.courseInfo.duration}\n\n` +
+            `**About This Certificate:**\n` +
+            `This certificate validates completion of comprehensive AI education designed for Ethiopian learners. The holder demonstrated practical understanding of AI tools, ethical usage, and real-world applications.\n\n` +
+            `**Verification Details:**\n` +
+            `• Issued by: Afelu Guardian AI Education\n` +
+            `• Platform: Telegram Bot Learning System\n` +
+            `• Status: Valid and Authentic\n\n` +
+            `**Skills Demonstrated:**\n` +
+            `• AI fundamentals and practical applications\n` +
+            `• Hands-on experience with AI tools\n` +
+            `• Ethical AI usage and digital literacy\n` +
+            `• Problem-solving with AI assistance`;
+
+        bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+
+    } catch (error) {
+        console.error("❌ Verify command failed:", error);
+        bot.sendMessage(chatId, "❌ Sorry, couldn't verify the certificate. Please try again.");
+    }
 });
 
 // Export the bot instance and control functions

@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Afelu Guardian</title>
+    <title>Privacy Policy - Afelu Guardian | Hybrid AI Platform Privacy Protection</title>
+    <meta name="description" content="Comprehensive privacy policy for Afelu Guardian's hybrid AI platform. Learn how we protect family access data and professional service information with Ethiopian standards.">
+    <meta name="keywords" content="Afelu Guardian privacy, AI platform privacy policy, Ethiopian AI data protection, family access privacy, professional services privacy, diaspora sponsorship data">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -14,7 +17,10 @@
                         primary: {
                             600: '#2563eb',
                             700: '#1d4ed8'
-                        }
+                        },
+                        'ethiopia-green': '#009639',
+                        'ethiopia-yellow': '#FFCD00',
+                        'ethiopia-red': '#DA020E'
                     }
                 }
             }
@@ -24,196 +30,514 @@
         .ethiopia-gradient {
             background: linear-gradient(135deg, #009639 0%, #FFCD00 50%, #DA020E 100%);
         }
+        .pulse-slow {
+            animation: pulse 3s ease-in-out infinite;
+        }
     </style>
 </head>
 
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
                 <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
                     <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
                         <i class="fas fa-shield-alt text-white text-sm"></i>
                     </div>
                     <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
                 </a>
-                <div class="flex items-center space-x-4">
-                    <a href="/infographic.html" class="text-gray-600 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-chart-bar mr-2"></i>AI in Ethiopia
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/#mission" class="text-gray-600 hover:text-primary-600 transition-colors">Mission</a>
+                    <a href="/#how-it-works" class="text-gray-600 hover:text-primary-600 transition-colors">How It Works</a>
+                    <a href="/#features" class="text-gray-600 hover:text-primary-600 transition-colors">Features</a>
+                    <a href="/infographic.html" class="text-gray-600 hover:text-primary-600 transition-colors">AI in Ethiopia</a>
+                    <a href="/ai-revolution-ethiopia-2025.html" class="text-gray-600 hover:text-primary-600 transition-colors">2025 Report</a>
+                    <a href="/chatgpt-ethiopia-guide.html" class="text-gray-600 hover:text-primary-600 transition-colors">AI Guide</a>
+                    <a href="/faq.html" class="text-gray-600 hover:text-primary-600 transition-colors">FAQ</a>
+                    <a href="/#contact" class="text-gray-600 hover:text-primary-600 transition-colors">Contact</a>
+                    <a href="/#pricing" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        Get Started
                     </a>
-                    <a href="/ai-revolution-ethiopia-2025.html"
-                        class="text-green-600 hover:text-green-700 transition-colors">
-                        <i class="fas fa-file-alt mr-2"></i>2025 Report
-                    </a>
-                    <a href="/faq.html" class="text-gray-600 hover:text-blue-600 transition-colors">
-                        FAQ
-                    </a>
-                    <a href="/" class="text-blue-600 hover:text-blue-700 transition-colors">
-                        <i class="fas fa-home mr-2"></i>Back to Home
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/#mission" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Mission</a>
+                    <a href="/#how-it-works" class="text-gray-600 hover:text-primary-600 transition-colors py-2">How It Works</a>
+                    <a href="/#features" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Features</a>
+                    <a href="/infographic.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">AI in Ethiopia</a>
+                    <a href="/ai-revolution-ethiopia-2025.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">2025 Report</a>
+                    <a href="/chatgpt-ethiopia-guide.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">AI Guide</a>
+                    <a href="/faq.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">FAQ</a>
+                    <a href="/#contact" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Contact</a>
+                    <a href="/#pricing" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors inline-block text-center mt-2">
+                        Get Started
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="container mx-auto px-4 py-12 max-w-4xl">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
+    <div class="container mx-auto px-4 py-24 max-w-5xl">
+        <!-- Hero Section -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center bg-gradient-to-r from-ethiopia-green/10 to-ethiopia-yellow/10 rounded-full px-6 py-3 mb-6">
+                <div class="w-3 h-3 bg-ethiopia-green rounded-full mr-3 pulse-slow"></div>
+                <span class="font-medium text-gray-700">Privacy Protection</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                🔒 Privacy 
+                <span class="bg-gradient-to-r from-ethiopia-green to-ethiopia-yellow bg-clip-text text-transparent">
+                    Policy
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                How Afelu Guardian protects your data across our hybrid platform - from family access through 
+                diaspora sponsorship to professional training services.
+            </p>
+        </div>
 
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-12">
             <div class="prose prose-lg max-w-none">
-                <p class="text-gray-600 mb-6">
-                    <strong>Last updated:</strong> July 30, 2025
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl mb-8">
+                    <p class="text-gray-700 mb-2">
+                        <strong>Last updated:</strong> August 1, 2025
+                    </p>
+                    <p class="text-gray-600 text-sm">
+                        This policy covers both family access through diaspora sponsorship and professional training services.
+                    </p>
+                </div>
+
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-heart text-ethiopia-green mr-3"></i>
+                    Our Commitment to Privacy
+                </h2>
+                <p class="text-gray-700 mb-8 text-lg leading-relaxed">
+                    Afelu Guardian protects the privacy of Ethiopian families accessing AI through diaspora sponsorship 
+                    and professionals using our training services. We maintain the highest standards of data protection 
+                    while enabling meaningful connections between diaspora communities and families in Ethiopia.
                 </p>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Our Commitment to Privacy</h2>
-                <p class="text-gray-700 mb-6">
-                    Afelu Guardian is built on the principle of protecting student privacy and educational data. We
-                    collect minimal data necessary for providing quality AI education and maintain secure learning
-                    environments.
-                </p>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-database text-blue-600 mr-3"></i>
+                    Information We Collect
+                </h2>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">👨‍👩‍👧‍👦 Family Access Program</h3>
+                <div class="bg-green-50 p-6 rounded-2xl mb-6">
+                    <h4 class="font-semibold text-gray-900 mb-3">For Sponsors (Diaspora Members):</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                        <li><strong>Payment Information:</strong> Billing details for sponsorship plans ($5-50/month)</li>
+                        <li><strong>Contact Details:</strong> Email and phone for account management</li>
+                        <li><strong>Sponsorship Preferences:</strong> Number of family members to support</li>
+                        <li><strong>Usage Analytics:</strong> Aggregated data on family engagement (anonymous)</li>
+                    </ul>
+                    
+                    <h4 class="font-semibold text-gray-900 mb-3">For Recipients (Family in Ethiopia):</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Access Codes:</strong> Unique identifiers linked to sponsorship</li>
+                        <li><strong>Usage Patterns:</strong> AI interaction data to improve family experience</li>
+                        <li><strong>Educational Progress:</strong> Learning milestones and achievements</li>
+                        <li><strong>Support Requests:</strong> Help desk interactions for technical assistance</li>
+                    </ul>
+                </div>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Information We Collect</h2>
-                <ul class="list-disc list-inside text-gray-700 mb-6">
-                    <li><strong>Educational Records:</strong> Course progress, completion status, and certificates
-                        earned.</li>
-                    <li><strong>Learning Analytics:</strong> Anonymized learning patterns to improve course content.
-                    </li>
-                    <li><strong>Account Information:</strong> Optional email and name for course enrollment and
-                        certificates.</li>
-                    <li><strong>Contact Forms:</strong> Name and email when you contact us voluntarily.</li>
-                </ul>
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">🎓 Professional Training Services</h3>
+                <div class="bg-purple-50 p-6 rounded-2xl mb-8">
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Professional Profiles:</strong> Name, company, role for customized training</li>
+                        <li><strong>Training Records:</strong> Course progress, certifications, and skill assessments</li>
+                        <li><strong>Business Information:</strong> Industry, use cases for enterprise solutions</li>
+                        <li><strong>Consultation Data:</strong> Meeting notes and implementation plans</li>
+                        <li><strong>Payment Records:</strong> Invoices and transaction history for services ($299-5K+)</li>
+                    </ul>
+                </div>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Information We DO NOT Collect</h2>
-                <ul class="list-disc list-inside text-gray-700 mb-6">
-                    <li>Sensitive personal information without consent</li>
-                    <li>Biometric or identification data</li>
-                    <li>Private learning content or notes</li>
-                    <li>Financial information (all courses are free)</li>
-                </ul>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-ban text-red-600 mr-3"></i>
+                    Information We DO NOT Collect
+                </h2>
+                <div class="bg-red-50 p-6 rounded-2xl mb-8">
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Personal AI Conversations:</strong> Private family conversations remain private</li>
+                        <li><strong>Sensitive Personal Data:</strong> No biometric, health, or identification documents</li>
+                        <li><strong>Location Tracking:</strong> We don't track physical locations of users</li>
+                        <li><strong>Social Media Access:</strong> No access to external social accounts</li>
+                        <li><strong>Financial Details:</strong> Credit card numbers are processed by secure third parties</li>
+                        <li><strong>Government Information:</strong> No collection of political affiliations or opinions</li>
+                    </ul>
+                </div>
 
-                <h2 class="text-2xl font-semibent text-gray-900 mb-4">How We Use Information</h2>
-                <ul class="list-disc list-inside text-gray-700 mb-6">
-                    <li>Provide personalized learning experiences</li>
-                    <li>Track course progress and issue certificates</li>
-                    <li>Improve educational content and platform features</li>
-                    <li>Provide student support and assistance</li>
-                </ul>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-cogs text-purple-600 mr-3"></i>
+                    How We Use Information
+                </h2>
+                
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">👨‍👩‍👧‍👦 Family Access Program</h3>
+                <div class="bg-green-50 p-6 rounded-2xl mb-6">
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Enable Sponsorship:</strong> Connect diaspora sponsors with families in Ethiopia</li>
+                        <li><strong>Manage Access:</strong> Distribute and track usage of family access codes</li>
+                        <li><strong>Improve Experience:</strong> Optimize AI responses for Ethiopian cultural context</li>
+                        <li><strong>Billing Support:</strong> Process payments and provide usage reports to sponsors</li>
+                        <li><strong>Technical Support:</strong> Help families get the most from AI assistance</li>
+                    </ul>
+                </div>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Data Security</h2>
-                <p class="text-gray-700 mb-6">
-                    We use industry-standard encryption and security measures to protect educational records. All
-                    student data is stored securely and access is limited to authorized educational staff.
-                </p>
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">🎓 Professional Services</h3>
+                <div class="bg-purple-50 p-6 rounded-2xl mb-8">
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Customized Training:</strong> Design programs specific to business needs</li>
+                        <li><strong>Progress Tracking:</strong> Monitor professional development and certifications</li>
+                        <li><strong>Business Integration:</strong> Implement AI solutions in Ethiopian enterprises</li>
+                        <li><strong>ROI Analysis:</strong> Measure training effectiveness and business impact</li>
+                        <li><strong>Ongoing Support:</strong> Provide consultation and optimization services</li>
+                    </ul>
+                </div>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Third-Party Services</h2>
-                <ul class="list-disc list-inside text-gray-700 mb-6">
-                    <li><strong>Learning Management System:</strong> Course delivery platform</li>
-                    <li><strong>Certificate Generation:</strong> Digital credential services</li>
-                    <li><strong>Analytics:</strong> Educational performance tracking (anonymized)</li>
-                </ul>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-shield-alt text-green-600 mr-3"></i>
+                    Data Security & Protection
+                </h2>
+                <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-3xl mb-8">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">🔐 Technical Safeguards</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Encryption & Storage</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                <li>256-bit SSL encryption for data transmission</li>
+                                <li>Encrypted database storage with regular backups</li>
+                                <li>Secure cloud infrastructure with Ethiopian data residency</li>
+                                <li>Regular security audits and vulnerability assessments</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-2">Access Controls</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                                <li>Role-based access with minimum necessary permissions</li>
+                                <li>Multi-factor authentication for staff accounts</li>
+                                <li>Regular access reviews and revocation procedures</li>
+                                <li>Comprehensive audit logging of all data access</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Your Rights</h2>
-                <p class="text-gray-700 mb-6">
-                    You can access, update, or request deletion of your educational records. You also have the right to
-                    download your certificates and learning progress data. Contact us at support@afelu.com.
-                </p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">🇪🇹 Ethiopian Compliance</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Data Localization:</strong> Family data stored within Ethiopian borders where required</li>
+                        <li><strong>Cultural Sensitivity:</strong> Privacy practices respect Ethiopian cultural values</li>
+                        <li><strong>Government Cooperation:</strong> Compliance with Ethiopian data protection regulations</li>
+                        <li><strong>Community Standards:</strong> Privacy practices align with Ethiopian family values</li>
+                    </ul>
+                </div>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Contact Us</h2>
-                <p class="text-gray-700 mb-6">
-                    Questions about this privacy policy? Email us at support@afelu.com
-                </p>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-handshake text-blue-600 mr-3"></i>
+                    Third-Party Services & Partners
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">💳 Payment Processing</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-2">
+                            <li>Secure payment gateways (Stripe, local processors)</li>
+                            <li>PCI DSS compliant transaction handling</li>
+                            <li>No storage of credit card information</li>
+                            <li>Ethiopian mobile money integration</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">🤖 AI Service Providers</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-2">
+                            <li>OpenAI API for ChatGPT functionality</li>
+                            <li>Data processing agreements in place</li>
+                            <li>No training on user conversations</li>
+                            <li>Temporary processing only, no data retention</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">📊 Analytics & Insights</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-2">
+                            <li>Privacy-focused analytics (no personal data)</li>
+                            <li>Aggregated usage patterns only</li>
+                            <li>Ethiopian data protection compliance</li>
+                            <li>Opt-out available for all analytics</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">📧 Communication Tools</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-2">
+                            <li>Telegram Bot API for family access</li>
+                            <li>Email services for professional training</li>
+                            <li>Support ticket systems with encryption</li>
+                            <li>Secure messaging for consultation calls</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-user-shield text-purple-600 mr-3"></i>
+                    Your Rights & Control
+                </h2>
+                <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-3xl mb-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">👨‍👩‍👧‍👦 Family Access Rights</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li><strong>Access Your Data:</strong> View all family member usage and progress</li>
+                                <li><strong>Update Information:</strong> Change contact details and preferences</li>
+                                <li><strong>Data Portability:</strong> Export family learning achievements</li>
+                                <li><strong>Delete Account:</strong> Remove all family access data upon request</li>
+                                <li><strong>Sponsorship Control:</strong> Modify or cancel sponsorship plans anytime</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">🎓 Professional Rights</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li><strong>Professional Profile:</strong> Access and update your training records</li>
+                                <li><strong>Certification Data:</strong> Download all certificates and achievements</li>
+                                <li><strong>Business Information:</strong> Control how your company data is used</li>
+                                <li><strong>Consultation Records:</strong> Request copies of all meeting notes</li>
+                                <li><strong>Service Termination:</strong> End services and data processing anytime</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-white/50 rounded-2xl">
+                        <h4 class="font-semibold text-gray-900 mb-3">📞 How to Exercise Your Rights</h4>
+                        <p class="text-gray-700 mb-4">
+                            Contact our privacy team at <a href="mailto:privacy@afelu.com" class="text-blue-600 underline">privacy@afelu.com</a> 
+                            or use our automated data request system in your account dashboard. We respond to all requests within 30 days.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-green-100 p-4 rounded-xl">
+                                <strong class="text-green-800">Fast Response:</strong>
+                                <p class="text-green-700 text-sm">Emergency data requests processed within 24 hours</p>
+                            </div>
+                            <div class="bg-blue-100 p-4 rounded-xl">
+                                <strong class="text-blue-800">No Cost:</strong>
+                                <p class="text-blue-700 text-sm">All data requests are completely free of charge</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-child text-orange-600 mr-3"></i>
+                    Children's Privacy Protection
+                </h2>
+                <div class="bg-orange-50 p-8 rounded-3xl mb-8">
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Many Ethiopian families include children who benefit from AI access. We provide special protections 
+                        for users under 18 years old.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">🛡️ Special Protections</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>Enhanced privacy controls for minors</li>
+                                <li>Parent/guardian oversight capabilities</li>
+                                <li>Age-appropriate content filtering</li>
+                                <li>Limited data collection for children</li>
+                                <li>Safe interaction guidelines</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">👪 Family Controls</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>Sponsors can set usage limits for children</li>
+                                <li>Content moderation for educational use</li>
+                                <li>Activity reports for parent review</li>
+                                <li>Easy access suspension if needed</li>
+                                <li>Educational focus prioritization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-phone text-green-600 mr-3"></i>
+                    Contact Us About Privacy
+                </h2>
+                <div class="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 p-8 rounded-3xl text-white">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">Privacy Questions?</h3>
+                            <p class="text-white/80 mb-6">
+                                Our privacy team is here to help with any questions about how we protect your family's 
+                                data or professional information.
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                                    <a href="mailto:privacy@afelu.com" class="text-white hover:text-blue-300 transition-colors">
+                                        privacy@afelu.com
+                                    </a>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-envelope text-green-400 mr-3"></i>
+                                    <a href="mailto:support@afelu.com" class="text-white hover:text-green-300 transition-colors">
+                                        support@afelu.com
+                                    </a>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fab fa-telegram text-blue-400 mr-3"></i>
+                                    <a href="https://t.me/afeluguardian" class="text-white hover:text-blue-300 transition-colors">
+                                        @AfeluGuardian
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                            <h4 class="font-semibold mb-4">Response Times</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-white/80">General Questions:</span>
+                                    <span class="text-white font-medium">24 hours</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-white/80">Data Requests:</span>
+                                    <span class="text-white font-medium">30 days</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-white/80">Privacy Concerns:</span>
+                                    <span class="text-white font-medium">Same day</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-white/80">Emergencies:</span>
+                                    <span class="text-white font-medium">Immediate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-8 pt-6 border-t">
-                <a href="/"
-                    class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors inline-block">
+            <div class="mt-12 pt-8 border-t text-center">
+                <a href="/" class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors inline-flex items-center">
+                    <i class="fas fa-home mr-2"></i>
                     Back to Home
                 </a>
             </div>
         </div>
     </div>
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 text-white py-12 mt-16">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="grid md:grid-cols-4 gap-8">
                     <!-- Brand -->
                     <div class="md:col-span-2">
-                        <div class="flex items-center space-x-2 mb-4">
+                        <a href="/" class="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer">
                             <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
                                 <i class="fas fa-shield-alt text-white text-sm"></i>
                             </div>
                             <span class="font-bold text-xl">Afelu Guardian</span>
-                        </div>
+                        </a>
                         <p class="text-gray-400 mb-4 max-w-md">
-                            Bridging the digital divide by providing secure access to AI tools and information.
-                            Because everyone deserves digital freedom.
+                            Hybrid AI platform serving Ethiopian families through diaspora sponsorship and professional training for businesses. Bridging the gap between family support and career advancement.
                         </p>
                         <div class="flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://www.linkedin.com/company/afelu-guardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-600 transition-colors" 
+                               title="Follow us on LinkedIn">
+                                <i class="fab fa-linkedin text-xl"></i>
                             </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-telegram"></i>
+                            <a href="https://x.com/afeluguardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-400 transition-colors" 
+                               title="Follow us on X (Twitter)">
+                                <i class="fab fa-twitter text-xl"></i>
                             </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-github"></i>
+                            <a href="https://t.me/afeluguardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-500 transition-colors" 
+                               title="Join our Telegram community">
+                                <i class="fab fa-telegram text-xl"></i>
                             </a>
-                            <a href="mailto:support@afelu.com" class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fas fa-envelope"></i>
+                            <a href="https://youtube.com/@afeluguardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-red-500 transition-colors" 
+                               title="Subscribe to our YouTube channel">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                            <a href="mailto:support@afelu.com" class="text-gray-400 hover:text-green-500 transition-colors" 
+                               title="Email us">
+                                <i class="fas fa-envelope text-xl"></i>
                             </a>
                         </div>
                     </div>
-
+                    
                     <!-- Quick Links -->
                     <div>
                         <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
                         <div class="space-y-2">
-                            <a href="#mission"
-                                class="block text-gray-400 hover:text-white transition-colors">Mission</a>
-                            <a href="#how-it-works" class="block text-gray-400 hover:text-white transition-colors">How
-                                It Works</a>
-                            <a href="#features"
-                                class="block text-gray-400 hover:text-white transition-colors">Features</a>
-                            <a href="#pricing"
-                                class="block text-gray-400 hover:text-white transition-colors">Pricing</a>
-                            <a href="/privacy.html"
-                                class="block text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                            <a href="/#mission" class="block text-gray-400 hover:text-white transition-colors">Mission</a>
+                            <a href="/#how-it-works" class="block text-gray-400 hover:text-white transition-colors">How It Works</a>
+                            <a href="/#features" class="block text-gray-400 hover:text-white transition-colors">Features</a>
+                            <a href="/infographic.html" class="block text-gray-400 hover:text-white transition-colors">AI in Ethiopia</a>
+                            <a href="/ai-revolution-ethiopia-2025.html" class="block text-gray-400 hover:text-white transition-colors">2025 Report</a>
+                            <a href="/#pricing" class="block text-gray-400 hover:text-white transition-colors">Pricing</a>
+                            <a href="/privacy.html" class="block text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
                         </div>
                     </div>
-
+                    
                     <!-- Support -->
                     <div>
                         <h4 class="font-semibold text-lg mb-4">Support</h4>
                         <div class="space-y-2">
-                            <a href="#contact" class="block text-gray-400 hover:text-white transition-colors">Contact
-                                Us</a>
-                            <a href="https://t.me/AfeluBot"
-                                class="block text-gray-400 hover:text-white transition-colors">Try Bot</a>
-                            <a href="/documentation.html"
-                                class="block text-gray-400 hover:text-white transition-colors">Documentation</a>
+                            <a href="/#contact" class="block text-gray-400 hover:text-white transition-colors">Contact Us</a>
+                            <a href="https://t.me/AfeluBot" class="block text-gray-400 hover:text-white transition-colors">Try Bot</a>
+                            <a href="/documentation.html" class="block text-gray-400 hover:text-white transition-colors">Documentation</a>
                             <a href="/faq.html" class="block text-gray-400 hover:text-white transition-colors">FAQ</a>
-                            <a href="/terms.html" class="block text-gray-400 hover:text-white transition-colors">Terms
-                                of Service</a>
-                            <a href="/cookies.html"
-                                class="block text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+                            <a href="/terms.html" class="block text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                            <a href="/cookies.html" class="block text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="border-t border-gray-800 mt-8 pt-8 text-center">
                     <p class="text-gray-400">
-                        © 2025 Afelu Guardian. Bridging the digital divide, one code at a time.
+                        © 2025 Afelu Guardian. Bridging families and empowering professionals with AI.
                     </p>
-                    <div class="mt-2">
-                        <a href="/privacy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy
-                            Policy</a>
+                    <div class="mt-2 space-x-4">
+                        <a href="/privacy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+                        <a href="/terms.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+                        <a href="/cookies.html" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie Policy</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification - Afelu Guardian</title>
+    <meta name="description" content="Verify AI education certificates issued by Afelu Guardian. Enter a certificate ID to confirm authenticity and view credential details.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        .ethiopia-gradient {
+            background: linear-gradient(135deg, #00b04f 0%, #ffde00 33%, #da121a 66%, #00b04f 100%);
+        }
+        .text-ethiopia {
+            background: linear-gradient(135deg, #00b04f 0%, #ffde00 50%, #da121a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
+                    <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-primary-600 transition-colors">Home</a>
+                    <a href="/courses.html" class="text-gray-700 hover:text-primary-600 transition-colors">Courses</a>
+                    <a href="/documentation.html" class="text-gray-700 hover:text-primary-600 transition-colors">Documentation</a>
+                    <a href="/faq.html" class="text-gray-700 hover:text-primary-600 transition-colors">FAQ</a>
+                    <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        Start Learning
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                    <i class="fas fa-certificate text-white text-4xl"></i>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Certificate 
+                    <span class="text-ethiopia">Verification</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+                    Verify the authenticity of AI education certificates issued by Afelu Guardian. 
+                    Enter a certificate ID to confirm credentials and view detailed information.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Form -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Verify Certificate</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label for="certificateId" class="block text-lg font-semibold text-gray-700 mb-3">
+                                Certificate ID
+                            </label>
+                            <input 
+                                type="text" 
+                                id="certificateId" 
+                                placeholder="AFC-2025-123456"
+                                class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-primary-500 focus:outline-none transition-colors"
+                            >
+                            <p class="text-gray-500 mt-2">
+                                Certificate IDs follow the format: AFC-YYYY-XXXXXX (e.g., AFC-2025-123456)
+                            </p>
+                        </div>
+                        
+                        <button 
+                            onclick="verifyCertificate()" 
+                            class="w-full bg-primary-600 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-primary-700 transition-colors"
+                        >
+                            <i class="fas fa-search mr-3"></i>
+                            Verify Certificate
+                        </button>
+                    </div>
+
+                    <!-- Results will be displayed here -->
+                    <div id="verificationResult" class="mt-8 hidden">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Certificate System -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">About Our Certificates</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Our AI education certificates are digitally verified credentials that validate 
+                        comprehensive AI skills and practical experience.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-shield-check text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Authentic & Verified</h3>
+                        <p class="text-gray-600">
+                            Each certificate has a unique ID and is cryptographically secured in our database. 
+                            Instant verification prevents fraud and ensures authenticity.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-brain text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Comprehensive Skills</h3>
+                        <p class="text-gray-600">
+                            Certificates validate both theoretical knowledge and practical AI application skills. 
+                            Holders have hands-on experience with modern AI tools and ethical usage.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-globe text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Globally Recognized</h3>
+                        <p class="text-gray-600">
+                            Our certificates follow international standards for digital credentials. 
+                            They can be shared on LinkedIn, resumes, and professional portfolios.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                    Ready to Earn Your Certificate?
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Join thousands of Ethiopians building AI skills. Complete our comprehensive courses 
+                    and earn recognized certificates for your professional development.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-primary-700 transition-colors inline-flex items-center justify-center">
+                        <i class="fab fa-telegram mr-3"></i>
+                        Start Learning
+                    </a>
+                    <a href="/courses.html" class="bg-transparent text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/10 transition-colors border-2 border-white inline-flex items-center justify-center">
+                        <i class="fas fa-graduation-cap mr-3"></i>
+                        View Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <!-- Brand -->
+                    <div class="md:col-span-2">
+                        <a href="/" class="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer">
+                            <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-xl">Afelu Guardian</span>
+                        </a>
+                        <p class="text-gray-400 mb-4 max-w-md">
+                            Hybrid AI platform serving Ethiopian families through diaspora sponsorship and professional training for businesses. 
+                            Verify authentic AI education certificates here.
+                        </p>
+                    </div>
+                    
+                    <!-- Learning -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Learning</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="/courses.html" class="hover:text-white transition-colors">AI Courses</a></li>
+                            <li><a href="/documentation.html" class="hover:text-white transition-colors">Documentation</a></li>
+                            <li><a href="https://t.me/AfeluBot" target="_blank" class="hover:text-white transition-colors">Start Learning</a></li>
+                            <li><a href="/verify.html" class="hover:text-white transition-colors">Verify Certificate</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Support -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Support</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="/faq.html" class="hover:text-white transition-colors">FAQ</a></li>
+                            <li><a href="mailto:support@afelu.com" class="hover:text-white transition-colors">Contact Support</a></li>
+                            <li><a href="mailto:verify@afelu.com" class="hover:text-white transition-colors">Certificate Help</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 Afelu Guardian. Empowering Ethiopians with verified AI education and digital literacy.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function verifyCertificate() {
+            const certificateId = document.getElementById('certificateId').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('verificationResult');
+            
+            if (!certificateId) {
+                showResult('error', 'Please enter a certificate ID', 'Certificate ID is required for verification.');
+                return;
+            }
+            
+            // Show loading state
+            resultDiv.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+                    <p class="text-gray-600">Verifying certificate...</p>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+            
+            try {
+                // In a real implementation, this would call your API
+                // For now, we'll simulate the verification process
+                
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Example verification (you'd replace this with actual API call)
+                if (certificateId.startsWith('AFC-2025-')) {
+                    showResult('success', 'Certificate Verified', 
+                        'This certificate is authentic and valid.',
+                        {
+                            id: certificateId,
+                            course: 'AI Fundamentals: Your Guide to the Future',
+                            issued: 'January 15, 2025',
+                            score: '85%',
+                            duration: '2 Weeks'
+                        });
+                } else {
+                    showResult('error', 'Certificate Not Found', 
+                        'The certificate ID you entered could not be found in our system.');
+                }
+                
+            } catch (error) {
+                showResult('error', 'Verification Failed', 
+                    'Unable to verify certificate at this time. Please try again later.');
+            }
+        }
+        
+        function showResult(type, title, message, details = null) {
+            const resultDiv = document.getElementById('verificationResult');
+            
+            let content = '';
+            
+            if (type === 'success') {
+                content = `
+                    <div class="bg-green-50 border-2 border-green-200 rounded-2xl p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-green-800">${title}</h3>
+                                <p class="text-green-600">${message}</p>
+                            </div>
+                        </div>
+                        ${details ? `
+                            <div class="border-t border-green-200 pt-6 mt-6">
+                                <h4 class="font-semibold text-gray-900 mb-3">Certificate Details:</h4>
+                                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                    <div><strong>ID:</strong> ${details.id}</div>
+                                    <div><strong>Score:</strong> ${details.score}</div>
+                                    <div><strong>Course:</strong> ${details.course}</div>
+                                    <div><strong>Duration:</strong> ${details.duration}</div>
+                                    <div class="md:col-span-2"><strong>Issued:</strong> ${details.issued}</div>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            } else {
+                content = `
+                    <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-times-circle text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-red-800">${title}</h3>
+                                <p class="text-red-600">${message}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultDiv.innerHTML = content;
+            resultDiv.classList.remove('hidden');
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('certificateId').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyCertificate();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -43,6 +43,8 @@ model User {
   createdAt   DateTime    @default(now())
   lastActive  DateTime    @default(now())
   usageLogs   UsageLog[]
+  enrollments CourseEnrollment[]
+  certificates Certificate[]
 }
 
 // Track usage for analytics and monitoring
@@ -56,4 +58,37 @@ model UsageLog {
   
   @@index([userId, createdAt])
   @@index([action, createdAt])
+}
+
+// Track course enrollments and progress
+model CourseEnrollment {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  courseId         String   // "fundamentals", "chatgpt_mastery", "ai_business", "digital_literacy"
+  enrolledAt       DateTime @default(now())
+  completedAt      DateTime?
+  currentModule    String?  // Current module like "1.1", "2.3", etc.
+  completedModules Json     @default("[]") // Array of completed module IDs
+  quizScore        Int?     // Final quiz score (0-100)
+  
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+}
+
+// Store issued certificates
+model Certificate {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  courseId     String   // "fundamentals", "chatgpt_mastery", "ai_business", "digital_literacy"
+  certificateId String  @unique // Unique certificate number like "AFC-2025-001234"
+  issuedAt     DateTime @default(now())
+  score        Int?     // Final score if applicable
+  validatedAt  DateTime? // When certificate was validated/verified
+  
+  @@index([userId])
+  @@index([courseId])
+  @@index([certificateId])
 }

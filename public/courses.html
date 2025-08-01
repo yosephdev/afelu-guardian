@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Courses - Afelu Guardian | Complete AI Education for Ethiopians</title>
+    <meta name="description" content="Master AI with our comprehensive courses: AI Fundamentals, ChatGPT Mastery, AI for Business, and Digital Literacy. Designed specifically for Ethiopian learners with practical applications.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        .ethiopia-gradient {
+            background: linear-gradient(135deg, #00b04f 0%, #ffde00 33%, #da121a 66%, #00b04f 100%);
+        }
+        .text-ethiopia {
+            background: linear-gradient(135deg, #00b04f 0%, #ffde00 50%, #da121a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
+                    <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-primary-600 transition-colors">Home</a>
+                    <a href="/courses.html" class="text-primary-600 font-semibold">Courses</a>
+                    <a href="/documentation.html" class="text-gray-700 hover:text-primary-600 transition-colors">Documentation</a>
+                    <a href="/faq.html" class="text-gray-700 hover:text-primary-600 transition-colors">FAQ</a>
+                    <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        Start Learning
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+                    Master AI with Our 
+                    <span class="text-ethiopia">Comprehensive Courses</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+                    Four expertly designed courses to take you from AI beginner to advanced practitioner. 
+                    Created specifically for Ethiopian learners with practical, real-world applications.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-primary-700 transition-colors inline-flex items-center justify-center">
+                        <i class="fab fa-telegram mr-3"></i>
+                        Start Learning Today
+                    </a>
+                    <a href="#courses" class="bg-white text-primary-600 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-gray-50 transition-colors border-2 border-primary-600 inline-flex items-center justify-center">
+                        <i class="fas fa-arrow-down mr-3"></i>
+                        Explore Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path Overview -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Your AI Learning Journey</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Follow our structured path from absolute beginner to AI expert. Each course builds upon the previous one, 
+                        ensuring you develop comprehensive AI skills step by step.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">1</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Start with Basics</h3>
+                        <p class="text-gray-600">Learn what AI is and how it works in everyday language</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">2</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Master ChatGPT</h3>
+                        <p class="text-gray-600">Advanced techniques for getting the best AI results</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">3</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Apply to Business</h3>
+                        <p class="text-gray-600">Use AI to grow your business and increase productivity</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">4</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Digital Mastery</h3>
+                        <p class="text-gray-600">Essential digital skills for the modern economy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Complete Course Catalog</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Comprehensive, expert-designed courses with practical Ethiopian context and real-world applications.
+                    </p>
+                </div>
+
+                <!-- Course 1: AI Fundamentals -->
+                <div class="bg-white rounded-3xl p-12 shadow-xl border border-gray-100 mb-12">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-brain text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold mb-2">Course 1 • Beginner</div>
+                                    <h3 class="text-3xl font-bold text-gray-900">AI Fundamentals</h3>
+                                </div>
+                            </div>
+                            <p class="text-xl text-gray-600 mb-6">Perfect for beginners - learn what AI is and how it can help you in daily life.</p>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-clock text-blue-500 mr-3"></i>
+                                    <span><strong>Duration:</strong> 2 Weeks</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-users text-green-500 mr-3"></i>
+                                    <span><strong>Level:</strong> Absolute Beginner</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-certificate text-purple-500 mr-3"></i>
+                                    <span><strong>Certificate:</strong> Yes, upon completion</span>
+                                </div>
+                            </div>
+                            <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-primary-700 transition-colors inline-flex items-center">
+                                <i class="fab fa-telegram mr-3"></i>
+                                Start Course
+                            </a>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-4">What You'll Learn:</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Simple introduction to AI and its real-world applications</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Understanding ChatGPT and Large Language Models</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Basic prompt writing using the CORE framework</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">AI safety, ethics, and responsible usage</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2: ChatGPT Mastery -->
+                <div class="bg-white rounded-3xl p-12 shadow-xl border border-gray-100 mb-12">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="lg:order-2">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-rocket text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold mb-2">Course 2 • Intermediate</div>
+                                    <h3 class="text-3xl font-bold text-gray-900">ChatGPT Mastery</h3>
+                                </div>
+                            </div>
+                            <p class="text-xl text-gray-600 mb-6">Advanced techniques for getting the best results from AI conversations.</p>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-clock text-blue-500 mr-3"></i>
+                                    <span><strong>Duration:</strong> 3 Weeks</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-users text-green-500 mr-3"></i>
+                                    <span><strong>Level:</strong> Intermediate</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-certificate text-purple-500 mr-3"></i>
+                                    <span><strong>Certificate:</strong> Yes, upon completion</span>
+                                </div>
+                            </div>
+                            <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-primary-700 transition-colors inline-flex items-center">
+                                <i class="fab fa-telegram mr-3"></i>
+                                Start Course
+                            </a>
+                        </div>
+                        <div class="lg:order-1">
+                            <h4 class="text-xl font-semibold text-gray-900 mb-4">What You'll Learn:</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-blue-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Advanced prompting paradigms and Chain-of-Thought technique</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-blue-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Creative writing and content creation with AI</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-blue-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Multilingual communication and cultural adaptation</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-blue-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Business automation and productivity workflows</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3: AI for Business -->
+                <div class="bg-white rounded-3xl p-12 shadow-xl border border-gray-100 mb-12">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-red-600 rounded-2xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-chart-line text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold mb-2">Course 3 • Advanced</div>
+                                    <h3 class="text-3xl font-bold text-gray-900">AI for Business</h3>
+                                </div>
+                            </div>
+                            <p class="text-xl text-gray-600 mb-6">Use AI to grow your business, improve productivity, and serve customers better.</p>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-clock text-blue-500 mr-3"></i>
+                                    <span><strong>Duration:</strong> 4 Weeks</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-users text-green-500 mr-3"></i>
+                                    <span><strong>Level:</strong> Advanced</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-certificate text-purple-500 mr-3"></i>
+                                    <span><strong>Certificate:</strong> Yes, upon completion</span>
+                                </div>
+                            </div>
+                            <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-primary-700 transition-colors inline-flex items-center">
+                                <i class="fab fa-telegram mr-3"></i>
+                                Start Course
+                            </a>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-4">What You'll Learn:</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-purple-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">AI strategy development for Ethiopian businesses</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-purple-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Marketing automation and content creation at scale</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-purple-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Customer service automation with AI chatbots</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-purple-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Data analysis and predictive insights for growth</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4: Digital Literacy -->
+                <div class="bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="lg:order-2">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-600 rounded-2xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold mb-2">Course 4 • Essential</div>
+                                    <h3 class="text-3xl font-bold text-gray-900">Digital Literacy</h3>
+                                </div>
+                            </div>
+                            <p class="text-xl text-gray-600 mb-6">Essential digital skills for navigating the modern Ethiopian economy.</p>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-clock text-blue-500 mr-3"></i>
+                                    <span><strong>Duration:</strong> 2 Weeks</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-users text-green-500 mr-3"></i>
+                                    <span><strong>Level:</strong> Foundation</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-certificate text-purple-500 mr-3"></i>
+                                    <span><strong>Certificate:</strong> Yes, upon completion</span>
+                                </div>
+                            </div>
+                            <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-primary-700 transition-colors inline-flex items-center">
+                                <i class="fab fa-telegram mr-3"></i>
+                                Start Course
+                            </a>
+                        </div>
+                        <div class="lg:order-1">
+                            <h4 class="text-xl font-semibold text-gray-900 mb-4">What You'll Learn:</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-red-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Internet safety, strong passwords, and scam detection</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-red-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Professional digital communication skills</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-red-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Smart online research and information evaluation</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-red-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Digital financial literacy and mobile banking safety</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">How Our Courses Work</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Interactive learning through our Telegram bot with comprehensive website resources. 
+                        Learn at your own pace with practical exercises and real-world applications.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fab fa-telegram text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Interactive Learning</h3>
+                        <p class="text-gray-600">
+                            Access lessons through our Telegram bot. Type `/courses` to browse, `/enroll` to start, 
+                            and `/lesson` to study. Interactive and always available.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-brain text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Practice Immediately</h3>
+                        <p class="text-gray-600">
+                            Use `/gpt`, `/image`, `/translate` and other commands to practice what you learn. 
+                            Real AI tools for hands-on experience with every lesson.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-certificate text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Earn Certificates</h3>
+                        <p class="text-gray-600">
+                            Complete courses, take quizzes with `/quiz`, track progress with `/progress`. 
+                            Earn recognized certificates for your AI skills.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                    Ready to Master AI?
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Join thousands of Ethiopians already learning AI skills. Start with our fundamentals course 
+                    and work your way up to advanced business applications.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://t.me/AfeluBot" target="_blank" class="bg-primary-600 text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-primary-700 transition-colors inline-flex items-center justify-center">
+                        <i class="fab fa-telegram mr-3"></i>
+                        Start Learning Free
+                    </a>
+                    <a href="/documentation.html" class="bg-transparent text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/10 transition-colors border-2 border-white inline-flex items-center justify-center">
+                        <i class="fas fa-book mr-3"></i>
+                        Read Documentation
+                    </a>
+                </div>
+                <p class="text-gray-400 mt-6">
+                    All courses are free with your access code. No hidden fees, no subscriptions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <!-- Brand -->
+                    <div class="md:col-span-2">
+                        <a href="/" class="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer">
+                            <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-xl">Afelu Guardian</span>
+                        </a>
+                        <p class="text-gray-400 mb-4 max-w-md">
+                            Hybrid AI platform serving Ethiopian families through diaspora sponsorship and professional training for businesses. 
+                            Master AI with our comprehensive course catalog.
+                        </p>
+                    </div>
+                    
+                    <!-- Courses -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Courses</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#courses" class="hover:text-white transition-colors">AI Fundamentals</a></li>
+                            <li><a href="#courses" class="hover:text-white transition-colors">ChatGPT Mastery</a></li>
+                            <li><a href="#courses" class="hover:text-white transition-colors">AI for Business</a></li>
+                            <li><a href="#courses" class="hover:text-white transition-colors">Digital Literacy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Support -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Support</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="/documentation.html" class="hover:text-white transition-colors">Documentation</a></li>
+                            <li><a href="/faq.html" class="hover:text-white transition-colors">FAQ</a></li>
+                            <li><a href="mailto:support@afelu.com" class="hover:text-white transition-colors">Contact Support</a></li>
+                            <li><a href="https://t.me/AfeluBot" target="_blank" class="hover:text-white transition-colors">Start Learning</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 Afelu Guardian. Empowering Ethiopians with AI education and digital literacy.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
