@@ -1,19 +1,22 @@
 # Use Node.js 18 LTS as base image
 FROM node:18-alpine
 
+# Install necessary system dependencies
+RUN apk add --no-cache openssl
+
 # Set working directory
 WORKDIR /app
 
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies without running postinstall scripts first
+RUN npm ci --omit=dev --ignore-scripts
 
-# Copy prisma schema first
+# Copy prisma schema
 COPY prisma ./prisma/
 
-# Generate Prisma client
+# Generate Prisma client explicitly
 RUN npx prisma generate
 
 # Copy the rest of the application code
