@@ -137,6 +137,7 @@ const courses = {
 const commands = [
     { command: 'start', description: 'Welcome message and getting started guide' },
     { command: 'help', description: 'Complete list of available commands' },
+    { command: 'plans', description: 'View all access plans and pricing options' },
     { command: 'redeem', description: 'Redeem an access code (format: /redeem ET-XXXX-XXXX)' },
     { command: 'gpt', description: 'Ask AI anything (1 credit)' },
     { command: 'image', description: 'Generate AI images (3 credits)' },
@@ -146,6 +147,8 @@ const commands = [
     { command: 'summarize', description: 'Fetch and summarize web content (1 fetch + 1 GPT)' },
     { command: 'courses', description: 'Browse available AI courses' },
     { command: 'bootcamp', description: 'Learn about premium AI Training Bootcamp ($299)' },
+    { command: 'premium', description: 'Information about premium unlimited access ($79/month)' },
+    { command: 'enterprise', description: 'Custom AI solutions for businesses ($5K+)' },
     { command: 'enroll', description: 'Enroll in a course (format: /enroll fundamentals)' },
     { command: 'lesson', description: 'Get specific lesson content (format: /lesson 1.1)' },
     { command: 'complete', description: 'Mark a lesson as completed (format: /complete 1.1 fundamentals)' },
@@ -197,34 +200,48 @@ function startBot() {
 
 // COMMAND: /start
 bot.onText(/\/start/, (msg) => {
-    const welcomeMessage = `🛡️ **Welcome to Afelu Guardian!**
+    const welcomeMessage = `🛡️ **Welcome to Afelu Guardian AI Platform!**
 
-Your gateway to uncensored AI and information access.
+*🇪🇹 Ethiopia's Leading AI Education & Services Platform*
 
-**🚀 Quick Start:**
-• Get an access code from your sponsor
-• Use \`/redeem ET-XXXX-XXXX\` to activate
+**🎯 WHAT WE OFFER:**
 
-**🤖 Available Commands:**
+**👥 FOR FAMILIES & INDIVIDUALS:**
+• AI tools access for daily use (ChatGPT, image generation, translation)
+• Free comprehensive AI education courses  
+• Website access and news summaries
+• Perfect for diaspora-sponsored family members
+
+**💼 FOR PROFESSIONALS & BUSINESSES:**
+• Advanced AI training and certification
+• Premium unlimited AI access
+• 1-on-1 mentoring and consultation
+• Custom enterprise AI solutions
+
+**🚀 QUICK START GUIDE:**
+
+**Option 1 - Family/Individual Access:**
+1. Get an access code from your sponsor
+2. Use \`/redeem ET-XXXX-XXXX\` to activate
+3. Start learning with \`/courses\` and practice with \`/gpt\`
+
+**Option 2 - Professional/Premium:**
+1. Contact us for premium plans: support@afelu.com
+2. Choose from bootcamp ($299), premium monthly ($79), or enterprise solutions
+3. Get advanced training and unlimited access
+
+**🎓 LEARNING PATHS:**
+• \`/courses\` - Browse 4 free comprehensive AI courses
+• \`/bootcamp\` - Learn about our premium $299 intensive program
+• \`/plans\` - See all access plans and pricing
+
+**🔧 AI TOOLS:**
 • \`/gpt <question>\` - Ask AI anything
 • \`/image <description>\` - Generate images with AI
-• \`/fetch <url>\` - Access blocked websites
-• \`/news <topic>\` - Get latest news
-• \`/translate <text>\` - Translate text
-• \`/myquota\` - Check your remaining usage
-• \`/help\` - Get detailed help
+• \`/translate <text>\` - Translate between languages
+• \`/news <topic>\` - Get latest news summaries
 
-**📚 NEW: AI Learning Courses!**
-• \`/courses\` - Browse 4 comprehensive AI courses
-• \`/enroll <course>\` - Start your AI education journey
-• \`/lesson <number>\` - Access interactive lessons
-
-**🎯 Recommended Learning Path:**
-1. Start with \`/courses\` to see what's available
-2. Begin with \`/enroll fundamentals\` 
-3. Practice with our AI tools as you learn!
-
-Start by redeeming your access code! 🎯`;
+Start your AI journey today! Choose your path above 🎯`;
 
     bot.sendMessage(msg.chat.id, welcomeMessage, { parse_mode: 'Markdown' });
 });
@@ -720,42 +737,68 @@ bot.onText(/\/myquota/, async (msg) => {
 // COMMAND: /help
 bot.onText(/\/help/, (msg) => {
     const chatId = msg.chat.id;
-    const helpMessage = `🛡️ **Afelu Guardian - Help & Commands**
+    const helpMessage = `🛡️ **Afelu Guardian - Complete Command Guide**
 
-**🎯 Getting Started:**
-• Get an access code from your sponsor
-• Use \`/redeem ET-XXXX-XXXX\` to activate
+**🎯 GETTING STARTED:**
+• \`/redeem ET-XXXX-XXXX\` - Activate your access code (for family/individual plans)
+• \`/plans\` - View all access plans and pricing
+• \`/myquota\` - Check your remaining credits
 
-**🤖 AI Commands:**
+**🤖 AI TOOLS (1-3 credits each):**
 • \`/gpt <question>\` - Ask AI anything (1 credit)
 • \`/image <description>\` - Generate AI images (3 credits)
-• \`/translate <text>\` - Translate text (1 credit)
-• \`/news <topic>\` - Get news summary (1 credit)
+• \`/translate <text>\` - Translate text between languages (1 credit)
+• \`/news <topic>\` - Get latest news summaries (1 credit)
 
-**🌐 Web Commands:**
-• \`/fetch <url>\` - Access websites (1 fetch credit)
-• \`/summarize <url>\` - Fetch & summarize (1 fetch + 1 GPT)
+**🌐 WEB ACCESS (1-2 credits each):**
+• \`/fetch <url>\` - Access websites and content (1 fetch credit)
+• \`/summarize <url>\` - Fetch & summarize web content (1 fetch + 1 GPT)
 
-**� Learning Commands:**
-• \`/courses\` - Browse available AI courses
-• \`/enroll <course>\` - Enroll in a course
-• \`/lesson <number>\` - Get lesson content
-• \`/progress\` - Check learning progress
-• \`/quiz\` - Take practice quiz
+**📚 AI EDUCATION (FREE with access code):**
+• \`/courses\` - Browse 4 comprehensive AI courses
+• \`/enroll <course>\` - Enroll in a specific course
+• \`/lesson <number>\` - Access lesson content
+• \`/progress\` - Check your learning progress
+• \`/quiz\` - Take practice quizzes
 
-**�📊 Account Commands:**
-• \`/myquota\` - Check remaining credits
-• \`/help\` - Show this help message
+**🏆 PREMIUM TRAINING:**
+• \`/bootcamp\` - Learn about $299 intensive AI training program
+• \`/premium\` - Information about $79/month unlimited access
+• \`/enterprise\` - Custom AI solutions for businesses
 
-**💳 Credit System:**
-• Each access code gives 500 GPT + 100 fetch credits
-• GPT credits: AI chat, images, translation, news
-• Fetch credits: Website access and content fetching
+**💳 ACCESS PLANS:**
+• **Weekly Code**: $5 (perfect for trying AI tools)
+• **Family Plan**: $25/month (4 family members)
+• **Community Plan**: $50/month (support 10 people)
+• **Premium Access**: $79/month (unlimited AI tools + priority support)
+• **AI Bootcamp**: $299 (4-week intensive training + certification)
+• **Enterprise**: $5K+ (custom AI implementation)
 
-**🆘 Support:**
-Contact your sponsor or email: support@afelu.com
+**📊 CREDIT SYSTEM:**
+• Standard access codes: 500 GPT + 100 fetch credits
+• Premium plans: Unlimited usage
+• Credits refresh with new codes or subscriptions
 
-**🔒 Privacy:** We don't store your conversations or personal data.`;
+**🆘 SUPPORT:**
+• Email: support@afelu.com
+• Website: https://afelu.com
+• Payment issues, course questions, or technical support
+
+**🔒 PRIVACY & SECURITY:**
+• We don't store your conversations or personal data
+• All interactions are encrypted and secure
+• Access codes are single-use and time-limited
+
+**� RECOMMENDED PATHS:**
+
+**For Individuals/Families:**
+1. Get access code → \`/redeem\` → \`/courses\` → Start learning!
+
+**For Professionals:**
+1. \`/bootcamp\` or \`/premium\` → Contact support@afelu.com → Advanced training
+
+**For Businesses:**
+1. \`/enterprise\` → Contact for consultation → Custom AI solutions`;
 
     bot.sendMessage(chatId, helpMessage, { parse_mode: 'Markdown' });
 });
@@ -763,46 +806,75 @@ Contact your sponsor or email: support@afelu.com
 // COMMAND: /courses
 bot.onText(/\/courses/, (msg) => {
     const chatId = msg.chat.id;
-    const coursesMessage = `📚 **Available AI Courses**
+    const coursesMessage = `📚 **Afelu Guardian AI Education Catalog**
 
-**� FREE COURSES (With Access Code):**
+**🆓 FREE COMPREHENSIVE COURSES (With Access Code):**
 
-�🎓 **1. AI Fundamentals** (\`fundamentals\`)
+🎓 **1. AI Fundamentals** (\`fundamentals\`)
 ${courses.fundamentals.subtitle}
 ⏱️ Duration: ${courses.fundamentals.duration}
+🎯 Perfect for: Complete beginners to AI
 
 🚀 **2. ChatGPT Mastery** (\`mastery\`)
 ${courses.mastery.subtitle}
 ⏱️ Duration: ${courses.mastery.duration}
+🎯 Perfect for: Users wanting advanced AI skills
 
 💼 **3. AI for Business** (\`business\`)
 ${courses.business.subtitle}
 ⏱️ Duration: ${courses.business.duration}
+🎯 Perfect for: Entrepreneurs and business owners
 
 💻 **4. Digital Literacy** (\`digital\`)
 ${courses.digital.subtitle}
 ⏱️ Duration: ${courses.digital.duration}
+🎯 Perfect for: Building essential digital skills
 
-**💎 PREMIUM PROFESSIONAL COURSE:**
+**💎 PREMIUM PROFESSIONAL TRAINING:**
 
-🏆 **AI Training Bootcamp** (\`bootcamp\`) - **$299**
-*The Ultimate 4-Week Intensive Program for Professionals and Innovators*
+🏆 **AI Training Bootcamp** - **$299**
+*The Ultimate 4-Week Intensive Program for Professionals*
 ⏱️ Duration: 4 Weeks Intensive
-🎯 Features: Advanced techniques, 1-on-1 mentoring, lifetime access, professional certification
-💼 Target: Working professionals seeking AI expertise
+🎯 Features: Advanced prompt engineering, business automation, 1-on-1 mentoring, professional certification
+💼 Perfect for: Working professionals, consultants, advanced practitioners
+📞 Enrollment: [Buy now](https://buy.stripe.com/test_7sY9ASftP5pG9lT1VxcjS01) or use \`/bootcamp\` for details
 
-**🚀 How to Start:**
-• **Free courses:** \`/enroll <course_name>\` (Example: \`/enroll fundamentals\`)
-• **Premium bootcamp:** Contact us for enrollment: support@afelu.com
+**🚀 GETTING STARTED:**
 
-**💡 Recommended Learning Path:**
-1. **Start:** AI Fundamentals (free)
-2. **Advance:** ChatGPT Mastery (free)  
-3. **Apply:** AI for Business (free)
-4. **Professional:** AI Training Bootcamp (premium)
-5. **Support:** Digital Literacy skills (free)
+**Option 1 - Free Learning (Family/Individual):**
+1. Get access code from sponsor → \`/redeem ET-XXXX-XXXX\`
+2. Start with \`/enroll fundamentals\` 
+3. Practice with \`/gpt\`, \`/image\`, \`/translate\` as you learn
+4. Progress through: fundamentals → mastery → business → digital
 
-All free courses included with your access code! 🎁`;
+**Option 2 - Professional Training:**
+1. Check out \`/bootcamp\` for intensive professional program
+2. Or try \`/premium\` for unlimited AI access
+3. Contact support@afelu.com for enrollment
+
+**💡 RECOMMENDED LEARNING PATHS:**
+
+**🎯 For Complete Beginners:**
+AI Fundamentals → Digital Literacy → ChatGPT Mastery → AI for Business
+
+**🎯 For Professionals:**
+AI Fundamentals → ChatGPT Mastery → AI for Business → AI Training Bootcamp
+
+**🎯 For Business Owners:**
+AI for Business → ChatGPT Mastery → AI Training Bootcamp → Enterprise Solutions
+
+**📊 COURSE FEATURES:**
+✅ Interactive lessons via Telegram bot
+✅ Hands-on practice with real AI tools
+✅ Progress tracking and quizzes
+✅ Professional certificates upon completion
+✅ Ethiopian context and practical applications
+✅ Learn at your own pace, available 24/7
+
+**🎁 ALL FREE COURSES INCLUDED:**
+With any access code purchase! No additional fees.
+
+Ready to start your AI journey? 🚀`;
 
     bot.sendMessage(chatId, coursesMessage, { parse_mode: 'Markdown' });
 });
@@ -876,6 +948,187 @@ Contact us: support@afelu.com or visit afelu.com/bootcamp
 Ready to become an AI power user? 🚀`;
 
     bot.sendMessage(chatId, bootcampMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /plans
+bot.onText(/\/plans/, (msg) => {
+    const chatId = msg.chat.id;
+    const plansMessage = `💎 **Afelu Guardian - All Access Plans & Pricing**
+
+**👥 FAMILY & COMMUNITY ACCESS:**
+
+🟢 **Weekly Access Code - $5**
+• Perfect for trying AI tools
+• 500 GPT credits + 100 fetch credits
+• Access to all 4 free courses
+• Valid for 7 days
+• **Purchase:** Email support@afelu.com
+
+🔵 **Family Plan - $25/month**
+• For 4 family members in Ethiopia
+• Unlimited access to AI tools and courses
+• Ongoing support and updates
+• **Purchase:** [Click here](https://buy.stripe.com/test_eVq9AS0yV05m69HfMncjS03)
+
+🟣 **Community Plan - $50/month**
+• Support 10 people in your community
+• Bulk access management
+• Priority community support
+• **Purchase:** Email support@afelu.com
+
+**💼 PROFESSIONAL & BUSINESS ACCESS:**
+
+🥇 **Premium Access - $79/month**
+• Unlimited AI tools (no credit limits)
+• Priority support and faster response
+• Early access to new features
+• Advanced automation tools
+• **Purchase:** [Click here](https://buy.stripe.com/test_cNi6oGdlH2du7dL0RtcjS00)
+
+🏆 **AI Training Bootcamp - $299** (One-time)
+• 4-week intensive professional program
+• Advanced prompt engineering and automation
+• Two 1-on-1 mentoring sessions
+• Professional certification (AFCP-2025-XXXXXX)
+• Lifetime access and updates
+• **Purchase:** [Click here](https://buy.stripe.com/test_7sY9ASftP5pG9lT1VxcjS01)
+
+🏢 **Enterprise Solutions - $5K+**
+• Custom AI implementation for your business
+• Dedicated support team and consultation
+• Integration with existing business systems
+• Training for your entire team
+• **Contact:** support@afelu.com for consultation
+
+**🎯 WHICH PLAN IS RIGHT FOR YOU?**
+
+**Students/Individuals:** Weekly Access ($5) or Family Plan ($25/mo)
+**Professionals:** Premium Access ($79/mo) or AI Bootcamp ($299)
+**Businesses:** Enterprise Solutions ($5K+)
+
+**📞 NEED HELP CHOOSING?**
+Contact us: support@afelu.com
+Website: https://afelu.com
+All plans include access to our comprehensive AI courses!`;
+
+    bot.sendMessage(chatId, plansMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /premium
+bot.onText(/\/premium/, (msg) => {
+    const chatId = msg.chat.id;
+    const premiumMessage = `🥇 **Premium Access - Unlimited AI Power**
+
+**💎 UNLIMITED AI TOOLS ACCESS - $79/month**
+
+**🚀 WHAT'S INCLUDED:**
+✅ **Unlimited GPT requests** (no credit limits)
+✅ **Unlimited image generation** (no restrictions)
+✅ **Unlimited web fetching** and summarization
+✅ **Priority support** with faster response times
+✅ **Early access** to new AI features and tools
+✅ **Advanced automation** tools and workflows
+✅ **All 4 comprehensive AI courses** included
+✅ **Progress tracking** and personalized learning paths
+
+**🎯 PERFECT FOR:**
+• Heavy AI users who need unlimited access
+• Professionals using AI for daily work
+• Content creators and marketers
+• Researchers and analysts
+• Anyone wanting priority support
+
+**💰 PRICING:** $79/month
+**🎁 VALUE:** Save on per-use credits, unlimited usage
+
+**🆚 VS STANDARD ACCESS:**
+• Standard: 500 GPT + 100 fetch credits per code
+• Premium: **UNLIMITED** usage of all tools
+• Standard: Basic support
+• Premium: **Priority support** with dedicated help
+• Standard: Regular feature access
+• Premium: **Early access** to new capabilities
+
+**📞 GET PREMIUM ACCESS:**
+• **Purchase:** [Click here](https://buy.stripe.com/test_cNi6oGdlH2du7dL0RtcjS00)
+• **Questions:** support@afelu.com
+• **Website:** https://afelu.com
+
+**🆓 TRY FIRST:** Use \`/redeem\` with an access code to try our tools before upgrading!
+
+Ready for unlimited AI power? 🚀`;
+
+    bot.sendMessage(chatId, premiumMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /enterprise
+bot.onText(/\/enterprise/, (msg) => {
+    const chatId = msg.chat.id;
+    const enterpriseMessage = `🏢 **Enterprise AI Solutions - Custom Implementation**
+
+**🚀 TRANSFORM YOUR BUSINESS WITH AI - Starting at $5,000**
+
+**🎯 WHAT WE PROVIDE:**
+
+**📋 AI STRATEGY & CONSULTATION:**
+✅ Complete AI readiness assessment
+✅ Custom AI strategy development
+✅ ROI analysis and implementation roadmap
+✅ Technology stack recommendations
+
+**🔧 CUSTOM AI IMPLEMENTATION:**
+✅ Tailored AI tools for your specific business needs
+✅ Integration with existing business systems
+✅ Custom chatbots and automation workflows
+✅ Data analysis and predictive insights setup
+
+**👥 TEAM TRAINING & SUPPORT:**
+✅ Comprehensive team training programs
+✅ Dedicated account manager and support team
+✅ Ongoing consultation and optimization
+✅ Performance monitoring and reporting
+
+**🎓 ENTERPRISE EDUCATION PROGRAMS:**
+✅ Custom training curriculum for your industry
+✅ Group workshops and seminars
+✅ Executive briefings on AI strategy
+✅ Professional certification programs for staff
+
+**💼 PERFECT FOR:**
+• Medium to large businesses (50+ employees)
+• Organizations undergoing digital transformation
+• Companies wanting competitive AI advantage
+• Government agencies and institutions
+• Educational institutions and universities
+
+**🏭 INDUSTRY EXPERTISE:**
+• Manufacturing & Supply Chain
+• Healthcare & Medical Services
+• Financial Services & Banking
+• Retail & E-commerce
+• Education & Training
+• Government & Public Sector
+
+**💰 INVESTMENT:** Starting at $5,000
+**⏱️ TIMELINE:** 2-6 months implementation
+**🎁 INCLUDES:** Strategy, implementation, training, ongoing support
+
+**📞 GET STARTED:**
+• **Consultation:** support@afelu.com
+• **Website:** https://afelu.com/enterprise
+• **Phone:** Schedule a call with our AI specialists
+
+**📋 CONSULTATION PROCESS:**
+1. **Discovery Call** - Understand your needs (Free)
+2. **AI Assessment** - Analyze your current systems
+3. **Proposal** - Custom solution and pricing
+4. **Implementation** - Deploy and integrate AI tools
+5. **Training** - Educate your team
+6. **Support** - Ongoing optimization and support
+
+Transform your business with AI today! 🚀`;
+
+    bot.sendMessage(chatId, enterpriseMessage, { parse_mode: 'Markdown' });
 });
 
 // COMMAND: /enroll <course>
