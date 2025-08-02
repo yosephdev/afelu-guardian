@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cost Optimization Dashboard</title>
+    <title>Afelu Guardian - Cost Optimization Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        .ethiopia-gradient {
+            background: linear-gradient(135deg, #339633 0%, #FCD116 50%, #DA020E 100%);
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
@@ -125,8 +152,40 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
+                    <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
+                </a>
+                
+                <!-- Navigation Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-primary-600 transition-colors">Home</a>
+                    <a href="/investor-dashboard.html" class="text-gray-600 hover:text-primary-600 transition-colors">Investor Dashboard</a>
+                    <a href="/cost-optimization.html" class="text-primary-600 font-semibold">Cost Optimization</a>
+                    <a href="#contact" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        Contact for Investment
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 pb-12" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); min-height: 100vh; color: white; padding: 20px;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
         <div class="header">
             <h1>💰 Cost Optimization Dashboard</h1>
             <p><span class="live-indicator"></span>Real-time AI cost savings in action</p>
@@ -217,6 +276,85 @@
                     req.style.transform = 'scale(1)';
                 }, 200);
             }, index * 500);
+        });
+    </script>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-width-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Brand -->
+                    <div class="md:col-span-1">
+                        <a href="/" class="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer">
+                            <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-xl">Afelu Guardian</span>
+                        </a>
+                        <p class="text-gray-400 mb-4">
+                            Advanced AI cost optimization demonstrating technical excellence and engineering sophistication for investor presentations.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/company/afelu-guardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="https://t.me/afeluguardian" target="_blank" rel="noopener noreferrer" 
+                               class="text-gray-400 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-telegram text-xl"></i>
+                            </a>
+                            <a href="mailto:yosephbet@gmail.com" class="text-gray-400 hover:text-green-500 transition-colors">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Excellence -->
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Cost Optimization</h4>
+                        <div class="space-y-2 text-gray-400">
+                            <p><i class="fas fa-chart-line mr-2 text-green-500"></i> 62.5% Cost Reduction</p>
+                            <p><i class="fas fa-tachometer-alt mr-2 text-blue-500"></i> 95% Faster Responses</p>
+                            <p><i class="fas fa-database mr-2 text-purple-500"></i> Smart Caching System</p>
+                            <p><i class="fas fa-dollar-sign mr-2 text-gold-500"></i> $25/month Savings</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Investment Info -->
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4">Investment Opportunity</h4>
+                        <div class="space-y-2 text-gray-400">
+                            <p><i class="fas fa-rocket mr-2"></i> Technical Sophistication</p>
+                            <p><i class="fas fa-chart-bar mr-2"></i> $1,200+ MRR</p>
+                            <p><i class="fas fa-users mr-2"></i> 250+ Active Users</p>
+                            <p class="text-primary-400 font-semibold mt-4">
+                                <i class="fas fa-handshake mr-2"></i> 
+                                Ready for $250K-500K Seed Round
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                    <p class="text-gray-400">
+                        &copy; 2025 Afelu Guardian. Advanced AI Cost Optimization.
+                        <span class="text-green-400 ml-2">💰 62.5% Cost Savings Achieved</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+            }
         });
     </script>
 </body>
