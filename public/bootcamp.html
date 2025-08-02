@@ -436,10 +436,22 @@
                     Limited enrollment ensures personalized attention and mentoring quality.
                 </p>
                 <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-white mb-6">Secure Enrollment</h3>
+                    <h3 class="text-2xl font-bold text-white mb-6">Choose Your Payment Method</h3>
                     
-                    <!-- Enrollment Form -->
-                    <div class="bg-white rounded-2xl p-6 mb-6">
+                    <!-- Payment Options Toggle -->
+                    <div class="flex justify-center mb-6">
+                        <div class="bg-white/20 rounded-lg p-1 flex">
+                            <button id="form-payment-btn" class="px-6 py-2 rounded-md text-white font-semibold bg-gold-600 transition-all">
+                                Custom Checkout
+                            </button>
+                            <button id="quick-payment-btn" class="px-6 py-2 rounded-md text-white font-semibold hover:bg-white/20 transition-all">
+                                Quick Payment
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Custom Checkout Form -->
+                    <div id="custom-checkout" class="bg-white rounded-2xl p-6 mb-6">
                         <form id="enrollment-form" class="space-y-4">
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
@@ -472,27 +484,27 @@
                             </div>
                             
                             <!-- Payment Summary -->
-                            <div class="bg-gradient-to-r from-gold-50 to-orange-50 rounded-lg p-4 border border-gold-200">
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-semibold text-gray-900">AI Training Bootcamp (4 weeks)</span>
-                                    <span class="text-2xl font-bold text-gold-600">$299</span>
+                            <div class="bg-white rounded-lg p-6 border-2 border-gold-400 shadow-lg">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="font-bold text-gray-900 text-lg">AI Training Bootcamp (4 weeks)</span>
+                                    <span class="text-3xl font-bold text-gold-600">$299</span>
                                 </div>
-                                <div class="text-sm text-gray-600 space-y-1">
-                                    <div class="flex justify-between">
-                                        <span>✅ 4-week intensive training</span>
-                                        <span>Included</span>
+                                <div class="text-sm text-gray-800 space-y-2">
+                                    <div class="flex justify-between items-center py-1">
+                                        <span class="font-medium">✅ 4-week intensive training</span>
+                                        <span class="font-semibold text-green-600">Included</span>
                                     </div>
-                                    <div class="flex justify-between">
-                                        <span>✅ AFCP Professional Certificate</span>
-                                        <span>Included</span>
+                                    <div class="flex justify-between items-center py-1">
+                                        <span class="font-medium">✅ AFCP Professional Certificate</span>
+                                        <span class="font-semibold text-green-600">Included</span>
                                     </div>
-                                    <div class="flex justify-between">
-                                        <span>✅ 3 months post-training support</span>
-                                        <span>Included</span>
+                                    <div class="flex justify-between items-center py-1">
+                                        <span class="font-medium">✅ 3 months post-training support</span>
+                                        <span class="font-semibold text-green-600">Included</span>
                                     </div>
-                                    <div class="flex justify-between">
-                                        <span>✅ Job placement assistance</span>
-                                        <span>Included</span>
+                                    <div class="flex justify-between items-center py-1">
+                                        <span class="font-medium">✅ Job placement assistance</span>
+                                        <span class="font-semibold text-green-600">Included</span>
                                     </div>
                                 </div>
                             </div>
@@ -502,8 +514,8 @@
                                 <input type="checkbox" id="terms-agreement" name="termsAgreement" required 
                                        class="mt-1 w-4 h-4 text-gold-600 focus:ring-gold-500 border-gray-300 rounded">
                                 <label for="terms-agreement" class="text-sm text-gray-700">
-                                    I agree to the <a href="#" class="text-gold-600 hover:text-gold-700 underline">Terms of Service</a> 
-                                    and <a href="#" class="text-gold-600 hover:text-gold-700 underline">Privacy Policy</a>. 
+                                    I agree to the <a href="/terms.html" class="text-gold-600 hover:text-gold-700 underline">Terms of Service</a> 
+                                    and <a href="/privacy.html" class="text-gold-600 hover:text-gold-700 underline">Privacy Policy</a>. 
                                     I understand this is a professional training program with certification requirements.
                                 </label>
                             </div>
@@ -515,6 +527,72 @@
                                 Secure Checkout - $299
                             </button>
                         </form>
+                    </div>
+
+                    <!-- Quick Payment Links -->
+                    <div id="quick-payment" class="bg-white rounded-2xl p-6 mb-6 hidden">
+                        <div class="text-center mb-6">
+                            <h4 class="text-2xl font-bold text-gray-900 mb-4">Choose Your Plan</h4>
+                            <p class="text-gray-600">Select the payment option that works best for you</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <!-- One-Time Payment -->
+                            <div class="border-2 border-gold-400 rounded-xl p-6 bg-gradient-to-br from-gold-50 to-orange-50">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-gold-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-star text-white"></i>
+                                    </div>
+                                    <h5 class="text-lg font-bold text-gray-900 mb-2">One-Time Payment</h5>
+                                    <div class="text-3xl font-bold text-gold-600 mb-4">$299</div>
+                                    <p class="text-sm text-gray-600 mb-4">Complete bootcamp access + lifetime benefits</p>
+                                    <a href="https://buy.stripe.com/test_7sY9ASftP5pG9lT1VxcjS01" target="_blank" 
+                                       class="w-full bg-gold-600 text-white py-3 rounded-lg font-semibold hover:bg-gold-700 transition-colors inline-block">
+                                        Pay Now - $299
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Premium Access Monthly -->
+                            <div class="border-2 border-gray-300 rounded-xl p-6">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-calendar-alt text-white"></i>
+                                    </div>
+                                    <h5 class="text-lg font-bold text-gray-900 mb-2">Premium Monthly</h5>
+                                    <div class="text-2xl font-bold text-gray-700 mb-4">$79/month</div>
+                                    <p class="text-sm text-gray-600 mb-4">Access + ongoing support (4 months = $316)</p>
+                                    <a href="https://buy.stripe.com/test_cNi6oGdlH2du7dL0RtcjS00" target="_blank" 
+                                       class="w-full bg-gray-600 text-white py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors inline-block">
+                                        Start Monthly
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Family Plan Option -->
+                            <div class="border-2 border-blue-300 rounded-xl p-6">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-users text-white"></i>
+                                    </div>
+                                    <h5 class="text-lg font-bold text-gray-900 mb-2">Family Access</h5>
+                                    <div class="text-2xl font-bold text-blue-600 mb-4">$25/month</div>
+                                    <p class="text-sm text-gray-600 mb-4">Ongoing access for families (12 months = $300)</p>
+                                    <a href="https://buy.stripe.com/test_eVq9AS0yV05m69HfMncjS03" target="_blank" 
+                                       class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-block">
+                                        Start Family Plan
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <div class="text-center text-sm text-blue-800">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Note:</strong> All plans include the same bootcamp content and AFCP certification. 
+                                Choose based on your preferred payment schedule.
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Alternative Contact -->
@@ -613,6 +691,38 @@
     </footer>
 
     <script>
+        // Payment method toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const formPaymentBtn = document.getElementById('form-payment-btn');
+            const quickPaymentBtn = document.getElementById('quick-payment-btn');
+            const customCheckout = document.getElementById('custom-checkout');
+            const quickPayment = document.getElementById('quick-payment');
+
+            formPaymentBtn.addEventListener('click', function() {
+                // Show custom checkout, hide quick payment
+                customCheckout.classList.remove('hidden');
+                quickPayment.classList.add('hidden');
+                
+                // Update button styles
+                formPaymentBtn.classList.add('bg-gold-600');
+                formPaymentBtn.classList.remove('hover:bg-white/20');
+                quickPaymentBtn.classList.remove('bg-gold-600');
+                quickPaymentBtn.classList.add('hover:bg-white/20');
+            });
+
+            quickPaymentBtn.addEventListener('click', function() {
+                // Show quick payment, hide custom checkout
+                customCheckout.classList.add('hidden');
+                quickPayment.classList.remove('hidden');
+                
+                // Update button styles
+                quickPaymentBtn.classList.add('bg-gold-600');
+                quickPaymentBtn.classList.remove('hover:bg-white/20');
+                formPaymentBtn.classList.remove('bg-gold-600');
+                formPaymentBtn.classList.add('hover:bg-white/20');
+            });
+        });
+
         // Handle bootcamp enrollment form submission
         document.getElementById('enrollment-form').addEventListener('submit', async function(e) {
             e.preventDefault();

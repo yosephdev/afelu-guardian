@@ -11,10 +11,13 @@ function generateAccessCode() {
 // Validate price ID to prevent unauthorized provisioning
 function validatePriceId(priceId) {
     const validPriceIds = [
-        process.env.STRIPE_PRICE_ID_FRIEND || 'price_1RqGJ9A4fb84QLrklEl9lQyv',
-        process.env.STRIPE_PRICE_ID_FAMILY || 'price_1RqGUtA4fb84QLrkmtc8MHM6',
-        process.env.STRIPE_PRICE_ID_COMMUNITY || 'price_1RqGL9A4fb84QLrk8uEEjuDs'
-    ];
+        process.env.STRIPE_PRICE_ID_FAMILY,
+        process.env.STRIPE_PRICE_ID_COMMUNITY,
+        process.env.STRIPE_PRICE_ID_WEEKLY,
+        process.env.STRIPE_PRICE_ID_BOOTCAMP,
+        process.env.STRIPE_PRICE_ID_PREMIUM
+    ].filter(Boolean); // Remove any undefined values
+    
     return validPriceIds.includes(priceId);
 }
 
@@ -47,14 +50,20 @@ async function provisionAccessCodes(session) {
         // 1. Determine the plan and number of codes
         let planDetails = {};
         switch (priceId) {
-            case process.env.STRIPE_PRICE_ID_FRIEND || 'price_1RqGJ9A4fb84QLrklEl9lQyv':
-                planDetails = { tier: 'Friend', codesToGenerate: 2 };
-                break;
-            case process.env.STRIPE_PRICE_ID_FAMILY || 'price_1RqGUtA4fb84QLrkmtc8MHM6':
+            case process.env.STRIPE_PRICE_ID_FAMILY:
                 planDetails = { tier: 'Family', codesToGenerate: 7 };
                 break;
-            case process.env.STRIPE_PRICE_ID_COMMUNITY || 'price_1RqGL9A4fb84QLrk8uEEjuDs':
+            case process.env.STRIPE_PRICE_ID_COMMUNITY:
                 planDetails = { tier: 'Community', codesToGenerate: 20 };
+                break;
+            case process.env.STRIPE_PRICE_ID_WEEKLY:
+                planDetails = { tier: 'Weekly', codesToGenerate: 1 };
+                break;
+            case process.env.STRIPE_PRICE_ID_BOOTCAMP:
+                planDetails = { tier: 'Bootcamp', codesToGenerate: 1 };
+                break;
+            case process.env.STRIPE_PRICE_ID_PREMIUM:
+                planDetails = { tier: 'Premium', codesToGenerate: 5 };
                 break;
             default:
                 console.error(`❌ Unknown Price ID: ${priceId}`);
