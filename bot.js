@@ -380,11 +380,15 @@ bot.onText(/\/gpt (.+)/, async (msg, match) => {
         // Send processing message
         const processingMsg = await bot.sendMessage(chatId, `⏳ Processing your request...\n\n"${prompt.substring(0, 100)}${prompt.length > 100 ? '...' : ''}"`);
 
-        // Get AI response from OpenAI
-        const gptResponse = await openaiService.getChatCompletion(prompt);
+        // Get AI response using cost-optimized service
+        const aiResult = await costOptimizer.getResponse(prompt, 'simple');
+        const gptResponse = aiResult.text;
         
         // Edit the processing message with the response
-        await bot.editMessageText(`🤖 **AI Response:**\n\n${gptResponse}`, {
+        const statusEmoji = aiResult.cached ? '💰' : '🤖';
+        const statusText = aiResult.cached ? '**Cached Response** (Instant)' : '**AI Response**';
+        
+        await bot.editMessageText(`${statusEmoji} ${statusText}\n\n${gptResponse}`, {
             chat_id: chatId,
             message_id: processingMsg.message_id
         });
@@ -395,10 +399,13 @@ bot.onText(/\/gpt (.+)/, async (msg, match) => {
             data: { quotaGpt: { decrement: 1 } },
         });
 
-        // Log the GPT request
+        // Log the GPT request with optimization data
         await loggingService.logAction(user.id, 'gpt_request', {
             promptLength: prompt.length,
-            responseLength: gptResponse.length
+            responseLength: gptResponse.length,
+            cached: aiResult.cached,
+            provider: aiResult.provider,
+            estimatedCost: aiResult.cost
         });
         await loggingService.updateLastActive(telegramId);
 
@@ -592,9 +599,13 @@ Format your response as:
 🇪🇹 Amharic: [translation]
 🌍 Other: [translation in detected language]`;
 
-        const translation = await openaiService.getChatCompletion(prompt);
+        const aiResult = await costOptimizer.getResponse(prompt, 'simple');
+        const translation = aiResult.text;
         
-        bot.sendMessage(chatId, `🌐 **Translation Service**\n\n${translation}`);
+        const statusEmoji = aiResult.cached ? '💰🌐' : '🌐';
+        const statusText = aiResult.cached ? '**Translation Service** (Cached)' : '**Translation Service**';
+        
+        bot.sendMessage(chatId, `${statusEmoji} ${statusText}\n\n${translation}`);
 
         await prisma.user.update({
             where: { telegramId },
@@ -638,9 +649,13 @@ Keep it informative but concise. If you don't have recent information, explain t
 
         const processingMsg = await bot.sendMessage(chatId, `📰 Gathering news about: ${topic}...`);
         
-        const newsResponse = await openaiService.getChatCompletion(prompt);
+        const aiResult = await costOptimizer.getResponse(prompt, 'simple');
+        const newsResponse = aiResult.text;
         
-        await bot.editMessageText(`📰 **News Summary: ${topic}**\n\n${newsResponse}\n\n*Note: AI-generated summary. Please verify important information from multiple sources.*`, {
+        const statusEmoji = aiResult.cached ? '💰📰' : '📰';
+        const cacheNote = aiResult.cached ? ' (Cached)' : '';
+        
+        await bot.editMessageText(`${statusEmoji} **News Summary: ${topic}**${cacheNote}\n\n${newsResponse}\n\n*Note: AI-generated summary. Please verify important information from multiple sources.*`, {
             chat_id: chatId,
             message_id: processingMsg.message_id
         });
@@ -1415,9 +1430,10 @@ Provide A, B, C, D options for each question and include correct answers with ex
 
         const processingMsg = await bot.sendMessage(chatId, "🧠 Generating your AI quiz...");
         
-        const quiz = await openaiService.getChatCompletion(quizPrompt);
+        const aiResult = await costOptimizer.getResponse(quizPrompt, 'simple');
+        const quiz = aiResult.text;
         
-        let quizMessage = `🧠 **AI Knowledge Quiz**\n\n${quiz}\n\n**🎯 How to Take This Quiz:**\n• Think carefully about each question\n• Check your answers at the bottom\n• Count your correct answers\n• Use \`/gpt\` to ask about confusing concepts\n\n`;
+        let quizMessage = `🧠 **AI Knowledge Quiz**${aiResult.cached ? ' (Cached)' : ''}\n\n${quiz}\n\n**🎯 How to Take This Quiz:**\n• Think carefully about each question\n• Check your answers at the bottom\n• Count your correct answers\n• Use \`/gpt\` to ask about confusing concepts\n\n`;
         
         if (courseKey) {
             quizMessage += `**🏆 Certificate Opportunity:**\nThis is a final quiz for ${courses[courseKey].title}. Score 70% or higher (4/5 correct) to earn your certificate!\n\n`;
