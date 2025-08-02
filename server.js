@@ -6,6 +6,7 @@ const prisma = require('./prisma');
 const { provisionAccessCodes } = require('./provisioning');
 // const adminRoutes = require('./routes/admin');
 const contactRoutes = require('./routes/contact');
+const analyticsRoutes = require('./routes/analytics');
 const loggingService = require('./services/logging');
 const { createBootcampCheckoutSession, handleBootcampPaymentSuccess } = require('./payment-service');
 
@@ -162,6 +163,9 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Contact routes
 app.use('/api/contact', contactRoutes);
+
+// Analytics routes for investors and monitoring
+app.use('/api', analyticsRoutes);
 
 // Bootcamp payment endpoints
 app.post('/api/bootcamp/checkout', async (req, res) => {

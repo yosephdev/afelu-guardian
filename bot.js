@@ -3,6 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const prisma = require('./prisma');
 const openaiService = require('./services/openai');
 const enhancedAI = require('./services/enhanced-ai-service');
+const costOptimizedAI = require('./services/cost-optimized-ai');
 const webfetchService = require('./services/webfetch');
 const loggingService = require('./services/logging');
 const certificateService = require('./services/certificate-service');
@@ -21,6 +22,9 @@ if (!token) {
 }
 
 const bot = new TelegramBot(token, { polling: false }); // Disable polling initially
+
+// Initialize cost-optimized AI for startup phase
+const costOptimizer = new costOptimizedAI();
 
 // Rate limiting maps
 const rateLimitMap = new Map();
