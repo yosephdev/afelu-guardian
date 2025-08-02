@@ -164,7 +164,7 @@ class ZohoEmailService {
                     <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 15px; border-radius: 6px; margin: 20px 0;">
                         <h4 style="color: #856404; margin-top: 0;">📱 How to Use Your Codes:</h4>
                         <ol style="color: #856404; margin: 0;">
-                            <li>Open Telegram and search for <strong>@AfeluGuardianBot</strong></li>
+                            <li>Open Telegram and search for <strong>@AfeluBot</strong></li>
                             <li>Send the command <code>/redeem YOUR_CODE</code></li>
                             <li>Follow the instructions to access AI services</li>
                             <li>Share additional codes with family and friends!</li>

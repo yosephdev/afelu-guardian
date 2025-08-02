@@ -151,7 +151,7 @@
 
 1. **Visit:** <https://afelu.com/investor-dashboard.html>
 2. **Show:** Live revenue and user metrics
-3. **Demo:** Telegram bot interaction (t.me/AfeluGuardianBot)
+3. **Demo:** Telegram bot interaction (t.me/AfeluBot)
 4. **Highlight:** Payment-first model (no free AI access)
 5. **Emphasize:** Ethiopian cultural AI integration
 

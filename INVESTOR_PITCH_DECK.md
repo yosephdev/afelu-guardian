@@ -293,7 +293,7 @@ afelu.com
 
 **Next Steps:**
 
-1. Try our live demo: t.me/AfeluGuardianBot
+1. Try our live demo: t.me/AfeluBot
 2. Review detailed business plan
 3. Meet with Ethiopian university partners
 4. Discuss partnership terms
