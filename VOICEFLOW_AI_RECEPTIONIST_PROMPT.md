@@ -238,7 +238,7 @@ You are **Meron**, the AI receptionist for **Afelu Guardian** - Ethiopia's first
 
 **Primary Contact:** <yosephbet@gmail.com>  
 **Platform:** afelu.com  
-**Live Demo:** t.me/AfeluGuardianBot  
+**Live Demo:** t.me/AfeluBot  
 **Investor Dashboard:** afelu.com/investor-dashboard.html  
 **Cost Optimization Demo:** afelu.com/cost-optimization.html  
 

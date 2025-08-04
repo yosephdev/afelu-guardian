@@ -68,7 +68,7 @@ afelu.com
 - Community Learning Groups
 - Corporate Training Modules
 
-**Demo:** [Live bot interaction]  
+**Demo:** @AfeluBot
 *Type /start in Telegram to see magic happen*
 
 ---
@@ -358,7 +358,7 @@ afelu.com
 
 **Next Steps:**
 
-1. **Try our live demo:** t.me/AfeluGuardianBot
+1. **Try our live demo:** t.me/AfeluBot
 2. **View analytics dashboard:** afelu.com/investor-dashboard.html
 3. **See cost optimization:** afelu.com/cost-optimization.html
 4. **Review technical architecture** and business metrics
@@ -373,7 +373,7 @@ afelu.com
 
 - **Email:** <admin@afelu.com>
 - **Platform:** afelu.com
-- **Demo Bot:** t.me/AfeluGuardianBot
+- **Demo Bot:** t.me/AfeluBot
 
 *"The future of work is AI-powered. Let's make sure Africa isn't left behind."*
 
