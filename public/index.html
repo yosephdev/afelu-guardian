@@ -311,20 +311,20 @@
                 <!-- Stats -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div>
-                        <div class="text-3xl font-bold mb-2">500+</div>
-                        <div class="text-white/80">Trained Professionals</div>
+                        <div class="text-3xl font-bold mb-2">Live</div>
+                        <div class="text-white/80">Platform Status</div>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold mb-2">50+</div>
-                        <div class="text-white/80">Business Clients</div>
+                        <div class="text-3xl font-bold mb-2">First</div>
+                        <div class="text-white/80">In Ethiopia</div>
                     </div>
                     <div>
                         <div class="text-3xl font-bold mb-2">24/7</div>
                         <div class="text-white/80">Premium Support</div>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold mb-2">$2M+</div>
-                        <div class="text-white/80">Value Generated</div>
+                        <div class="text-3xl font-bold mb-2">Ready</div>
+                        <div class="text-white/80">For Investment</div>
                     </div>
                 </div>
             </div>
@@ -398,25 +398,25 @@
                     </div>
 
                     <div class="space-y-8">
-                        <!-- Impact Stats -->
+                        <!-- Platform Status -->
                         <div class="bg-white border border-gray-200 rounded-3xl p-8 shadow-xl">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Our Impact</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Platform Status</h3>
                             <div class="grid grid-cols-2 gap-8">
                                 <div class="text-center">
-                                    <div class="text-4xl font-bold text-ethiopia-green mb-2">500+</div>
-                                    <div class="text-gray-600">Families Supported</div>
+                                    <div class="text-4xl font-bold text-ethiopia-green mb-2">Live</div>
+                                    <div class="text-gray-600">Platform Operational</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-4xl font-bold text-blue-600 mb-2">50+</div>
-                                    <div class="text-gray-600">Business Clients</div>
+                                    <div class="text-4xl font-bold text-blue-600 mb-2">62.5%</div>
+                                    <div class="text-gray-600">AI Cost Optimization</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-4xl font-bold text-purple-600 mb-2">24/7</div>
-                                    <div class="text-gray-600">Premium Support</div>
+                                    <div class="text-4xl font-bold text-purple-600 mb-2">First</div>
+                                    <div class="text-gray-600">In Ethiopia</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-4xl font-bold text-orange-600 mb-2">$2M+</div>
-                                    <div class="text-gray-600">Value Generated</div>
+                                    <div class="text-4xl font-bold text-orange-600 mb-2">Seed</div>
+                                    <div class="text-gray-600">Funding Stage</div>
                                 </div>
                             </div>
                         </div>
@@ -622,42 +622,17 @@
         </div>
     </section>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>        
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                }
-            });
-        });
+    <!-- BEFORE (FICTIONAL - NEEDS REMOVAL): -->
+    <!-- <div class="bg-green-50 p-6 rounded-lg">
+        <h3 class="font-semibold text-lg mb-2">$1,200+ MRR</h3>
+        <p class="text-gray-600">Monthly recurring revenue with 250+ active users</p>
+    </div> -->
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('bg-white');
-                nav.classList.remove('bg-white/90');
-            } else {
-                nav.classList.add('bg-white/90');
-                nav.classList.remove('bg-white');
-            }
-        });
-    </script>
+    <!-- AFTER (HONEST): -->
+    <div class="bg-green-50 p-6 rounded-lg">
+        <h3 class="font-semibold text-lg mb-2">Live Platform</h3>
+        <p class="text-gray-600">Fully operational AI education platform with payment processing</p>
+    </div>
 
     <!-- AI Revolution Infographic Section -->
     <section class="py-20 bg-gradient-to-r from-purple-600 to-blue-600">
@@ -755,16 +730,16 @@
                             Hands-on exercises and real-world projects to practice AI skills with immediate feedback.
                         </p>
                         <div class="space-y-2 text-sm text-gray-600">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
                                 <span>Step-by-step tutorials</span>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
                                 <span>Practice exercises</span>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-check text-green-500"></i>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
                                 <span>Real-world projects</span>
                             </div>
                         </div>
@@ -1299,7 +1274,6 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            
                             <div>
                                 <label for="company" class="block text-sm font-medium text-white/90 mb-2">Company/Organization (optional)</label>
                                 <input type="text" name="company" id="company" placeholder="Your company name"
