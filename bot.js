@@ -785,6 +785,11 @@ bot.onText(/\/help/, (msg) => {
 • \`/premium\` - Information about $79/month unlimited access
 • \`/enterprise\` - Custom AI solutions for businesses
 
+**🛡️ COMMUNITY SUPPORT:**
+• \`/support\` - Get help from admin and support team
+• \`/pricing\` - View detailed pricing for all plans
+• \`/website\` - Visit afelu.com for full information
+
 **💳 ACCESS PLANS:**
 • **Weekly Code**: $5 (perfect for trying AI tools)
 • **Family Plan**: $25/month (4 family members)
@@ -1148,6 +1153,136 @@ bot.onText(/\/enterprise/, (msg) => {
 Transform your business with AI today! 🚀`;
 
     bot.sendMessage(chatId, enterpriseMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /support - Community support
+bot.onText(/\/support/, (msg) => {
+    const chatId = msg.chat.id;
+    const supportMessage = `
+🛡️ **AFELU GUARDIAN SUPPORT**
+
+**🎯 FOR IMMEDIATE HELP:**
+
+**📧 Direct Contact:**
+• Technical issues: yosephbet@gmail.com
+• Payment problems: yosephbet@gmail.com  
+• Course questions: Use @AfeluBot directly
+• General chat: Ask in @afeluguardian group
+
+**🤖 AI Assistant:**
+• Use @AfeluBot for instant AI help
+• Try \`/help\` for complete command list
+• Use \`/gpt <question>\` for AI assistance
+
+**💬 Community Support:**
+• Join: https://web.telegram.org/k/#@afeluguardian
+• Ask questions in the group
+• Learn from other members
+
+**⏰ RESPONSE TIMES:**
+• Email: Usually within 2-4 hours
+• Group questions: Community responds quickly
+• AI assistance: Instant via @AfeluBot
+
+**🚨 EMERGENCY:** For urgent issues, email yosephbet@gmail.com with "URGENT" in subject
+
+**💡 TIP:** Most questions are already answered with \`/help\` command!
+    `;
+    
+    bot.sendMessage(chatId, supportMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /pricing - Pricing information  
+bot.onText(/\/pricing/, (msg) => {
+    const chatId = msg.chat.id;
+    const pricingMessage = `
+💰 **AFELU GUARDIAN PRICING**
+
+**🎯 INDIVIDUAL ACCESS:**
+
+**🚀 Weekly Access - $5**
+• 100 AI interactions
+• Access to all 4 courses
+• Basic support
+
+**👨‍👩‍👧‍👦 Family Plan - $25/month**
+• 500 AI interactions  
+• Up to 5 family members
+• All courses included
+• Priority support
+
+**🥇 Premium Access - $79/month**
+• **UNLIMITED** AI interactions
+• Early access to new features
+• Priority support
+• Advanced automation tools
+
+**🏆 AI Training Bootcamp - $299** (One-time)
+• 4-week intensive program
+• 1-on-1 mentoring sessions
+• Professional certification
+• Lifetime access
+
+**🏢 BUSINESS PACKAGES:**
+• Corporate Training: $500-5,000/month
+• Enterprise Solutions: $5,000+ (custom)
+• University Licensing: Contact for pricing
+
+**✅ ALL PRICES INCLUDE:**
+• Complete course access (4 courses)
+• Certificates upon completion  
+• Ethiopian/Amharic language support
+• Community group access
+
+**🛒 PURCHASE:** Use \`/plans\` for direct purchase links
+**💬 QUESTIONS:** Email yosephbet@gmail.com
+
+**🎁 SPECIAL:** Family sponsorship options available!
+    `;
+    
+    bot.sendMessage(chatId, pricingMessage, { parse_mode: 'Markdown' });
+});
+
+// COMMAND: /website - Website information
+bot.onText(/\/website/, (msg) => {
+    const chatId = msg.chat.id;
+    const websiteMessage = `
+🌐 **AFELU GUARDIAN WEBSITE**
+
+**🏠 Main Site:** https://afelu.com
+
+**📊 KEY PAGES:**
+
+**🎯 Essential Pages:**
+• **Home:** Platform overview & features  
+• **Courses:** https://afelu.com/courses.html
+• **Pricing:** https://afelu.com/#pricing
+• **About:** Our mission for Digital Ethiopia 2025
+
+**💼 Business Pages:**
+• **Investor Info:** https://afelu.com/investor-dashboard.html
+• **Cost Optimization:** Our 62.5% efficiency achievements
+• **Enterprise:** Custom AI solutions for businesses
+
+**📱 MOBILE OPTIMIZED:** 
+• Works perfectly on phones
+• Fast loading & responsive design
+• Available 24/7 worldwide
+
+**🎯 QUICK ACTIONS ON WEBSITE:**
+• Purchase access codes instantly
+• Learn about our AI education mission  
+• Contact for business partnerships
+• View our technical achievements
+
+**🇪🇹 LANGUAGE:** Currently in English, Amharic support via @AfeluBot
+
+**💡 BOOKMARK:** Save https://afelu.com for easy access to all services!
+
+**📞 CONTACT:** All contact info available on website
+    `;
+    
+    bot.sendMessage(chatId, websiteMessage, { parse_mode: 'Markdown' });
 });
 
 // COMMAND: /enroll <course>
