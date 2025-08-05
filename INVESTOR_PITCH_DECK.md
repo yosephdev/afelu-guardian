@@ -433,3 +433,10 @@ afelu.com
 - Sensitivity analysis
 - Fundraising timeline
 - Exit strategy scenarios
+
+**Live Demo Links:**
+
+- **Main Platform:** <https://afelu.com>
+- **Telegram Bot:** <https://t.me/AfeluBot>  
+- **Investor Dashboard:** <https://afelu.com/investor-dashboard.html>
+- **Cost Optimization Demo:** <https://afelu.com/cost-optimization.html>

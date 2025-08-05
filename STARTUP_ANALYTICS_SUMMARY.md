@@ -47,14 +47,14 @@
 
 ### 2. **📊 Live Analytics Dashboards** - ✅ OPERATIONAL
 
-**Investor Dashboard**: [`public/investor-dashboard.html`](public/investor-dashboard.html )
+**Investor Dashboard**: <https://afelu.com/investor-dashboard.html>
 
 - Real-time revenue tracking
 - User growth metrics and cohort analysis
 - Platform usage statistics
 - Key performance indicators (KPIs)
 
-**Cost Optimization Dashboard**: [`public/cost-optimization.html`](public/cost-optimization.html )
+**Cost Optimization Dashboard**: <https://afelu.com/cost-optimization.html>
 
 - Technical innovation demonstration
 - AI efficiency metrics (62.5% savings)
@@ -218,7 +218,7 @@
 ### **Founder Contact:**
 
 - **Name**: Yoseph Berhane Gebremedhin
-- **Email**: <yosephbet@gmail.com>
+- **Email**: <admin@afelu.com>
 - **LinkedIn**: [Professional profile with platform updates]
 - **Location**: Ethiopia (with global expansion vision)
 

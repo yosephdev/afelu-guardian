@@ -151,10 +151,10 @@
 
 ### Business Intelligence Dashboards ✅
 
-- ✅ **Revenue Analytics** - Real-time MRR tracking
-- ✅ **User Growth Metrics** - Cohort analysis
-- ✅ **Cost Optimization Dashboard** - AI efficiency metrics
-- ✅ **Payment Analytics** - Stripe integration
+- ✅ **Revenue Analytics** - <https://afelu.com/investor-dashboard.html>
+- ✅ **User Growth Metrics** - <https://afelu.com/investor-dashboard.html>
+- ✅ **Cost Optimization Dashboard** - <https://afelu.com/cost-optimization.html>
+- ✅ **Payment Analytics** - Stripe integration via dashboards
 - ✅ **Performance Monitoring** - System health metrics
 - ✅ **User Behavior Tracking** - Engagement analytics
 - ✅ **Financial Projections** - 3-year growth models

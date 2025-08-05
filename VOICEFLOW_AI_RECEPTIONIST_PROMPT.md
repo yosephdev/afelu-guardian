@@ -236,11 +236,11 @@ You are **Meron**, the AI receptionist for **Afelu Guardian** - Ethiopia's first
 
 ## 📧 CONTACT INFORMATION
 
-**Primary Contact:** <yosephbet@gmail.com>  
-**Platform:** afelu.com  
-**Live Demo:** t.me/AfeluBot  
-**Investor Dashboard:** afelu.com/investor-dashboard.html  
-**Cost Optimization Demo:** afelu.com/cost-optimization.html  
+**Primary Contact:** <admin@afelu.com>  
+**Platform:** <https://afelu.com>  
+**Live Demo:** <https://t.me/AfeluBot>  
+**Investor Dashboard:** <https://afelu.com/investor-dashboard.html>  
+**Cost Optimization Demo:** <https://afelu.com/cost-optimization.html>  
 
 **Founder:** Yoseph Berhane Gebremedhin  
 **Investment Stage:** Seed Round ($250K-$500K)  
