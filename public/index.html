@@ -173,6 +173,11 @@
                             700: '#1d4ed8',
                             900: '#1e3a8a'
                         },
+                        gold: {
+                            500: '#fbbf24',
+                            600: '#f59e0b',
+                            700: '#d97706'
+                        },
                         ethiopia: {
                             green: '#009639',
                             yellow: '#FFCD00',
@@ -1230,7 +1235,7 @@
                             
                             <div>
                                 <label for="phone" class="block text-sm font-medium text-white/90 mb-2">Phone (optional)</label>
-                                <input type="tel" name="phone" id="phone" placeholder="+251..."
+                                <input type="tel" name="phone" id="phone" placeholder="+46..."
                                        class="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-ethiopia-yellow focus:border-transparent backdrop-blur-sm">
                             </div>
                             
@@ -1373,7 +1378,7 @@
                                     <i class="fas fa-phone text-ethiopia-green"></i>
                                     <div>
                                         <div class="font-semibold text-white">Phone</div>
-                                        <div class="text-white/80 text-sm">+251 911 234 567</div>
+                                        <div class="text-white/80 text-sm">+46 703 566 108</div>
                                     </div>
                                 </div>
                                 
@@ -1624,6 +1629,45 @@
 
         // Show banner on page load
         document.addEventListener('DOMContentLoaded', showCookieBanner);
+        
+        // Enhanced mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Toggle hamburger/close icon
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.className = 'fas fa-bars text-xl';
+                    } else {
+                        icon.className = 'fas fa-times text-xl';
+                    }
+                });
+
+                // Close mobile menu when clicking on a link
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.className = 'fas fa-bars text-xl';
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.className = 'fas fa-bars text-xl';
+                    }
+                });
+            }
+        });
     </script>   
    
     <!-- VoiceFlow AI Receptionist Widget -->

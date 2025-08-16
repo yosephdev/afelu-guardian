@@ -23,6 +23,11 @@
                             500: '#fbbf24',
                             600: '#f59e0b',
                             700: '#d97706'
+                        },
+                        ethiopia: {
+                            green: '#009639',
+                            yellow: '#FFCD00',
+                            red: '#DA020E'
                         }
                     }
                 }
@@ -31,7 +36,7 @@
     </script>
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom Styles -->
     <style>
@@ -51,9 +56,10 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
         <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
                 <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
                     <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
                         <i class="fas fa-shield-alt text-white text-sm"></i>
@@ -61,27 +67,46 @@
                     <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
                 </a>
                 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-700 hover:text-primary-600 transition-colors">Home</a>
-                    <a href="/courses.html" class="text-gray-700 hover:text-primary-600 transition-colors">Free Courses</a>
+                    <a href="/" class="text-gray-600 hover:text-primary-600 transition-colors">Home</a>
+                    <a href="/#mission" class="text-gray-600 hover:text-primary-600 transition-colors">Mission</a>
+                    <a href="/courses.html" class="text-gray-600 hover:text-primary-600 transition-colors">Free Courses</a>
                     <a href="/bootcamp.html" class="text-gold-600 font-semibold">Premium Bootcamp</a>
-                    <a href="/documentation.html" class="text-gray-700 hover:text-primary-600 transition-colors">Documentation</a>
-                    <a href="/faq.html" class="text-gray-700 hover:text-primary-600 transition-colors">FAQ</a>
-                    <a href="#enroll" class="bg-gold-600 text-white px-6 py-2 rounded-lg hover:bg-gold-700 transition-colors">
+                    <a href="/infographic.html" class="text-gray-600 hover:text-primary-600 transition-colors">AI in Ethiopia</a>
+                    <a href="/faq.html" class="text-gray-600 hover:text-primary-600 transition-colors">FAQ</a>
+                    <a href="/#contact" class="text-gray-600 hover:text-primary-600 transition-colors">Contact</a>
+                    <a href="#enroll" class="bg-gold-600 text-white px-4 py-2 rounded-lg hover:bg-gold-700 transition-colors">
                         Enroll Now
                     </a>
                 </div>
                 
-                <!-- Mobile menu button -->
-                <button class="md:hidden">
-                    <i class="fas fa-bars text-gray-600"></i>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Home</a>
+                    <a href="/#mission" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Mission</a>
+                    <a href="/courses.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Free Courses</a>
+                    <a href="/bootcamp.html" class="text-gold-600 font-semibold py-2">Premium Bootcamp</a>
+                    <a href="/infographic.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">AI in Ethiopia</a>
+                    <a href="/faq.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">FAQ</a>
+                    <a href="/#contact" class="text-gray-600 hover:text-primary-600 transition-colors py-2">Contact</a>
+                    <a href="#enroll" class="bg-gold-600 text-white px-4 py-2 rounded-lg hover:bg-gold-700 transition-colors inline-block text-center mt-2">
+                        Enroll Now
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-gold-50 via-orange-50 to-red-50 py-20">
+    <section class="bg-gradient-to-br from-gold-50 via-orange-50 to-red-50 pt-24 pb-20">
         <div class="container mx-auto px-4">
             <div class="max-w-5xl mx-auto text-center">
                 <div class="inline-flex items-center bg-gold-100 text-gold-800 px-6 py-2 rounded-full text-sm font-semibold mb-6">
@@ -850,6 +875,45 @@
             `;
             enrollSection.insertBefore(canceledMessage, enrollSection.firstChild);
         }
+
+        // Enhanced mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Toggle hamburger/close icon
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.className = 'fas fa-bars text-xl';
+                    } else {
+                        icon.className = 'fas fa-times text-xl';
+                    }
+                });
+
+                // Close mobile menu when clicking on a link
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.className = 'fas fa-bars text-xl';
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.className = 'fas fa-bars text-xl';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>

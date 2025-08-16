@@ -44,27 +44,59 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
                 <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
                     <div class="w-8 h-8 ethiopia-gradient rounded-lg flex items-center justify-center">
                         <i class="fas fa-shield-alt text-white text-sm"></i>
                     </div>
                     <span class="font-bold text-xl text-gray-900">Afelu Guardian</span>
                 </a>
-                <div class="flex items-center space-x-4">
-                    <a href="/infographic.html" class="text-gray-600 hover:text-blue-600 transition-colors">
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-600 hover:text-primary-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="/infographic.html" class="text-gray-600 hover:text-primary-600 transition-colors">
                         <i class="fas fa-chart-bar mr-2"></i>AI in Ethiopia
                     </a>
                     <a href="/ai-revolution-ethiopia-2025.html" class="text-green-600 hover:text-green-700 transition-colors">
                         <i class="fas fa-file-alt mr-2"></i>2025 Report
                     </a>
-                    <a href="/faq.html" class="text-gray-600 hover:text-blue-600 transition-colors">
+                    <a href="/faq.html" class="text-gray-600 hover:text-primary-600 transition-colors">
                         FAQ
                     </a>
-                    <a href="/" class="text-blue-600 hover:text-blue-700 transition-colors">
-                        <i class="fas fa-home mr-2"></i>Back to Home
+                    <a href="/courses.html" class="text-gray-600 hover:text-primary-600 transition-colors">
+                        Free Courses
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary-600 transition-colors py-2">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="/infographic.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">
+                        <i class="fas fa-chart-bar mr-2"></i>AI in Ethiopia
+                    </a>
+                    <a href="/ai-revolution-ethiopia-2025.html" class="text-green-600 hover:text-green-700 transition-colors py-2">
+                        <i class="fas fa-file-alt mr-2"></i>2025 Report
+                    </a>
+                    <a href="/faq.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">
+                        FAQ
+                    </a>
+                    <a href="/courses.html" class="text-gray-600 hover:text-primary-600 transition-colors py-2">
+                        Free Courses
                     </a>
                 </div>
             </div>
@@ -72,7 +104,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="min-h-screen flex items-center justify-center py-12">
+    <div class="min-h-screen flex items-center justify-center py-12 pt-20">
         <div class="max-w-2xl mx-auto px-4">
             <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
                 <!-- Success Icon -->
@@ -281,6 +313,43 @@
                 content.style.opacity = '1';
                 content.style.transform = 'translateY(0)';
             }, 100);
+
+            // Enhanced mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Toggle hamburger/close icon
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.className = 'fas fa-bars text-xl';
+                    } else {
+                        icon.className = 'fas fa-times text-xl';
+                    }
+                });
+
+                // Close mobile menu when clicking on a link
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.className = 'fas fa-bars text-xl';
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.className = 'fas fa-bars text-xl';
+                    }
+                });
+            }
         });
     </script>
 </body>
