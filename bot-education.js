@@ -9,6 +9,9 @@ const token = process.env.TELEGRAM_BOT_TOKEN;
 if (!token) {
     console.error('❌ TELEGRAM_BOT_TOKEN is required');
     process.exit(1);
+// bot-education.js
+// Telegram bot for AI education platform: handles course enrollment, progress, certificates, and AI practice (ChatGPT, Claude)
+// Uses prisma-education client and OpenAI/Claude services
 }
 
 const bot = new TelegramBot(token, { polling: false });

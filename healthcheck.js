@@ -14,6 +14,9 @@ const req = http.request(options, (res) => {
   } else {
     console.error(`Health check failed with status: ${res.statusCode}`);
     process.exit(1);
+  // healthcheck.js
+  // Simple HTTP health check for Afelu Guardian deployment
+  // Exits with 0 if healthy, 1 if not
   }
 });
 

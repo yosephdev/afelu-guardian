@@ -10,6 +10,9 @@ function validateAccessCodeFormat(code) {
     // ET-XXXX-XXXX format with alphanumeric characters
     const regex = /^ET-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
     return regex.test(code.trim().toUpperCase());
+// validation.js
+// Utility functions for validating access codes, sanitizing input, and checking Telegram IDs for Afelu Guardian bots
+// Ensures security and data integrity
 }
 
 /**

@@ -19,6 +19,9 @@ const token = process.env.TELEGRAM_BOT_TOKEN;
 if (!token) {
     console.error('❌ TELEGRAM_BOT_TOKEN is required');
     process.exit(1);
+// bot.js
+// Main Telegram bot for Afelu Guardian: handles access codes, AI queries, cost optimization, certificates, and logging
+// Uses Prisma client and multiple AI services
 }
 
 const bot = new TelegramBot(token, { polling: false }); // Disable polling initially
