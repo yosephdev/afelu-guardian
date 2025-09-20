@@ -74,7 +74,7 @@ This decouples payment from usage, protecting end-user identity and privacy.
 ### Installation
 
 ```bash
-git clone <repository>
+git clone https://github.com/yosephdev/afelu-guardian.git
 cd afelu-guardian
 npm install
 ```
