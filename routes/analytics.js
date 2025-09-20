@@ -18,6 +18,9 @@ router.get('/revenue-analytics', async (req, res) => {
                 createdAt: {
                     gte: startOfMonth,
                     lte: endOfMonth
+                // analytics.js
+                // Express route for Afelu Guardian analytics dashboard
+                // Provides revenue, usage, and customer analytics for investor and admin reporting
                 }
             },
             include: {
