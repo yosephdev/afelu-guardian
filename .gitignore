@@ -38,6 +38,7 @@ pids
 *.pid.lock
 
 # Coverage directory used by tools like istanbul
+docs/
 coverage/
 *.lcov
 .nyc_output
