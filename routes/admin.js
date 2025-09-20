@@ -12,6 +12,9 @@ const adminAuth = (req, res, next) => {
     
     if (!adminPassword) {
         return res.status(500).json({ error: 'Admin dashboard not configured' });
+    // admin.js
+    // Express route for Afelu Guardian admin dashboard and management
+    // Provides authentication, statistics, code generation, and user management for admins
     }
     
     if (!authHeader || authHeader !== `Bearer ${adminPassword}`) {
