@@ -1,3 +1,7 @@
+// ecosystem.config.js
+// PM2 configuration for clustered Node.js deployment of Afelu Guardian
+// Includes environment settings, logging, and memory management
+
 module.exports = {
   apps: [{
     name: 'afelu-guardian',
